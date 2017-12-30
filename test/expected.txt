@@ -1,0 +1,2 @@
+- ./test/example.js
+sha256-01ojsQ6S3/NwlINThTWuPL1cbYKJneVHTZJI9gVtJcM=
