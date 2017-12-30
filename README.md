@@ -21,6 +21,8 @@ hmj.run();
 let code = `...`;
 let digest = hmj.hash(code);
 ```
+## Nota bene
+If you use wildcard `*` in the CLI to get files, NodeJS will have a hard time getting the file from the right URL so it will lead in errors.
 
 ## Contribution
 If you discover bugs, errors or/and have suggestions/feedback please create an [issue](http://github.com/Berkmann18/hashmyjs/issues) or/and submit a [PR](http://github.com/Berkmann18/hashmyjs/pulls).
