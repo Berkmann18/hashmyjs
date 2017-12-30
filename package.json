@@ -1,0 +1,34 @@
+{
+  "name": "hashmyjs",
+  "version": "1.0.0",
+  "description": "A simple NodeJS JS file/code hasher.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "eslint -c ./config/.eslintrc.js *.js",
+    "doc": "jsdoc -c ./config/.jsdocrc",
+    "fmt": "eslint -c ./config/.eslintrc.js *.js --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Berkmann18/hashmyjs.git"
+  },
+  "keywords": [
+    "hash",
+    "integrity",
+    "node",
+    "js",
+    "javascript",
+    "SHA-256",
+    "base64",
+    "encode",
+    "cli",
+    "digest"
+  ],
+  "author": "Berkmann18",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Berkmann18/hashmyjs/issues"
+  },
+  "homepage": "https://github.com/Berkmann18/hashmyjs#readme"
+}
