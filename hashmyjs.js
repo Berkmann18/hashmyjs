@@ -27,7 +27,7 @@ let argOrIn = () => process.argv.length > 2;
 
 /**
  * @description Read user's input from STDIN.
- * @private
+ * @protected
  */
 const readIn = () => {
   let rl = readline.createInterface({
@@ -60,32 +60,38 @@ const scanInput = (input, noOutput=false) => {
 };
 
 /**
+ * @description Read files and scan them.
+ * @param {string[]} [files=process.argv.slice(2, process.argv.length)] Array of file paths
+ */
+const readFiles = (files=process.argv.slice(2, process.argv.length)) => {
+    let inputs = [];
+    for (let file of files) {
+        fs.open(file, 'r+', (err, fd) => {
+            let buf = new Buffer(4096);
+            if (err) return console.error(err);
+            fs.read(fd, buf, 0, buf.length, 0, (err, bytes) => {
+                //console.log(`${bytes} read`);
+                if (err) return console.log(err);
+                if (bytes > 0) inputs.push(buf.slice(0, bytes).toString());
+            });
+
+            fs.close(fd, (err) => {
+                if (err) console.error(err);
+                console.log(`\n- ${file}`);
+                scanInput(file);
+            });
+        });
+    }
+};
+/**
  * @description Start the hasher.
  * @public
  */
 const run = () => {
-  if (argOrIn()) {
-    let inputs = [];
-    for (let i = 2; i < process.argv.length; ++i) {
-      fs.open(process.argv[i], 'r+', (err, fd) => {
-        let buf = new Buffer(4096);
-        if (err) return console.error(err);
-        fs.read(fd, buf, 0, buf.length, 0, (err, bytes) => {
-          //console.log(`${bytes} read`);
-          if (err) return console.log(err);
-          if (bytes > 0) inputs.push(buf.slice(0, bytes).toString());
-        });
-
-        fs.close(fd, (err) => {
-          if (err) console.error(err);
-          console.log(`\n- ${process.argv[i]}`);
-          scanInput(inputs[i - 2]);
-        });
-      });
-    }
-  } else readIn();
-}
+  //console.log(`HMJ (readFile=${argOrIn()}): args length= ${process.argv.length}`);
+  argOrIn() ? readFiles() : readIn();
+};
 
 module.exports = {
-  run, scanInput, hash
-}
+  run, scanInput, hash, readIn, readFiles
+};
