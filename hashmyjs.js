@@ -5,7 +5,16 @@
  * @exports {run, scanInput, hash}
  */
 
-const sjcl = require('sjcl'), readline = require('readline'), fs = require('fs');
+const sjcl = require('sjcl'), readline = require('readline'), fs = require('fs'), clr = require('colors');
+
+clr.setTheme({
+  in: 'white',
+  out: 'cyan',
+  inf: 'green',
+  err: 'red',
+  warn: 'yellow',
+  debug: 'grey'
+});
 
 /**
  * @description Generate base64-encoded SHA-256 for given string.
@@ -30,6 +39,7 @@ let argOrIn = () => process.argv.length > 2;
  * @protected
  */
 const readIn = () => {
+  console.log('Press CTRL+D (or CMD+D) to stop the STDIN reader\nType either \\n or \\r or \\r\\n in an empty line to signal an End-Of-File (this line won\'t be counted)'.inf);
   let rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
@@ -39,7 +49,7 @@ const readIn = () => {
     }, lines = [];
 
   rl.on('line', (line) => {
-    (EOF(line) || line === 'EOF$') ? scanInput(lines) : lines.push(line);
+    (EOF(line) || line === 'EOF') ? scanInput(lines) : lines.push(line);
   });
 };
 
@@ -54,9 +64,10 @@ const scanInput = (input, noOutput=false) => {
   if (!argOrIn()) {
     data = (Array.isArray(input)) ? input.join('\n') : input;
   }
+  //console.log(`Data scanned:\n\`\`${data}\`\``.debug);
   let digest = `${hash(data)}`;
   if (noOutput) return digest;
-  console.log(`${digest}`);
+  console.log(`${digest}`.out);
 };
 
 /**
@@ -65,20 +76,20 @@ const scanInput = (input, noOutput=false) => {
  */
 const readFiles = (files=process.argv.slice(2, process.argv.length)) => {
     let inputs = [];
-    for (let file of files) {
-        fs.open(file, 'r+', (err, fd) => {
+    for (let i = 0; i < files.length; ++i) {
+        fs.open(files[i], 'r+', (err, fd) => {
             let buf = new Buffer(4096);
             if (err) return console.error(err);
             fs.read(fd, buf, 0, buf.length, 0, (err, bytes) => {
                 //console.log(`${bytes} read`);
-                if (err) return console.log(err);
+                if (err) return console.log(clr.err(err));
                 if (bytes > 0) inputs.push(buf.slice(0, bytes).toString());
             });
 
             fs.close(fd, (err) => {
                 if (err) console.error(err);
-                console.log(`\n- ${file}`);
-                scanInput(file);
+                console.log(`\n- ${files[i]}`.in);
+                scanInput(inputs[i]);
             });
         });
     }
