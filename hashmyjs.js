@@ -5,7 +5,7 @@
  * @exports {run, scanInput, hash}
  */
 
-const sjcl = require('sjcl'), readline = require('readline'), fs = require('fs'), clr = require('colors');
+const sjcl = require('sjcl'), readline = require('readline'), fs = require('fs'), clr = require('colors'), DEBUG = process.env.DEBUG === true;
 
 clr.setTheme({
   in: 'white',
@@ -23,7 +23,9 @@ clr.setTheme({
  * @protected
  */
 let hash = (data) => {
+  if (DEBUG) console.log(`hash(${data}`.debug);
   let hashed = sjcl.hash.sha256.hash(data);
+  if (DEBUG) console.log(`  hashed=${hashed}`.debug);
   return `sha256-${sjcl.codec.base64.fromBits(hashed)}`;
 };
 
@@ -64,7 +66,7 @@ const scanInput = (input, noOutput=false) => {
   if (!argOrIn()) {
     data = (Array.isArray(input)) ? input.join('\n') : input;
   }
-  //console.log(`Data scanned:\n\`\`${data}\`\``.debug);
+  if (DEBUG) console.log(`Data scanned:\n\`\`${data}\`\``.debug);
   let digest = `${hash(data)}`;
   if (noOutput) return digest;
   console.log(`${digest}`.out);
@@ -73,6 +75,7 @@ const scanInput = (input, noOutput=false) => {
 /**
  * @description Read files and scan them.
  * @param {string[]} [files=process.argv.slice(2, process.argv.length)] Array of file paths
+ * @protected
  */
 const readFiles = (files=process.argv.slice(2, process.argv.length)) => {
     let inputs = [];
