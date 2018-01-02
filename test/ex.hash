@@ -1,8 +1,5 @@
-- test/ex0.js
-sha256-JvI3zjPbN4XKVLVcrP71j1cv9F1PZ4OdwaqRMQa9Eg0=
-
-- test/ex1.js
-sha256-9ttinBP448LZKML+6DMJvcYb/V8/hQ/EJVRIcYOLiu4=
-
-- test/ex2.js
-sha256-Hg9U3aa2LHNpQUGz8ZCRCY7GWrX+DOqkjogWAwGwoZ4=
+{
+  "test/ex0.js": "sha256-9ttinBP448LZKML+6DMJvcYb/V8/hQ/EJVRIcYOLiu4=",
+  "test/ex1.js": "sha256-SBnmV4ckn4spX5QRwkieP+JwsESJtEkTAQdp4vmAkQU=",
+  "test/ex2.js": "sha256-Hg9U3aa2LHNpQUGz8ZCRCY7GWrX+DOqkjogWAwGwoZ4="
+}

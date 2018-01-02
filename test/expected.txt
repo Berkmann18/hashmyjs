@@ -1,5 +1,8 @@
-- ./test/ex0.js
-sha256-01ojsQ6S3/NwlINThTWuPL1cbYKJneVHTZJI9gVtJcM=
+- test/ex0.js
+sha256-9ttinBP448LZKML+6DMJvcYb/V8/hQ/EJVRIcYOLiu4=
 
 - test/ex1.js
-sha256-9nU2ELRYRyBt6f4ca7Uug8G72QPWUPO11MX7S9uKqYs=
+sha256-SBnmV4ckn4spX5QRwkieP+JwsESJtEkTAQdp4vmAkQU=
+
+- test/ex2.js
+sha256-Hg9U3aa2LHNpQUGz8ZCRCY7GWrX+DOqkjogWAwGwoZ4=
