@@ -1,2 +1,5 @@
-- ./test/example.js
+- ./test/ex0.js
 sha256-01ojsQ6S3/NwlINThTWuPL1cbYKJneVHTZJI9gVtJcM=
+
+- test/ex1.js
+sha256-9nU2ELRYRyBt6f4ca7Uug8G72QPWUPO11MX7S9uKqYs=

@@ -1,0 +1,1 @@
+inputs[0]= const greeter = (name) => console.log(`Hello ${name}!`);

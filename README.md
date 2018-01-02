@@ -14,7 +14,7 @@ _Note_: Don't forget to use `-g`, `--save`, `--save-dev` if appropriate.
 ```js
 const hmj = require('hashmyjs');
 
-//Hashing from the STDIN (followed by a new line: `\n`, `\r\n` or `\r) or from file passed as arguments
+//Hashing from the STDIN (followed by a new line: `\$`, `\EOF`) or from file passed as arguments
 hmj.run();
 
 //Or if you want to hash code that is already present in your script:
