@@ -35,26 +35,26 @@ if (!validInput) {
   if (argc <= 2) prgm.help();
   else if (argc <= 3) {
     switch (process.argv[2]) {
-      case '-i':
-      case '--interactive':
-        hmj.run('text', 'STDIN');
-        break;
+    case '-i':
+    case '--interactive':
+      hmj.run('text', 'STDIN');
+      break;
     }
   } else {
     for (let i = 2; i < argc; ++i) {
       switch (process.argv[i]) {
-        case '-f':
-        case '--format':
-          format = process.argv[++i];
-          break;
-        case '-i':
-        case '--interactive':
-          input = 'STDIN';
-          break;
-        case '-o':
-        case '--output':
-          output = process.argv[++i];
-          break;
+      case '-f':
+      case '--format':
+        format = process.argv[++i];
+        break;
+      case '-i':
+      case '--interactive':
+        input = 'STDIN';
+        break;
+      case '-o':
+      case '--output':
+        output = process.argv[++i];
+        break;
       }
     }
     hmj.run(format, input, output);

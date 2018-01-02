@@ -141,7 +141,7 @@ const readIn = () => {
           writeToFile(outputDest);
         }
       } else if (outputFormat === 'text') {
-        let output = `- STDIN`;
+        let output = '- STDIN';
         if (outputDest === 'STDOUT') {
           _out(output);
           scanInput(lines);
@@ -276,14 +276,14 @@ const run = (format='text', input='any', output='stdout', files=[]) => {
   if (output.toLowerCase() !== 'stdout') outputDest = output;
 
   switch (input.toLowerCase()) {
-    case 'stdin':
-      readIn();
-      break;
-    case 'args':
-      readFilesSync(files);
-      break;
-    default: //any
-      argOrIn() ? readFilesSync(files) : readIn();
+  case 'stdin':
+    readIn();
+    break;
+  case 'args':
+    readFilesSync(files);
+    break;
+  default: //any
+    argOrIn() ? readFilesSync(files) : readIn();
   }
 };
 
