@@ -6,8 +6,7 @@
 /* eslint-env es6, node */
 
 /**
- * @description Theme for inputs, outputs, informations, errors, warnings, debugging information, questions.
- * @type {{in: string, out: [string,string], inf: string, err: string, warn: string, debug: string, quest: string}}
+ * @type {{in: string, out: string[], inf: string, err: string, warn: string, debug: string, quest: string}}
  */
 const scheme = {
   in: 'white',

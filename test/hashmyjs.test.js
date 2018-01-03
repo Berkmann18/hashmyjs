@@ -28,7 +28,7 @@ let ex0 = './examples/ex0.js', hashEx0 = 'sha256-oRWayKCc59n86sjrY/5xXsXO/t8OfjL
 json0 = {[ex0]: hashEx0}, csv0 = `${ex0},${hashEx0}`, prettyJson0 = JSON.stringify(json0, null, 2), prettyCsv0 = `${ex0}, ${hashEx0}`;
 let ex1 = './examples/ex1.js', hashEx1 = 'sha256-SBnmV4ckn4spX5QRwkieP+JwsESJtEkTAQdp4vmAkQU=',
   json1 = {[ex1]: hashEx1}, csv1 = `${ex1},${hashEx1}`, prettyJson1 = JSON.stringify(json1, null, 2), prettyCsv1 = `${ex1}, ${hashEx1}`;
-let json01 = {[ex0]: hashEx0, [ex1]: hashEx1}, csv01 = `${csv0}\n${csv1}`, prettyJson01 = JSON.stringify(json01, null, 2), prettyCsv01 = `${prettyCsv0}\n${prettyCsv1}`;
+let json01 = {[ex0]: hashEx0, [ex1]: hashEx1}, csv01 = [csv0, csv1], prettyJson01 = JSON.stringify(json01, null, 2), prettyCsv01 = [prettyCsv0, prettyCsv1];
 
 test(`run(format=text, input=any, output=var, files=["${ex0}"])`, () => {
   expect(hmj.run('text', 'any', 'var', [ex0])).toEqual([hashEx0])
@@ -68,18 +68,18 @@ test(`run(format=csv, input=args, output=var, files=["${ex0}"], prettify=true)`,
 });
 
 test(`run(format=csv, input=args, output=var, files=["${ex0}", "${ex1}"], prettify=false)`, () => {
-  expect(hmj.run('csv', 'args', 'var', [ex0, ex1])).toEqual([csv01])
+  expect(hmj.run('csv', 'args', 'var', [ex0, ex1])).toEqual(csv01)
 });
 
-// test(`run(format=csv, input=args, output=var, files=["${ex0}", "${ex1}"], prettify=true)`, () => {
-//   expect(hmj.run('csv', 'args', 'var', [ex0, ex1], true)).toEqual([prettyCsv0])
-// });
-//
-// /* prettifyOutput */
-// test('prettifyOutput(data, json)', () => {
-//   expect(hmj.prettifyOutput(json0, 'json')).toEqual(prettJson0)
-// });
-//
-// test('prettifyOutput(data, csv)', () => {
-//   expect(hmj.prettifyOutput(csv0, 'csv')).toEqual(prettyCsv0)
-// });
+test(`run(format=csv, input=args, output=var, files=["${ex0}", "${ex1}"], prettify=true)`, () => {
+  expect(hmj.run('csv', 'args', 'var', [ex0, ex1], true)).toEqual(prettyCsv01)
+});
+
+/* prettifyOutput */
+test('prettifyOutput(data, json)', () => {
+  expect(hmj.prettifyOutput(json0, 'json')).toEqual(prettyJson0)
+});
+
+test('prettifyOutput(data, csv)', () => {
+  expect(hmj.prettifyOutput(csv0, 'csv')).toEqual(prettyCsv0)
+});

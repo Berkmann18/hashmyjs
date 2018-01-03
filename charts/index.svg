@@ -1,6 +1,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                width="1145" height="2933">
+                width="593" height="2796">
                 
                 <g>
                    <rect x="50" y="65"
@@ -43,91 +43,91 @@
                 </g>
                 <g>
                    <rect x="50" y="210.5"
-            width="342" height="30"
+            width="318.59999999999997" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>const DEBUG = process.env.DEBUG === true</title>
+                   <title>const pkg = require(&apos;./package.json&apos;)</title>
             <text x="65" y="230.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="65" y="230.5">const DEBUG = process.env.DEBUG === true</tspan>
+                <tspan x="65" y="230.5">const pkg = require(&apos;./package.json&apos;)</tspan>
             </text>
                    
                    
                 </g>
                 <g>
                    <rect x="50" y="259"
-            width="318.59999999999997" height="30"
-            rx="3" ry="3"
-            style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>const pkg = require(&apos;./package.json&apos;)</title>
+            width="295.2" height="30"
+            rx="2" ry="2"
+            style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
+                   <title>clr.setTheme(require(&apos;./src/clr&apos;))</title>
             <text x="65" y="279"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="65" y="279">const pkg = require(&apos;./package.json&apos;)</tspan>
+                <tspan x="65" y="279">clr.setTheme(require(&apos;./src/clr&apos;))</tspan>
             </text>
                    
                    
                 </g>
                 <g>
                    <rect x="50" y="307.5"
-            width="295.2" height="30"
-            rx="2" ry="2"
-            style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
-                   <title>clr.setTheme(require(&apos;./src/clr&apos;))</title>
+            width="178.2" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>let format = &apos;text&apos;</title>
             <text x="65" y="327.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="65" y="327.5">clr.setTheme(require(&apos;./src/clr&apos;))</tspan>
+                <tspan x="65" y="327.5">let format = &apos;text&apos;</tspan>
             </text>
                    
                    
                 </g>
                 <g>
                    <rect x="50" y="356"
-            width="178.2" height="30"
+            width="193.79999999999998" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>let format = &apos;text&apos;</title>
+                   <title>let output = &apos;STDOUT&apos;</title>
             <text x="65" y="376"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="65" y="376">let format = &apos;text&apos;</tspan>
+                <tspan x="65" y="376">let output = &apos;STDOUT&apos;</tspan>
             </text>
                    
                    
                 </g>
                 <g>
                    <rect x="50" y="404.5"
-            width="193.79999999999998" height="30"
+            width="162.6" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>let output = &apos;STDOUT&apos;</title>
+                   <title>let input = &apos;any&apos;</title>
             <text x="65" y="424.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="65" y="424.5">let output = &apos;STDOUT&apos;</tspan>
+                <tspan x="65" y="424.5">let input = &apos;any&apos;</tspan>
             </text>
                    
                    
                 </g>
                 <g>
                    <rect x="50" y="453"
-            width="162.6" height="30"
+            width="201.6" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>let input = &apos;any&apos;</title>
+                   <title>let validInput = false</title>
             <text x="65" y="473"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="65" y="473">let input = &apos;any&apos;</tspan>
+                <tspan x="65" y="473">let validInput = false</tspan>
             </text>
                    
                    
                 </g>
                 <g>
                    <rect x="50" y="501.5"
-            width="201.6" height="30"
+            width="186" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>let validInput = false</title>
+                   <title>let prettify = false</title>
             <text x="65" y="521.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="65" y="521.5">let validInput = false</tspan>
+                <tspan x="65" y="521.5">let prettify = false</tspan>
             </text>
                    
                    
@@ -178,7 +178,7 @@
             width="443.4" height="30"
             rx="2" ry="2"
             style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
-                   <title>.option(&apos;-f, --format [format]&apos;, &apos;Specify the format of the output (text (default), json, csv)&apos;)</title>
+                   <title>.option(&apos;-f, --format [format]&apos;, &apos;Specify the format of the output (text (default), json, csv)&apos;, String)</title>
             <text x="65" y="715.5"
                 font-family="monospace" font-size="13" fill="#222">
                 <tspan x="65" y="715.5">.option(&apos;-f, --format [format]&apos;, &apos;Specify the form...</tspan>
@@ -192,7 +192,7 @@
             width="443.4" height="30"
             rx="2" ry="2"
             style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
-                   <title>.option(&apos;-o, --output [path]&apos;, &apos;Output to a file instead of in the STDOUT&apos;)</title>
+                   <title>.option(&apos;-o, --output [path]&apos;, &apos;Output to a file instead of in the STDOUT&apos;, String)</title>
             <text x="65" y="764"
                 font-family="monospace" font-size="13" fill="#222">
                 <tspan x="65" y="764">.option(&apos;-o, --output [path]&apos;, &apos;Output to a file i...</tspan>
@@ -217,100 +217,101 @@
                 </g>
                 <g>
                    <rect x="50" y="841"
-            width="123.6" height="30"
+            width="404.4" height="30"
             rx="2" ry="2"
             style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
-                   <title>.action(*())</title>
+                   <title>.option(&apos;-p, --prettify&apos;, &apos;Prettify the output&apos;)</title>
             <text x="65" y="861"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="65" y="861">.action(*())</tspan>
+                <tspan x="65" y="861">.option(&apos;-p, --prettify&apos;, &apos;Prettify the output&apos;)</tspan>
             </text>
                    <circle cx="56" cy="865" r="4"
         style="fill:#ede7f6; stroke:#444; stroke-width:1" />
                    
                 </g>
+                <g>
+                   <rect x="50" y="889.5"
+            width="123.6" height="30"
+            rx="2" ry="2"
+            style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
+                   <title>.action(*())</title>
+            <text x="65" y="909.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="65" y="909.5">.action(*())</tspan>
+            </text>
+                   <circle cx="56" cy="913.5" r="4"
+        style="fill:#ede7f6; stroke:#444; stroke-width:1" />
+                   
+                </g>
             <g>
-                <rect x="87" y="889.5"
-            width="198.2" height="30"
+                <rect x="87" y="938"
+            width="128" height="30"
             style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
                     
-                <line x1="97" y1="889.5" x2="97" y2="919.5"
+                <line x1="97" y1="938" x2="97" y2="968"
                 style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
-                <line x1="275.2" y1="889.5" x2="275.2" y2="919.5"
+                <line x1="205" y1="938" x2="205" y2="968"
                 style="fill:#a5d6a7; stroke:#444; stroke-width:1" />
              
-                <title>(files, options) =&gt;</title>
-            <text x="112" y="909.5"
+                <title>(files) =&gt;</title>
+            <text x="112" y="958"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="112" y="909.5">(files, options) =&gt;</tspan>
+                <tspan x="112" y="958">(files) =&gt;</tspan>
             </text>
                 
             </g>
                 <g>
-                   <rect x="124" y="938"
+                   <rect x="124" y="986.5"
             width="162.6" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
                    <title>validInput = true</title>
-            <text x="139" y="958"
+            <text x="139" y="1006.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="139" y="958">validInput = true</tspan>
+                <tspan x="139" y="1006.5">validInput = true</tspan>
             </text>
                    
                    
                 </g><g>
-            <rect x="154" y="1001.5"
-            width="114.6" height="30"
+            <rect x="154" y="1050"
+            width="161.39999999999998" height="30"
             rx="3" ry="3"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
-            <polygon points="124,1016.5 154,986.5 184,1016.5 154,1046.5"
+            <polygon points="124,1065 154,1035 184,1065 154,1095"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />
-            <title>(DEBUG)</title>
-            <text x="199" y="1021.5"
+            <title>(prgm.format)</title>
+            <text x="199" y="1070"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="199" y="1021.5">(DEBUG)</tspan>
+                <tspan x="199" y="1070">(prgm.format)</tspan>
             </text>
             
-            <text x="146.2" y="1021.5"
-        font-family="monospace" font-size="13" fill="#222">if</text> <text x="161.8" y="1048.45"
+            <text x="146.2" y="1070"
+        font-family="monospace" font-size="13" fill="#222">if</text> <text x="161.8" y="1096.95"
         font-family="monospace" font-size="13" fill="#222">+</text> 
         </g>
                 <g>
-                   <rect x="174" y="1056.5"
-            width="69" height="30"
+                   <rect x="174" y="1105"
+            width="186" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>files</title>
-            <text x="189" y="1076.5"
-                font-family="monospace" font-size="13" fill="#222">
-                <tspan x="189" y="1076.5">files</tspan>
-            </text>
-                   
-                   
-                </g>
-                <g>
-                   <rect x="174" y="1105"
-            width="342" height="30"
-            rx="2" ry="2"
-            style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
-                   <title>console.log(clr.debug(`files=${files}`))</title>
+                   <title>format = prgm.format</title>
             <text x="189" y="1125"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="189" y="1125">console.log(clr.debug(`files=${files}`))</tspan>
+                <tspan x="189" y="1125">format = prgm.format</tspan>
             </text>
                    
                    
                 </g><g>
             <rect x="154" y="1170"
-            width="114.6" height="30"
+            width="161.39999999999998" height="30"
             rx="3" ry="3"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
             <polygon points="124,1185 154,1155 184,1185 154,1215"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />
-            <title>(DEBUG)</title>
+            <title>(prgm.output)</title>
             <text x="199" y="1190"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="199" y="1190">(DEBUG)</tspan>
+                <tspan x="199" y="1190">(prgm.output)</tspan>
             </text>
             
             <text x="146.2" y="1190"
@@ -319,27 +320,27 @@
         </g>
                 <g>
                    <rect x="174" y="1225"
-            width="443.4" height="30"
-            rx="2" ry="2"
-            style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
-                   <title>console.log(clr.debug(&apos;options.args[0]=&apos;), options.args[0])</title>
+            width="186" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>output = prgm.output</title>
             <text x="189" y="1245"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="189" y="1245">console.log(clr.debug(&apos;options.args[0]=&apos;), options...</tspan>
+                <tspan x="189" y="1245">output = prgm.output</tspan>
             </text>
                    
                    
                 </g><g>
             <rect x="154" y="1290"
-            width="161.39999999999998" height="30"
+            width="200.4" height="30"
             rx="3" ry="3"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
             <polygon points="124,1305 154,1275 184,1305 154,1335"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />
-            <title>(prgm.format)</title>
+            <title>(prgm.interactive)</title>
             <text x="199" y="1310"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="199" y="1310">(prgm.format)</tspan>
+                <tspan x="199" y="1310">(prgm.interactive)</tspan>
             </text>
             
             <text x="146.2" y="1310"
@@ -348,519 +349,411 @@
         </g>
                 <g>
                    <rect x="174" y="1345"
-            width="186" height="30"
-            rx="3" ry="3"
-            style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>format = prgm.format</title>
-            <text x="189" y="1365"
-                font-family="monospace" font-size="13" fill="#222">
-                <tspan x="189" y="1365">format = prgm.format</tspan>
-            </text>
-                   
-                   
-                </g><g>
-            <rect x="154" y="1410"
-            width="161.39999999999998" height="30"
-            rx="3" ry="3"
-            style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
-            <polygon points="124,1425 154,1395 184,1425 154,1455"
-            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
-            <title>(prgm.output)</title>
-            <text x="199" y="1430"
-                font-family="monospace" font-size="13" fill="#222">
-                <tspan x="199" y="1430">(prgm.output)</tspan>
-            </text>
-            
-            <text x="146.2" y="1430"
-        font-family="monospace" font-size="13" fill="#222">if</text> <text x="161.8" y="1456.95"
-        font-family="monospace" font-size="13" fill="#222">+</text> 
-        </g>
-                <g>
-                   <rect x="174" y="1465"
-            width="186" height="30"
-            rx="3" ry="3"
-            style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>output = prgm.output</title>
-            <text x="189" y="1485"
-                font-family="monospace" font-size="13" fill="#222">
-                <tspan x="189" y="1485">output = prgm.output</tspan>
-            </text>
-                   
-                   
-                </g><g>
-            <rect x="154" y="1530"
-            width="200.4" height="30"
-            rx="3" ry="3"
-            style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
-            <polygon points="124,1545 154,1515 184,1545 154,1575"
-            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
-            <title>(prgm.interactive)</title>
-            <text x="199" y="1550"
-                font-family="monospace" font-size="13" fill="#222">
-                <tspan x="199" y="1550">(prgm.interactive)</tspan>
-            </text>
-            
-            <text x="146.2" y="1550"
-        font-family="monospace" font-size="13" fill="#222">if</text> <text x="161.8" y="1576.95"
-        font-family="monospace" font-size="13" fill="#222">+</text> 
-        </g>
-                <g>
-                   <rect x="174" y="1585"
             width="147" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>input = &apos;STDIN&apos;</title>
-            <text x="189" y="1605"
+                   <title>input = &apos;stdin&apos;</title>
+            <text x="189" y="1365"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="189" y="1605">input = &apos;STDIN&apos;</tspan>
+                <tspan x="189" y="1365">input = &apos;stdin&apos;</tspan>
             </text>
                    
                    
                 </g>
                 <g>
-                   <rect x="124" y="1635"
-            width="318.59999999999997" height="30"
+                   <rect x="124" y="1395"
+            width="443.4" height="30"
             rx="2" ry="2"
             style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
-                   <title>hmj.run(format, input, output, files)</title>
-            <text x="139" y="1655"
+                   <title>hmj.run(format, input, output, files, !!prgm.prettify)</title>
+            <text x="139" y="1415"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="139" y="1655">hmj.run(format, input, output, files)</tspan>
+                <tspan x="139" y="1415">hmj.run(format, input, output, files, !!prgm.prett...</tspan>
             </text>
                    
                    
                 </g>
                 <g>
-                   <rect x="50" y="1683.5"
+                   <rect x="50" y="1443.5"
             width="186" height="30"
             rx="2" ry="2"
             style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
                    <title>.parse(process.argv)</title>
-            <text x="65" y="1703.5"
+            <text x="65" y="1463.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="65" y="1703.5">.parse(process.argv)</tspan>
+                <tspan x="65" y="1463.5">.parse(process.argv)</tspan>
             </text>
-                   <circle cx="56" cy="1707.5" r="4"
+                   <circle cx="56" cy="1467.5" r="4"
         style="fill:#ede7f6; stroke:#444; stroke-width:1" />
                    
                 </g><g>
-            <rect x="80" y="1747"
+            <rect x="80" y="1507"
             width="161.39999999999998" height="30"
             rx="3" ry="3"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
-            <polygon points="50,1762 80,1732 110,1762 80,1792"
+            <polygon points="50,1522 80,1492 110,1522 80,1552"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />
             <title>(!validInput)</title>
-            <text x="125" y="1767"
+            <text x="125" y="1527"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="125" y="1767">(!validInput)</tspan>
+                <tspan x="125" y="1527">(!validInput)</tspan>
             </text>
             
-            <text x="72.2" y="1767"
-        font-family="monospace" font-size="13" fill="#222">if</text> <text x="87.8" y="1793.95"
+            <text x="72.2" y="1527"
+        font-family="monospace" font-size="13" fill="#222">if</text> <text x="87.8" y="1553.95"
         font-family="monospace" font-size="13" fill="#222">+</text> 
         </g>
                 <g>
-                   <rect x="100" y="1802"
+                   <rect x="100" y="1562"
             width="264" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
                    <title>let argc = process.argv.length</title>
-            <text x="115" y="1822"
+            <text x="115" y="1582"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="115" y="1822">let argc = process.argv.length</tspan>
+                <tspan x="115" y="1582">let argc = process.argv.length</tspan>
             </text>
                    
                    
                 </g><g>
-            <rect x="130" y="1865.5"
-            width="145.8" height="30"
-            rx="3" ry="3"
-            style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
-            <polygon points="100,1880.5 130,1850.5 160,1880.5 130,1910.5"
-            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
-            <title>(argc &lt;= 2)</title>
-            <text x="175" y="1885.5"
-                font-family="monospace" font-size="13" fill="#222">
-                <tspan x="175" y="1885.5">(argc &lt;= 2)</tspan>
-            </text>
-            
-            <text x="122.2" y="1885.5"
-        font-family="monospace" font-size="13" fill="#222">if</text> <text x="137.8" y="1912.45"
-        font-family="monospace" font-size="13" fill="#222">+</text> <text x="279.7" y="1878.55"
-        font-family="monospace" font-size="13" fill="#222">-</text>
-        </g>
-                <g>
-                   <rect x="150" y="1920.5"
-            width="115.8" height="30"
-            rx="2" ry="2"
-            style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
-                   <title>prgm.help()</title>
-            <text x="165" y="1940.5"
-                font-family="monospace" font-size="13" fill="#222">
-                <tspan x="165" y="1940.5">prgm.help()</tspan>
-            </text>
-                   
-                   
-                </g><g>
-            <rect x="365.8" y="1935.5"
-            width="145.8" height="30"
-            rx="3" ry="3"
-            style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
-            <polygon points="335.8,1950.5 365.8,1920.5 395.8,1950.5 365.8,1980.5"
-            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
-            <title>(argc &lt;= 3)</title>
-            <text x="410.8" y="1955.5"
-                font-family="monospace" font-size="13" fill="#222">
-                <tspan x="410.8" y="1955.5">(argc &lt;= 3)</tspan>
-            </text>
-            
-            <text x="358" y="1955.5"
-        font-family="monospace" font-size="13" fill="#222">if</text> <text x="373.6" y="1982.45"
-        font-family="monospace" font-size="13" fill="#222">+</text> <text x="515.5" y="1948.55"
-        font-family="monospace" font-size="13" fill="#222">-</text>
-        </g><g>
-            <rect x="415.8" y="2005.5"
-            width="247.2" height="30"
-            rx="3" ry="3"
-            style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
-            <polygon points="385.8,2020.5 415.8,1990.5 445.8,2020.5 415.8,2050.5"
-            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
-            <title>switch (process.argv[2])</title>
-            <text x="460.8" y="2025.5"
-                font-family="monospace" font-size="13" fill="#222">
-                <tspan x="460.8" y="2025.5">switch (process.argv[2])</tspan>
-            </text>
-            
-            <text x="408" y="2025.5"
-        font-family="monospace" font-size="13" fill="#222">if</text> <text x="423.6" y="2052.45"
-        font-family="monospace" font-size="13" fill="#222">+</text> 
-        </g>
-                <g>
-                   <rect x="435.8" y="2060.5"
-            width="108" height="30"
-            rx="2" ry="2"
-            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
-                   <title>case &apos;-i&apos;:</title>
-            <text x="450.8" y="2080.5"
-                font-family="monospace" font-size="13" fill="#222">
-                <tspan x="450.8" y="2080.5">case &apos;-i&apos;:</tspan>
-            </text>
-                   
-                   
-                </g>
-                <g>
-                   <rect x="435.8" y="2109"
-            width="193.79999999999998" height="30"
-            rx="2" ry="2"
-            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
-                   <title>case &apos;--interactive&apos;:</title>
-            <text x="450.8" y="2129"
-                font-family="monospace" font-size="13" fill="#222">
-                <tspan x="450.8" y="2129">case &apos;--interactive&apos;:</tspan>
-            </text>
-                   
-                   
-                </g>
-                <g>
-                   <rect x="472.8" y="2157.5"
-            width="217.2" height="30"
-            rx="2" ry="2"
-            style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
-                   <title>hmj.run(&apos;text&apos;, &apos;STDIN&apos;)</title>
-            <text x="487.8" y="2177.5"
-                font-family="monospace" font-size="13" fill="#222">
-                <tspan x="487.8" y="2177.5">hmj.run(&apos;text&apos;, &apos;STDIN&apos;)</tspan>
-            </text>
-                   
-                   
-                </g>
-            <g>
-                <rect x="472.8" y="2206"
-            width="69" height="30"
-            rx="2" ry="2"
-            style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                
-                <line x1="541.8" y1="2216" x2="546.8" y2="2216"
-                style="fill:#ce93d8; stroke:#444; stroke-width:1" />
-                
-                <line x1="541.8" y1="2226" x2="546.8" y2="2226"
-                style="fill:#ce93d8; stroke:#444; stroke-width:1" />
 
-                <path d="M546.8, 2207 L562.8, 2221 L546.8, 2235 Z" 
-        fill="#ce93d8" stroke="#444" stroke-width="1" />
-                             
-                <title>break</title>
-            <text x="487.8" y="2226"
-                font-family="monospace" font-size="13" fill="#222">
-                <tspan x="487.8" y="2226">break</tspan>
-            </text>
-                
-            </g><g>
-
-            <rect x="780" y="2025.5"
+            <rect x="130" y="1645.5"
             width="122.4" height="30"
             rx="3" ry="3"
             style="fill:#b39ddb; stroke:#444; stroke-width:1" />
-            <polygon points="750,2040.5 780,2010.5 810,2040.5 780,2070.5"
+            <polygon points="100,1660.5 130,1630.5 160,1660.5 130,1690.5"
             style="fill:#b39ddb; stroke:#444; stroke-width:1" />
                 
             <title>i &lt; argc</title>
-            <text x="825" y="2045.5"
+            <text x="175" y="1665.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="825" y="2045.5">i &lt; argc</tspan>
+                <tspan x="175" y="1665.5">i &lt; argc</tspan>
             </text>
             
-            <text x="768.3" y="2045.5"
+            <text x="118.3" y="1665.5"
         font-family="monospace" font-size="13" fill="#222">for</text>
         </g>
                 <g>
-                   <rect x="800" y="2080.5"
+                   <rect x="150" y="1700.5"
             width="53.4" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
                    <title>++i</title>
-            <text x="815" y="2100.5"
+            <text x="165" y="1720.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="815" y="2100.5">++i</tspan>
+                <tspan x="165" y="1720.5">++i</tspan>
             </text>
                    
                    
                 </g><g>
-            <rect x="830" y="2144"
+            <rect x="180" y="1764"
             width="247.2" height="30"
             rx="3" ry="3"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />                
-            <polygon points="800,2159 830,2129 860,2159 830,2189"
+            <polygon points="150,1779 180,1749 210,1779 180,1809"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />
             <title>switch (process.argv[i])</title>
-            <text x="875" y="2164"
+            <text x="225" y="1784"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="875" y="2164">switch (process.argv[i])</tspan>
+                <tspan x="225" y="1784">switch (process.argv[i])</tspan>
             </text>
             
-            <text x="822.2" y="2164"
-        font-family="monospace" font-size="13" fill="#222">if</text> <text x="837.8" y="2190.95"
+            <text x="172.2" y="1784"
+        font-family="monospace" font-size="13" fill="#222">if</text> <text x="187.8" y="1810.95"
         font-family="monospace" font-size="13" fill="#222">+</text> 
         </g>
                 <g>
-                   <rect x="850" y="2199"
+                   <rect x="200" y="1819"
             width="108" height="30"
             rx="2" ry="2"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />
                    <title>case &apos;-f&apos;:</title>
-            <text x="865" y="2219"
+            <text x="215" y="1839"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="865" y="2219">case &apos;-f&apos;:</tspan>
+                <tspan x="215" y="1839">case &apos;-f&apos;:</tspan>
             </text>
                    
                    
                 </g>
                 <g>
-                   <rect x="850" y="2247.5"
+                   <rect x="200" y="1867.5"
             width="154.8" height="30"
             rx="2" ry="2"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />
                    <title>case &apos;--format&apos;:</title>
-            <text x="865" y="2267.5"
+            <text x="215" y="1887.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="865" y="2267.5">case &apos;--format&apos;:</tspan>
+                <tspan x="215" y="1887.5">case &apos;--format&apos;:</tspan>
             </text>
                    
                    
                 </g>
                 <g>
-                   <rect x="887" y="2296"
+                   <rect x="237" y="1916"
             width="232.79999999999998" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
                    <title>format = process.argv[++i]</title>
-            <text x="902" y="2316"
+            <text x="252" y="1936"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="902" y="2316">format = process.argv[++i]</tspan>
+                <tspan x="252" y="1936">format = process.argv[++i]</tspan>
             </text>
                    
                    
                 </g>
                 <g>
-                   <rect x="924" y="2344.5"
+                   <rect x="274" y="1964.5"
             width="53.4" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
                    <title>++i</title>
-            <text x="939" y="2364.5"
+            <text x="289" y="1984.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="939" y="2364.5">++i</tspan>
+                <tspan x="289" y="1984.5">++i</tspan>
             </text>
                    
                    
                 </g>
             <g>
-                <rect x="887" y="2393"
+                <rect x="237" y="2013"
             width="69" height="30"
             rx="2" ry="2"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
                 
-                <line x1="956" y1="2403" x2="961" y2="2403"
+                <line x1="306" y1="2023" x2="311" y2="2023"
                 style="fill:#ce93d8; stroke:#444; stroke-width:1" />
                 
-                <line x1="956" y1="2413" x2="961" y2="2413"
+                <line x1="306" y1="2033" x2="311" y2="2033"
                 style="fill:#ce93d8; stroke:#444; stroke-width:1" />
 
-                <path d="M961, 2394 L977, 2408 L961, 2422 Z" 
+                <path d="M311, 2014 L327, 2028 L311, 2042 Z" 
         fill="#ce93d8" stroke="#444" stroke-width="1" />
                              
                 <title>break</title>
-            <text x="902" y="2413"
+            <text x="252" y="2033"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="902" y="2413">break</tspan>
+                <tspan x="252" y="2033">break</tspan>
             </text>
                 
             </g>
                 <g>
-                   <rect x="850" y="2441.5"
+                   <rect x="200" y="2061.5"
             width="108" height="30"
             rx="2" ry="2"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />
                    <title>case &apos;-i&apos;:</title>
-            <text x="865" y="2461.5"
+            <text x="215" y="2081.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="865" y="2461.5">case &apos;-i&apos;:</tspan>
+                <tspan x="215" y="2081.5">case &apos;-i&apos;:</tspan>
             </text>
                    
                    
                 </g>
                 <g>
-                   <rect x="850" y="2490"
+                   <rect x="200" y="2110"
             width="193.79999999999998" height="30"
             rx="2" ry="2"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />
                    <title>case &apos;--interactive&apos;:</title>
-            <text x="865" y="2510"
+            <text x="215" y="2130"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="865" y="2510">case &apos;--interactive&apos;:</tspan>
+                <tspan x="215" y="2130">case &apos;--interactive&apos;:</tspan>
             </text>
                    
                    
                 </g>
                 <g>
-                   <rect x="887" y="2538.5"
+                   <rect x="237" y="2158.5"
             width="147" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>input = &apos;STDIN&apos;</title>
-            <text x="902" y="2558.5"
+                   <title>input = &apos;stdin&apos;</title>
+            <text x="252" y="2178.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="902" y="2558.5">input = &apos;STDIN&apos;</tspan>
+                <tspan x="252" y="2178.5">input = &apos;stdin&apos;</tspan>
             </text>
                    
                    
                 </g>
             <g>
-                <rect x="887" y="2587"
+                <rect x="237" y="2207"
             width="69" height="30"
             rx="2" ry="2"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
                 
-                <line x1="956" y1="2597" x2="961" y2="2597"
+                <line x1="306" y1="2217" x2="311" y2="2217"
                 style="fill:#ce93d8; stroke:#444; stroke-width:1" />
                 
-                <line x1="956" y1="2607" x2="961" y2="2607"
+                <line x1="306" y1="2227" x2="311" y2="2227"
                 style="fill:#ce93d8; stroke:#444; stroke-width:1" />
 
-                <path d="M961, 2588 L977, 2602 L961, 2616 Z" 
+                <path d="M311, 2208 L327, 2222 L311, 2236 Z" 
         fill="#ce93d8" stroke="#444" stroke-width="1" />
                              
                 <title>break</title>
-            <text x="902" y="2607"
+            <text x="252" y="2227"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="902" y="2607">break</tspan>
+                <tspan x="252" y="2227">break</tspan>
             </text>
                 
             </g>
                 <g>
-                   <rect x="850" y="2635.5"
+                   <rect x="200" y="2255.5"
             width="108" height="30"
             rx="2" ry="2"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />
                    <title>case &apos;-o&apos;:</title>
-            <text x="865" y="2655.5"
+            <text x="215" y="2275.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="865" y="2655.5">case &apos;-o&apos;:</tspan>
+                <tspan x="215" y="2275.5">case &apos;-o&apos;:</tspan>
             </text>
                    
                    
                 </g>
                 <g>
-                   <rect x="850" y="2684"
+                   <rect x="200" y="2304"
             width="154.8" height="30"
             rx="2" ry="2"
             style="fill:#ce93d8; stroke:#444; stroke-width:1" />
                    <title>case &apos;--output&apos;:</title>
-            <text x="865" y="2704"
+            <text x="215" y="2324"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="865" y="2704">case &apos;--output&apos;:</tspan>
+                <tspan x="215" y="2324">case &apos;--output&apos;:</tspan>
             </text>
                    
                    
                 </g>
                 <g>
-                   <rect x="887" y="2732.5"
+                   <rect x="237" y="2352.5"
             width="232.79999999999998" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
                    <title>output = process.argv[++i]</title>
-            <text x="902" y="2752.5"
+            <text x="252" y="2372.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="902" y="2752.5">output = process.argv[++i]</tspan>
+                <tspan x="252" y="2372.5">output = process.argv[++i]</tspan>
             </text>
                    
                    
                 </g>
                 <g>
-                   <rect x="924" y="2781"
+                   <rect x="274" y="2401"
             width="53.4" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
                    <title>++i</title>
-            <text x="939" y="2801"
+            <text x="289" y="2421"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="939" y="2801">++i</tspan>
+                <tspan x="289" y="2421">++i</tspan>
             </text>
                    
                    
                 </g>
             <g>
-                <rect x="887" y="2829.5"
+                <rect x="237" y="2449.5"
             width="69" height="30"
             rx="2" ry="2"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
                 
-                <line x1="956" y1="2839.5" x2="961" y2="2839.5"
+                <line x1="306" y1="2459.5" x2="311" y2="2459.5"
                 style="fill:#ce93d8; stroke:#444; stroke-width:1" />
                 
-                <line x1="956" y1="2849.5" x2="961" y2="2849.5"
+                <line x1="306" y1="2469.5" x2="311" y2="2469.5"
                 style="fill:#ce93d8; stroke:#444; stroke-width:1" />
 
-                <path d="M961, 2830.5 L977, 2844.5 L961, 2858.5 Z" 
+                <path d="M311, 2450.5 L327, 2464.5 L311, 2478.5 Z" 
         fill="#ce93d8" stroke="#444" stroke-width="1" />
                              
                 <title>break</title>
-            <text x="902" y="2849.5"
+            <text x="252" y="2469.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="902" y="2849.5">break</tspan>
+                <tspan x="252" y="2469.5">break</tspan>
             </text>
                 
             </g>
                 <g>
-                   <rect x="750" y="2878"
-            width="264" height="30"
+                   <rect x="200" y="2498"
+            width="108" height="30"
+            rx="2" ry="2"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+                   <title>case &apos;-p&apos;:</title>
+            <text x="215" y="2518"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="215" y="2518">case &apos;-p&apos;:</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="200" y="2546.5"
+            width="170.4" height="30"
+            rx="2" ry="2"
+            style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+                   <title>case &apos;--prettify&apos;:</title>
+            <text x="215" y="2566.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="215" y="2566.5">case &apos;--prettify&apos;:</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="237" y="2595"
+            width="170.4" height="30"
             rx="2" ry="2"
             style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
-                   <title>hmj.run(format, input, output)</title>
-            <text x="765" y="2898"
+                   <title>console.log(&apos;Yes&apos;)</title>
+            <text x="252" y="2615"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="765" y="2898">hmj.run(format, input, output)</tspan>
+                <tspan x="252" y="2615">console.log(&apos;Yes&apos;)</tspan>
+            </text>
+                   
+                   
+                </g>
+                <g>
+                   <rect x="237" y="2643.5"
+            width="147" height="30"
+            rx="3" ry="3"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                   <title>prettify = true</title>
+            <text x="252" y="2663.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="252" y="2663.5">prettify = true</tspan>
+            </text>
+                   
+                   
+                </g>
+            <g>
+                <rect x="237" y="2692"
+            width="69" height="30"
+            rx="2" ry="2"
+            style="fill:#90caf9; stroke:#444; stroke-width:1" />
+                
+                <line x1="306" y1="2702" x2="311" y2="2702"
+                style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+                
+                <line x1="306" y1="2712" x2="311" y2="2712"
+                style="fill:#ce93d8; stroke:#444; stroke-width:1" />
+
+                <path d="M311, 2693 L327, 2707 L311, 2721 Z" 
+        fill="#ce93d8" stroke="#444" stroke-width="1" />
+                             
+                <title>break</title>
+            <text x="252" y="2712"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="252" y="2712">break</tspan>
+            </text>
+                
+            </g>
+                <g>
+                   <rect x="100" y="2740.5"
+            width="342" height="30"
+            rx="2" ry="2"
+            style="fill:#C5E1A5; stroke:#444; stroke-width:1" />
+                   <title>hmj.run(format, input, output, prettify)</title>
+            <text x="115" y="2760.5"
+                font-family="monospace" font-size="13" fill="#222">
+                <tspan x="115" y="2760.5">hmj.run(format, input, output, prettify)</tspan>
             </text>
                    
                    
@@ -1014,38 +907,38 @@
         fill="#333" />
             </g>
             <g>
-               <path d="M68.5, 871 L68.5 900.5 Q68.5 904.5
-                72.5 904.5
-                L87 904.5 "
+               <path d="M25, 40 L25 900.5 Q25 904.5
+                29 904.5
+                L42 904.5 "
+        style="fill:none; stroke:#444; stroke-width:1" />
+               <path d="M42, 901.5 L50, 904.5 L42, 907.5 Z" 
+        fill="#333" />
+            </g>
+            <g>
+               <path d="M68.5, 919.5 L68.5 949 Q68.5 953
+                72.5 953
+                L87 953 "
         style="fill:none; stroke:#444; stroke-width:1" />
                false
             </g>
             <g>
-               <path d="M105.5, 919.5 L105.5 949 Q105.5 953
-                109.5 953
-                L116 953 "
+               <path d="M105.5, 968 L105.5 997.5 Q105.5 1001.5
+                109.5 1001.5
+                L116 1001.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M116, 950 L124, 953 L116, 956 Z" 
+               <path d="M116, 998.5 L124, 1001.5 L116, 1004.5 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M105.5, 919.5 L105.5 1012.5 Q105.5 1016.5
-                109.5 1016.5
-                L116 1016.5 "
+               <path d="M105.5, 968 L105.5 1061 Q105.5 1065
+                109.5 1065
+                L116 1065 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M116, 1013.5 L124, 1016.5 L116, 1019.5 Z" 
+               <path d="M116, 1062 L124, 1065 L116, 1068 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M154, 1046.5 L154 1067.5 Q154 1071.5
-                158 1071.5
-                L166 1071.5 "
-        style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M166, 1068.5 L174, 1071.5 L166, 1074.5 Z" 
-        fill="#333" />
-            </g>
-            <g>
-               <path d="M154, 1046.5 L154 1116 Q154 1120
+               <path d="M154, 1095 L154 1116 Q154 1120
                 158 1120
                 L166 1120 "
         style="fill:none; stroke:#444; stroke-width:1" />
@@ -1053,7 +946,7 @@
         fill="#333" />
             </g>
             <g>
-               <path d="M105.5, 919.5 L105.5 1181 Q105.5 1185
+               <path d="M105.5, 968 L105.5 1181 Q105.5 1185
                 109.5 1185
                 L116 1185 "
         style="fill:none; stroke:#444; stroke-width:1" />
@@ -1069,7 +962,7 @@
         fill="#333" />
             </g>
             <g>
-               <path d="M105.5, 919.5 L105.5 1301 Q105.5 1305
+               <path d="M105.5, 968 L105.5 1301 Q105.5 1305
                 109.5 1305
                 L116 1305 "
         style="fill:none; stroke:#444; stroke-width:1" />
@@ -1085,293 +978,231 @@
         fill="#333" />
             </g>
             <g>
-               <path d="M105.5, 919.5 L105.5 1421 Q105.5 1425
-                109.5 1425
-                L116 1425 "
+               <path d="M105.5, 968 L105.5 1406 Q105.5 1410
+                109.5 1410
+                L116 1410 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M116, 1422 L124, 1425 L116, 1428 Z" 
+               <path d="M116, 1407 L124, 1410 L116, 1413 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M154, 1455 L154 1476 Q154 1480
-                158 1480
-                L166 1480 "
+               <path d="M25, 40 L25 1454.5 Q25 1458.5
+                29 1458.5
+                L42 1458.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M166, 1477 L174, 1480 L166, 1483 Z" 
+               <path d="M42, 1455.5 L50, 1458.5 L42, 1461.5 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M105.5, 919.5 L105.5 1541 Q105.5 1545
-                109.5 1545
-                L116 1545 "
+               <path d="M25, 40 L25 1518 Q25 1522
+                29 1522
+                L42 1522 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M116, 1542 L124, 1545 L116, 1548 Z" 
+               <path d="M42, 1519 L50, 1522 L42, 1525 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M154, 1575 L154 1596 Q154 1600
-                158 1600
-                L166 1600 "
+               <path d="M80, 1552 L80 1573 Q80 1577
+                84 1577
+                L92 1577 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M166, 1597 L174, 1600 L166, 1603 Z" 
+               <path d="M92, 1574 L100, 1577 L92, 1580 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M105.5, 919.5 L105.5 1646 Q105.5 1650
-                109.5 1650
-                L116 1650 "
+               <path d="M80, 1552 L80 1656.5 Q80 1660.5
+                84 1660.5
+                L92 1660.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M116, 1647 L124, 1650 L116, 1653 Z" 
+               <path d="M92, 1657.5 L100, 1660.5 L92, 1663.5 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M25, 40 L25 1694.5 Q25 1698.5
-                29 1698.5
-                L42 1698.5 "
+               <path d="M130, 1690.5 L130 1711.5 Q130 1715.5
+                134 1715.5
+                L142 1715.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M42, 1695.5 L50, 1698.5 L42, 1701.5 Z" 
+               <path d="M142, 1712.5 L150, 1715.5 L142, 1718.5 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M25, 40 L25 1758 Q25 1762
-                29 1762
-                L42 1762 "
+               <path d="M130, 1690.5 L130 1775 Q130 1779
+                134 1779
+                L142 1779 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M42, 1759 L50, 1762 L42, 1765 Z" 
+               <path d="M142, 1776 L150, 1779 L142, 1782 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M80, 1792 L80 1813 Q80 1817
-                84 1817
-                L92 1817 "
+               <path d="M180, 1809 L180 1830 Q180 1834
+                184 1834
+                L192 1834 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M92, 1814 L100, 1817 L92, 1820 Z" 
+               <path d="M192, 1831 L200, 1834 L192, 1837 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M80, 1792 L80 1876.5 Q80 1880.5
-                84 1880.5
-                L92 1880.5 "
+               <path d="M180, 1809 L180 1878.5 Q180 1882.5
+                184 1882.5
+                L192 1882.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M92, 1877.5 L100, 1880.5 L92, 1883.5 Z" 
+               <path d="M192, 1879.5 L200, 1882.5 L192, 1885.5 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M130, 1910.5 L130 1931.5 Q130 1935.5
-                134 1935.5
-                L142 1935.5 "
+               <path d="M218.5, 1897.5 L218.5 1927 Q218.5 1931
+                222.5 1931
+                L229 1931 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M142, 1932.5 L150, 1935.5 L142, 1938.5 Z" 
+               <path d="M229, 1928 L237, 1931 L229, 1934 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M275.8, 1880.5 L311.8 1880.5  Q315.8 1880.5
-                315.8 1884.5
-                L315.8 1942.5 Q315.8 1950.5
-                319.8 1950.5
-                L327.8 1950.5 "
+               <path d="M255.5, 1946 L255.5 1975.5 Q255.5 1979.5
+                259.5 1979.5
+                L266 1979.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M327.8, 1947.5 L335.8, 1950.5 L327.8, 1953.5 Z" 
+               <path d="M266, 1976.5 L274, 1979.5 L266, 1982.5 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M365.8, 1980.5 L365.8 2016.5 Q365.8 2020.5
-                369.8 2020.5
-                L377.8 2020.5 "
+               <path d="M218.5, 1897.5 L218.5 2024 Q218.5 2028
+                222.5 2028
+                L229 2028 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M377.8, 2017.5 L385.8, 2020.5 L377.8, 2023.5 Z" 
+               <path d="M229, 2025 L237, 2028 L229, 2031 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M415.8, 2050.5 L415.8 2071.5 Q415.8 2075.5
-                419.8 2075.5
-                L427.8 2075.5 "
+               <path d="M180, 1809 L180 2072.5 Q180 2076.5
+                184 2076.5
+                L192 2076.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M427.8, 2072.5 L435.8, 2075.5 L427.8, 2078.5 Z" 
+               <path d="M192, 2073.5 L200, 2076.5 L192, 2079.5 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M415.8, 2050.5 L415.8 2120 Q415.8 2124
-                419.8 2124
-                L427.8 2124 "
+               <path d="M180, 1809 L180 2121 Q180 2125
+                184 2125
+                L192 2125 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M427.8, 2121 L435.8, 2124 L427.8, 2127 Z" 
+               <path d="M192, 2122 L200, 2125 L192, 2128 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M454.3, 2139 L454.3 2168.5 Q454.3 2172.5
-                458.3 2172.5
-                L464.8 2172.5 "
+               <path d="M218.5, 2140 L218.5 2169.5 Q218.5 2173.5
+                222.5 2173.5
+                L229 2173.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M464.8, 2169.5 L472.8, 2172.5 L464.8, 2175.5 Z" 
+               <path d="M229, 2170.5 L237, 2173.5 L229, 2176.5 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M454.3, 2139 L454.3 2217 Q454.3 2221
-                458.3 2221
-                L464.8 2221 "
+               <path d="M218.5, 2140 L218.5 2218 Q218.5 2222
+                222.5 2222
+                L229 2222 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M464.8, 2218 L472.8, 2221 L464.8, 2224 Z" 
+               <path d="M229, 2219 L237, 2222 L229, 2225 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M511.6, 1950.5 L726 1950.5  Q730 1950.5
-                730 1954.5
-                L730 2032.5 Q730 2040.5
-                734 2040.5
-                L742 2040.5 "
+               <path d="M180, 1809 L180 2266.5 Q180 2270.5
+                184 2270.5
+                L192 2270.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M742, 2037.5 L750, 2040.5 L742, 2043.5 Z" 
+               <path d="M192, 2267.5 L200, 2270.5 L192, 2273.5 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M780, 2070.5 L780 2091.5 Q780 2095.5
-                784 2095.5
-                L792 2095.5 "
+               <path d="M180, 1809 L180 2315 Q180 2319
+                184 2319
+                L192 2319 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M792, 2092.5 L800, 2095.5 L792, 2098.5 Z" 
+               <path d="M192, 2316 L200, 2319 L192, 2322 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M780, 2070.5 L780 2155 Q780 2159
-                784 2159
-                L792 2159 "
+               <path d="M218.5, 2334 L218.5 2363.5 Q218.5 2367.5
+                222.5 2367.5
+                L229 2367.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M792, 2156 L800, 2159 L792, 2162 Z" 
+               <path d="M229, 2364.5 L237, 2367.5 L229, 2370.5 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M830, 2189 L830 2210 Q830 2214
-                834 2214
-                L842 2214 "
+               <path d="M255.5, 2382.5 L255.5 2412 Q255.5 2416
+                259.5 2416
+                L266 2416 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M842, 2211 L850, 2214 L842, 2217 Z" 
+               <path d="M266, 2413 L274, 2416 L266, 2419 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M830, 2189 L830 2258.5 Q830 2262.5
-                834 2262.5
-                L842 2262.5 "
+               <path d="M218.5, 2334 L218.5 2460.5 Q218.5 2464.5
+                222.5 2464.5
+                L229 2464.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M842, 2259.5 L850, 2262.5 L842, 2265.5 Z" 
+               <path d="M229, 2461.5 L237, 2464.5 L229, 2467.5 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M868.5, 2277.5 L868.5 2307 Q868.5 2311
-                872.5 2311
-                L879 2311 "
+               <path d="M180, 1809 L180 2509 Q180 2513
+                184 2513
+                L192 2513 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M879, 2308 L887, 2311 L879, 2314 Z" 
+               <path d="M192, 2510 L200, 2513 L192, 2516 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M905.5, 2326 L905.5 2355.5 Q905.5 2359.5
-                909.5 2359.5
-                L916 2359.5 "
+               <path d="M180, 1809 L180 2557.5 Q180 2561.5
+                184 2561.5
+                L192 2561.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M916, 2356.5 L924, 2359.5 L916, 2362.5 Z" 
+               <path d="M192, 2558.5 L200, 2561.5 L192, 2564.5 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M868.5, 2277.5 L868.5 2404 Q868.5 2408
-                872.5 2408
-                L879 2408 "
+               <path d="M218.5, 2576.5 L218.5 2606 Q218.5 2610
+                222.5 2610
+                L229 2610 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M879, 2405 L887, 2408 L879, 2411 Z" 
+               <path d="M229, 2607 L237, 2610 L229, 2613 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M830, 2189 L830 2452.5 Q830 2456.5
-                834 2456.5
-                L842 2456.5 "
+               <path d="M218.5, 2576.5 L218.5 2654.5 Q218.5 2658.5
+                222.5 2658.5
+                L229 2658.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M842, 2453.5 L850, 2456.5 L842, 2459.5 Z" 
+               <path d="M229, 2655.5 L237, 2658.5 L229, 2661.5 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M830, 2189 L830 2501 Q830 2505
-                834 2505
-                L842 2505 "
+               <path d="M218.5, 2576.5 L218.5 2703 Q218.5 2707
+                222.5 2707
+                L229 2707 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M842, 2502 L850, 2505 L842, 2508 Z" 
+               <path d="M229, 2704 L237, 2707 L229, 2710 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M868.5, 2520 L868.5 2549.5 Q868.5 2553.5
-                872.5 2553.5
-                L879 2553.5 "
+               <path d="M327, 2707 L485.79999999999995 2707  Q489.79999999999995 2707
+                489.79999999999995 2703
+                L489.79999999999995 1618.5 Q489.79999999999995 1610.5
+                485.79999999999995 1610.5
+                L138 1610.5  Q130 1610.5
+                130 1614.5
+                L130 1622.5"
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M879, 2550.5 L887, 2553.5 L879, 2556.5 Z" 
+               <path d="M127, 1622.5 L130, 1630.5 L133, 1622.5 Z" 
         fill="#333" />
             </g>
             <g>
-               <path d="M868.5, 2520 L868.5 2598 Q868.5 2602
-                872.5 2602
-                L879 2602 "
+               <path d="M80, 1552 L80 2751.5 Q80 2755.5
+                84 2755.5
+                L92 2755.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M879, 2599 L887, 2602 L879, 2605 Z" 
-        fill="#333" />
-            </g>
-            <g>
-               <path d="M830, 2189 L830 2646.5 Q830 2650.5
-                834 2650.5
-                L842 2650.5 "
-        style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M842, 2647.5 L850, 2650.5 L842, 2653.5 Z" 
-        fill="#333" />
-            </g>
-            <g>
-               <path d="M830, 2189 L830 2695 Q830 2699
-                834 2699
-                L842 2699 "
-        style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M842, 2696 L850, 2699 L842, 2702 Z" 
-        fill="#333" />
-            </g>
-            <g>
-               <path d="M868.5, 2714 L868.5 2743.5 Q868.5 2747.5
-                872.5 2747.5
-                L879 2747.5 "
-        style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M879, 2744.5 L887, 2747.5 L879, 2750.5 Z" 
-        fill="#333" />
-            </g>
-            <g>
-               <path d="M905.5, 2762.5 L905.5 2792 Q905.5 2796
-                909.5 2796
-                L916 2796 "
-        style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M916, 2793 L924, 2796 L916, 2799 Z" 
-        fill="#333" />
-            </g>
-            <g>
-               <path d="M868.5, 2714 L868.5 2840.5 Q868.5 2844.5
-                872.5 2844.5
-                L879 2844.5 "
-        style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M879, 2841.5 L887, 2844.5 L879, 2847.5 Z" 
-        fill="#333" />
-            </g>
-            <g>
-               <path d="M977, 2844.5 L1135.8 2844.5  Q1139.8 2844.5
-                1139.8 2840.5
-                L1139.8 1998.5 Q1139.8 1990.5
-                1135.8 1990.5
-                L788 1990.5  Q780 1990.5
-                780 1994.5
-                L780 2002.5"
-        style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M777, 2002.5 L780, 2010.5 L783, 2002.5 Z" 
-        fill="#333" />
-            </g>
-            <g>
-               <path d="M511.6, 1950.5 L726 1950.5  Q730 1950.5
-                730 1954.5
-                L730 2885 Q730 2893
-                734 2893
-                L742 2893 "
-        style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M742, 2890 L750, 2893 L742, 2896 Z" 
+               <path d="M92, 2752.5 L100, 2755.5 L92, 2758.5 Z" 
         fill="#333" />
             </g>
             </svg>

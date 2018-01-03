@@ -83,13 +83,12 @@ let hash = (data) => {
 };
 
 /**
- * @description Write to a file.
+ * @description Write to a file (while prettifying the content).
  * @param {string} filename File name
  * @param {string[]} [data=fileLines] Lines to write to the file
- * @param {boolean} [pretty=false] Prettify the output
  * @private
  */
-let writeToFile = (filename, data=fileLines, prettify=false) => {
+let writeToFile = (filename, data=fileLines) => {
   if (!filename) return _err('No filename specified to be written to with data=', data);
   filename = ('' + filename).trim();
   fs.writeFile(filename, '', (err) => {
@@ -126,6 +125,7 @@ const scanInput = (input, noOutput=false) => {
  * @protected
  */
 const readIn = (prettify=false) => {
+  resetVars();
   _inf('Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)');
   let rl = readline.createInterface({
       input: process.stdin,
@@ -146,8 +146,7 @@ const readIn = (prettify=false) => {
         else if (outputDest.toLowerCase() === 'var') return output;
         else {
           fileLines.push(output);
-          writeToFile(outputDest, fileLines, prettify);
-          resetVars();
+          writeToFile(outputDest, fileLines);
         }
       } else if (outputFormat === 'text') {
         let output = '- STDIN';
@@ -158,8 +157,7 @@ const readIn = (prettify=false) => {
         else {
           fileLines.push(output);
           fileLines.push(scanInput(lines, true));
-          writeToFile(outputDest, fileLines, prettify);
-          fileLines = [];
+          writeToFile(outputDest, fileLines);
         }
       } else _err(new Error(`outputFormat was found to have an invalid value being ${outputFormat}`)); //Should never happen
     } else lines.push(line);
@@ -178,15 +176,21 @@ const readIn = (prettify=false) => {
 const handleData = (files, inputs, i=0, prettify=false) => {
   let res = [];
   if (DEBUG) {
-    _dbg(`handle files=${files}`);
-    _dbg(`handle i=${i}`);
+    _dbg(`handling files=${files}\t at i=${i}`);
   }
   if (!Array.isArray(files) || !Array.isArray(inputs) || isNaN(i)) throw new TypeError('handleData was called with an argument of the wrong type');
   let postData = (output) => {
-    if (outputDest === 'stdout') _out(output);
-    else if (outputDest.toLowerCase() === 'var') return output;
+    if (outputDest === 'stdout') {
+      if (prettify) _out(output);
+      else {
+        _out(outputFormat === 'json' ? JSON.stringify(output, null, 0) : output);
+      }
+    }
+    else if (outputDest.toLowerCase() === 'var') {
+      if (DEBUG) console.log('hdlData', output, 'pretty=', prettify);
+      return output;
+    }
     else fileLines.push(output);
-    result = {};
   };
   if (outputFormat === 'json' || outputFormat === 'csv') {
     result[files[i]] = scanInput(inputs[i], true);
@@ -212,7 +216,6 @@ const handleData = (files, inputs, i=0, prettify=false) => {
     else {
       fileLines.push(output);
       fileLines.push(scanInput(inputs[i], true));
-      fileLines = [];
     }
   } else _err(new Error(`outputFormat was found to have an invalid value being ${outputFormat}`)); //Should never happen
   if (outputDest === 'var') return res;
@@ -225,6 +228,7 @@ const handleData = (files, inputs, i=0, prettify=false) => {
  * @protected
  */
 const readFiles = (files=process.argv.slice(2, process.argv.length)) => {
+  resetVars();
   let inputs = [], res = [];
   if (DEBUG) _dbg(`readFiles(files=[${files}])`);
   for (let i = 0; i < files.length; ++i) {
@@ -246,7 +250,6 @@ const readFiles = (files=process.argv.slice(2, process.argv.length)) => {
         else if (outputDest !== 'stdout' && i === files.length - 1) {
           if (DEBUG) _dbg('fileLines=', fileLines);
           writeToFile(outputDest);
-          fileLines = [];
         }
       });
     });
@@ -262,6 +265,7 @@ const readFiles = (files=process.argv.slice(2, process.argv.length)) => {
  * @protected
  */
 const readFilesSync = (files=process.argv.slice(2, process.argv.length), prettify=false) => {
+  resetVars();
   let inputs = [], res = [];
   if (DEBUG) _dbg(`readFilesSync(files=[${files}])`);
   for (let i = 0; i < files.length; ++i) {
@@ -270,7 +274,7 @@ const readFilesSync = (files=process.argv.slice(2, process.argv.length), prettif
     }));
 
     if (DEBUG) _dbg(`inputs[${i}]=`, inputs[i]);
-    let data = handleData(files, inputs, i);
+    let data = handleData(files, inputs, i, prettify);
     if (DEBUG) {
       _dbg('data=');
       console.dir(data);
@@ -280,16 +284,21 @@ const readFilesSync = (files=process.argv.slice(2, process.argv.length), prettif
         _dbg(`Data pushed=V, i=${i}`);
         console.dir(data);
       }
-      (outputFormat === 'json') ? res = data: res.push(data);
+      if (outputFormat !== 'json' && data && data.length > 0) res.push(data);
+      else if (outputFormat === 'json') res = data;
+      else if (DEBUG) {
+        _dbg('Ignoring empty data=');
+        console.dir(data);
+      }
     }
   }
   if (DEBUG) _dbg('res=', res);
   if (outputDest === 'var') {
     if (outputFormat === 'csv') res = res[0];
-    return prettify ? prettifyOutput(res) : res;
+    return /*prettify ? prettifyOutput(res) :*/ res;
   } else if (outputDest !== 'stdout') {
     if (DEBUG) _dbg('fileLines=', fileLines);
-    writeToFile(outputDest, fileLines, prettify);
+    writeToFile(outputDest, fileLines);
     fileLines = [];
   }
 };
@@ -299,20 +308,22 @@ const readFilesSync = (files=process.argv.slice(2, process.argv.length), prettif
  * @param {(string|object)} output Output
  * @param {string} [format=outputFormat] Format of the output
  * @return {string} Prettified output
+ * @protected
  */
 const prettifyOutput = (output, format=outputFormat) => {
   switch (format.toLowerCase()) {
-    case 'json':
-      return JSON.stringify(output, null, 2);
-    case 'csv':
-      return Array.isArray(output) ? output.map(item => item.replace(/(\S+),(\S+)/, '$1, $2')) : output.replace(/(\S+),(\S+)/, '$1, $2');
-    default:
-      return output;
+  case 'json':
+    return JSON.stringify(output, null, 2);
+  case 'csv':
+    return Array.isArray(output) ? output.map(item => item.replace(/(\S+),(\S+)/, '$1, $2')) : output.replace(/(\S+),(\S+)/, '$1, $2');
+  default:
+    return output;
   }
 };
 
 /**
  * @description Reset the variables that may leave trash for further use.
+ * @private
  */
 const resetVars = () => {
   fileLines = [];
@@ -339,7 +350,6 @@ const run = (format='text', input='any', output='stdout', files=[], prettify=fal
     return readIn(prettify);
     break;
   case 'args':
-    if (format === 'csv') console.log('files=', files);
     return readFilesSync(files, prettify);
     break;
   default: //any
