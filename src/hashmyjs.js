@@ -2,13 +2,13 @@
  * @description base64(SHA-256) text encoder inspired by {@link https://stackoverflow.com/a/38554505/5893085}.
  * @author Maximilian Berkmann
  * @module hashmyjs
- * @exports {run, scanInput, hash, readIn, readFiles, readFilesSync}
+ * @exports {run, scanInput, hash, readIn, readFiles, readFilesSync, prettifyOutput}
  */
 /* eslint-env es6, node */
 
 const sjcl = require('sjcl'), readline = require('readline'), fs = require('fs'), clr = require('colors/safe');
-const DEBUG = process.env.DEBUG === true;
-let outputFormat = 'text', outputDest = 'STDOUT', result = {}, fileLines = [];
+const DEBUG = (process.env.DEBUG === true || process.env.DEBUG === 'true');
+let outputFormat = 'text', outputDest = 'stdout', result = {}, fileLines = [];
 
 clr.setTheme(require('./clr'));
 
@@ -86,15 +86,18 @@ let hash = (data) => {
  * @description Write to a file.
  * @param {string} filename File name
  * @param {string[]} [data=fileLines] Lines to write to the file
+ * @param {boolean} [pretty=false] Prettify the output
  * @private
  */
-let writeToFile = (filename, data=fileLines) => {
+let writeToFile = (filename, data=fileLines, prettify=false) => {
+  if (!filename) return _err('No filename specified to be written to with data=', data);
+  filename = ('' + filename).trim();
   fs.writeFile(filename, '', (err) => {
     if (err) return ioError('write', err, filename);
     let writer = fs.createWriteStream(filename, {
       flags: 'a'
     });
-    data.forEach((line) => writer.write(`${line}\n`));
+    data.forEach((line) => writer.write(`${prettifyOutput(line, outputFormat)}\n`));
     _inf(`Successfully written the result to ${filename}`);
   });
 
@@ -104,22 +107,25 @@ let writeToFile = (filename, data=fileLines) => {
  * @description Scan an input and output it's integrity hash.
  * @param {(string|string[])} input Input to hash (i.e. JS code)
  * @param {boolean} [noOutput=false] Don't output the result to the terminal but return the hash
+ * @return {(undefined|string)} Hashed data or nothing
  * @protected
  */
 const scanInput = (input, noOutput=false) => {
   let data = (Array.isArray(input)) ? input.join('\n') : input;
-  if (!input) _err('scanInput didn\'t received any input');
+  if (!input) return _err('scanInput didn\'t received any input');
   if (DEBUG) _dbg(`Data scanned:\n\`\`${data}\`\``);
   let digest = `${hash(data)}`;
   if (noOutput) return digest;
-  _out(`${digest}`);
+  if (outputDest.toLowerCase() === 'stdout') _out(`${digest}`);
 };
 
 /**
  * @description Read user's input from STDIN.
+ * @param {boolean} [prettify=false] Prettify the output
+ * @return {(undefined|string)} Data or nothing
  * @protected
  */
-const readIn = () => {
+const readIn = (prettify=false) => {
   _inf('Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)');
   let rl = readline.createInterface({
       input: process.stdin,
@@ -134,21 +140,26 @@ const readIn = () => {
       if (DEBUG) _dbg('Lines:', lines);
       if (outputFormat === 'json' || outputFormat === 'csv') {
         result['STDIN'] = scanInput(lines, true);
-        let output = (outputFormat === 'json') ? JSON.stringify(result, null, 2) : `STDIN,${result['STDIN']}`;
-        if (outputDest === 'STDOUT') _out(output);
+        let output = (outputFormat === 'json') ? result : `STDIN,${result['STDIN']}`;
+        if (prettify) output = prettifyOutput(output);
+        if (outputDest.toLowerCase() === 'stdout') _out(output);
+        else if (outputDest.toLowerCase() === 'var') return output;
         else {
           fileLines.push(output);
-          writeToFile(outputDest);
+          writeToFile(outputDest, fileLines, prettify);
+          resetVars();
         }
       } else if (outputFormat === 'text') {
         let output = '- STDIN';
-        if (outputDest === 'STDOUT') {
+        if (outputDest === 'stdout') {
           _out(output);
           scanInput(lines);
-        } else {
+        } else if (outputDest.toLowerCase() === 'var') return output;
+        else {
           fileLines.push(output);
           fileLines.push(scanInput(lines, true));
-          writeToFile(outputDest);
+          writeToFile(outputDest, fileLines, prettify);
+          fileLines = [];
         }
       } else _err(new Error(`outputFormat was found to have an invalid value being ${outputFormat}`)); //Should never happen
     } else lines.push(line);
@@ -156,12 +167,65 @@ const readIn = () => {
 };
 
 /**
+ * @description Handle data from files.
+ * @param {string[]} files List of file names
+ * @param {string[]} inputs List of inputs (content of each files)
+ * @param {number} [i=0] Index within the lists
+ * @param {boolean} [prettify=false] Prettify the output
+ * @return {(undefined|string|string[])} Data or nothing
+ * @throws {TypeError} Argument type error
+ */
+const handleData = (files, inputs, i=0, prettify=false) => {
+  let res = [];
+  if (DEBUG) {
+    _dbg(`handle files=${files}`);
+    _dbg(`handle i=${i}`);
+  }
+  if (!Array.isArray(files) || !Array.isArray(inputs) || isNaN(i)) throw new TypeError('handleData was called with an argument of the wrong type');
+  let postData = (output) => {
+    if (outputDest === 'stdout') _out(output);
+    else if (outputDest.toLowerCase() === 'var') return output;
+    else fileLines.push(output);
+    result = {};
+  };
+  if (outputFormat === 'json' || outputFormat === 'csv') {
+    result[files[i]] = scanInput(inputs[i], true);
+    if (i === files.length - 1) {
+      if (outputFormat === 'json') {
+        let output = prettify ? JSON.stringify(result, null, 2) : result;
+        return postData(output)
+      } else { //csv
+        for (let file in result) {
+          if (result.hasOwnProperty(file)) {
+            let output = prettify ? `${file}, ${result[file]}` : `${file},${result[file]}`;
+            let data = postData(output);
+            if (outputDest === 'var') res.push(data);
+          }
+        }
+      }
+    }
+  } else if (outputFormat === 'text') {
+    let output = `${i > 0 ? '\n' : ''}- ${files[i]}`;
+    if (outputDest === 'stdout') {
+      scanInput(inputs[i]);
+    } else if (outputDest.toLowerCase() === 'var') return scanInput(inputs[i], true);
+    else {
+      fileLines.push(output);
+      fileLines.push(scanInput(inputs[i], true));
+      fileLines = [];
+    }
+  } else _err(new Error(`outputFormat was found to have an invalid value being ${outputFormat}`)); //Should never happen
+  if (outputDest === 'var') return res;
+};
+
+/**
  * @description Read files and scan them.
  * @param {string[]} [files=process.argv.slice(2, process.argv.length)] Array of file paths
+ * @return {(undefined|string[])} Data or nothing
  * @protected
  */
 const readFiles = (files=process.argv.slice(2, process.argv.length)) => {
-  let inputs = [];
+  let inputs = [], res = [];
   if (DEBUG) _dbg(`readFiles(files=[${files}])`);
   for (let i = 0; i < files.length; ++i) {
     fs.open(files[i], 'r+', (err, fd) => {
@@ -177,116 +241,112 @@ const readFiles = (files=process.argv.slice(2, process.argv.length)) => {
       fs.close(fd, (err) => {
         if (DEBUG) _dbg('Closing', fd);
         if (err) ioError('close', err, fd);
-        _dbg(`inputs[${i}]=`, inputs[i]);
-        if (outputFormat === 'json' || outputFormat === 'csv') {
-          result[files[i]] = scanInput(inputs[i], true);
-          if (i === files.length - 1) {
-            if (outputFormat === 'json') {
-              let output = JSON.stringify(result, null, 2);
-              (outputDest === 'STDOUT') ? _out(output) : fileLines.push(output);
-            } else { //csv
-              for (let file in result) {
-                if (result.hasOwnProperty(file)) {
-                  let output = `${file},${result[file]}`;
-                  (outputDest === 'STDOUT') ? _out(output) : fileLines.push(output);
-                }
-              }
-            }
-          }
-        } else if (outputFormat === 'text') {
-          let output = `${i > 0 ? '\n' : ''}- ${files[i]}`;
-          if (outputDest === 'STDOUT') {
-            _out(output);
-            scanInput(inputs[i]);
-          } else {
-            fileLines.push(output);
-            fileLines.push(scanInput(inputs[i], true));
-          }
-        } else _err(new Error(`outputFormat was found to have an invalid value being ${outputFormat}`)); //Should never happen
-        if (outputDest !== 'STDOUT' && i === files.length - 1) {
+        let data = handleData(files, inputs, i);
+        if (outputDest === 'var') res.push(data);
+        else if (outputDest !== 'stdout' && i === files.length - 1) {
           if (DEBUG) _dbg('fileLines=', fileLines);
           writeToFile(outputDest);
+          fileLines = [];
         }
       });
     });
   }
+  if (outputDest === 'var') return res;
 };
 
 /**
  * @description Synchronously read files and scan them.
  * @param {string[]} [files=process.argv.slice(2, process.argv.length)] Array of file paths
+ * @param {boolean} [prettify=false] Prettify the output
+ * @return {(undefined|string[]|{...string})} Data or nothing
  * @protected
  */
-const readFilesSync = (files=process.argv.slice(2, process.argv.length)) => {
-  let inputs = [];
-  if (DEBUG) _dbg(`readFiles(files=[${files}])`);
+const readFilesSync = (files=process.argv.slice(2, process.argv.length), prettify=false) => {
+  let inputs = [], res = [];
+  if (DEBUG) _dbg(`readFilesSync(files=[${files}])`);
   for (let i = 0; i < files.length; ++i) {
-    //let fd = fs.openSync(files[i], 'r+');
     inputs.push(fs.readFileSync(files[i], (err) => {
       if (err) ioError('readSync', err, files[i]);
     }));
 
     if (DEBUG) _dbg(`inputs[${i}]=`, inputs[i]);
-    let handleFileData = () => {
-      if (outputFormat === 'json' || outputFormat === 'csv') {
-        result[files[i]] = scanInput(inputs[i], true);
-        if (i === files.length - 1) {
-          if (outputFormat === 'json') {
-            let output = JSON.stringify(result, null, 2);
-            (outputDest === 'STDOUT') ? _out(output) : fileLines.push(output);
-          } else { //csv
-            for (let file in result) {
-              if (result.hasOwnProperty(file)) {
-                let output = `${file},${result[file]}`;
-                (outputDest === 'STDOUT') ? _out(output) : fileLines.push(output);
-              }
-            }
-          }
-        }
-      } else if (outputFormat === 'text') {
-        let output = `${i > 0 ? '\n' : ''}- ${files[i]}`;
-        if (outputDest === 'STDOUT') {
-          _out(output);
-          scanInput(inputs[i]);
-        } else {
-          fileLines.push(output);
-          fileLines.push(scanInput(inputs[i], true));
-        }
-      } else _err(new Error(`outputFormat was found to have an invalid value being ${outputFormat}`)); //Should never happen
-    };
-    handleFileData();
+    let data = handleData(files, inputs, i);
+    if (DEBUG) {
+      _dbg('data=');
+      console.dir(data);
+    }
+    if (outputDest === 'var') {
+      if (DEBUG) {
+        _dbg(`Data pushed=V, i=${i}`);
+        console.dir(data);
+      }
+      (outputFormat === 'json') ? res = data: res.push(data);
+    }
   }
-  if (outputDest !== 'STDOUT') {
+  if (DEBUG) _dbg('res=', res);
+  if (outputDest === 'var') {
+    if (outputFormat === 'csv') res = res[0];
+    return prettify ? prettifyOutput(res) : res;
+  } else if (outputDest !== 'stdout') {
     if (DEBUG) _dbg('fileLines=', fileLines);
-    writeToFile(outputDest);
+    writeToFile(outputDest, fileLines, prettify);
+    fileLines = [];
   }
+};
+
+/**
+ * @description Prettify the ouptut according to the format used.
+ * @param {(string|object)} output Output
+ * @param {string} [format=outputFormat] Format of the output
+ * @return {string} Prettified output
+ */
+const prettifyOutput = (output, format=outputFormat) => {
+  switch (format.toLowerCase()) {
+    case 'json':
+      return JSON.stringify(output, null, 2);
+    case 'csv':
+      return Array.isArray(output) ? output.map(item => item.replace(/(\S+),(\S+)/, '$1, $2')) : output.replace(/(\S+),(\S+)/, '$1, $2');
+    default:
+      return output;
+  }
+};
+
+/**
+ * @description Reset the variables that may leave trash for further use.
+ */
+const resetVars = () => {
+  fileLines = [];
+  result = {}
 };
 
 /**
  * @description Start the hasher.
  * @param {string} [format='text'] Format of the result (text, csv, json)
  * @param {string} [input='any'] Reads either from STDIN or the arguments (any, stdin, args)
- * @param {string} [output='STDOUT'] Output the resulting hash (stdout, 'fileName')
+ * @param {string} [output='stdout'] Output the resulting hash in STDOUT (stdout) or a file (fileName)or as a returned value (var)
  * @param {string[]} [files=[]] List of files to go through
+ * @param {boolean} [prettify=false] Prettify the output
+ * @return {(undefined|string[]|string)} Data or nothing
  * @public
  */
-const run = (format='text', input='any', output='stdout', files=[]) => {
-  if (DEBUG) _dbg(`run(format=${format}, input=${input}, output=${output}), files=[${files}]`);
+const run = (format='text', input='any', output='stdout', files=[], prettify=false) => {
+  if (DEBUG) _dbg(`run(format=${format}, input=${input}, output=${output}, files=[${files}], prettify=${prettify})`);
   if (format === 'csv' || format === 'json') outputFormat = format;
   if (output.toLowerCase() !== 'stdout') outputDest = output;
 
   switch (input.toLowerCase()) {
   case 'stdin':
-    readIn();
+    return readIn(prettify);
     break;
   case 'args':
-    readFilesSync(files);
+    if (format === 'csv') console.log('files=', files);
+    return readFilesSync(files, prettify);
     break;
   default: //any
-    argOrIn() ? readFilesSync(files) : readIn();
+    return (files.length > 0 || argOrIn()) ? readFilesSync(files, prettify) : readIn(prettify);
   }
 };
 
 module.exports = {
-  run, scanInput, hash, readIn, readFiles, readFilesSync
+  run, scanInput, hash, readIn, readFiles, readFilesSync, prettifyOutput
 };

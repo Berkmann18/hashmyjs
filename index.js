@@ -6,18 +6,20 @@
  */
 /* eslint-env node, es6 */
 
-const hmj = require('./src/hashmyjs.js'), prgm = require('commander'), clr = require('colors'), DEBUG = process.env.DEBUG === true, pkg = require('./package.json');
+const hmj = require('./src/hashmyjs.js'), prgm = require('commander'), clr = require('colors'), pkg = require('./package.json');
+const DEBUG = (process.env.DEBUG === true || process.env.DEBUG === 'true');
 
 clr.setTheme(require('./src/clr'));
 
-let format = 'text', output = 'STDOUT', input = 'any', validInput = false;
+let format = 'text', output = 'STDOUT', input = 'any', validInput = false, prettify = false;
 
 prgm.arguments('[files...]')
   .version(pkg.version)
   .description(pkg.description)
-  .option('-f, --format [format]', 'Specify the format of the output (text (default), json, csv)')
+  .option('-f, --format [format]', 'Specify the format of the output (text (default), json, csv)', String)
   .option('-o, --output [path]', 'Output to a file instead of in the STDOUT')
   .option('-i, --interactive', 'Forces to read the input from the STDIN')
+  .option('-p, --prettify', 'Prettify the output', Boolean)
   .action((files, options) => {
     validInput = true;
     if (DEBUG) console.log(clr.debug(`files=${files}`));
@@ -25,8 +27,8 @@ prgm.arguments('[files...]')
 
     if (prgm.format) format = prgm.format;
     if (prgm.output) output = prgm.output;
-    if (prgm.interactive) input = 'STDIN';
-    hmj.run(format, input, output, files);
+    if (prgm.interactive) input = 'stdin';
+    hmj.run(format, input, output, files, prgm.prettify);
   })
   .parse(process.argv);
 
@@ -37,26 +39,30 @@ if (!validInput) {
     switch (process.argv[2]) {
     case '-i':
     case '--interactive':
-      hmj.run('text', 'STDIN');
+      hmj.run('text', 'stdin');
       break;
     }
   } else {
     for (let i = 2; i < argc; ++i) {
-      switch (process.argv[i]) {
+      switch (process.argv[i]) { //security/detect-object-injection to resolve
       case '-f':
       case '--format':
         format = process.argv[++i];
         break;
       case '-i':
       case '--interactive':
-        input = 'STDIN';
+        input = 'stdin';
         break;
       case '-o':
       case '--output':
         output = process.argv[++i];
         break;
+      case '-p':
+      case '--prettify':
+        prettify = true;
+        break;
       }
     }
-    hmj.run(format, input, output);
+    hmj.run(format, input, output, prettify);
   }
 }
