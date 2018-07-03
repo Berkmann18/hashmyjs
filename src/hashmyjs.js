@@ -106,7 +106,7 @@ let writeToFile = (filename, data=fileLines) => {
  * @description Scan an input and output it's integrity hash.
  * @param {(string|string[])} input Input to hash (i.e. JS code)
  * @param {boolean} [noOutput=false] Don't output the result to the terminal but return the hash
- * @return {(undefined|string)} Hashed data or nothing
+ * @return {(void|string)} Hashed data or nothing
  * @protected
  */
 const scanInput = (input, noOutput=false) => {

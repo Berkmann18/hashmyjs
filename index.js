@@ -42,7 +42,7 @@ if (!validInput) {
     }
   } else {*/
   for (let i = 2; i < argc; ++i) {
-    switch (process.argv[i]) { //security/detect-object-injection to resolve
+    switch (String(process.argv[i])) { //security/detect-object-injection to resolve
     case '-f':
     case '--format':
       format = process.argv[++i];
