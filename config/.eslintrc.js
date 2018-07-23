@@ -4,8 +4,12 @@ module.exports = {
     "es6": true,
     "node": true
   },
-  "plugins": ["security"],
-  "extends": "plugin:security/recommended",
+  "plugins": [
+      "security"
+  ],
+  "extends": [
+      "plugin:security/recommended"
+  ],
   "rules": {
     "indent": [
       "error",
