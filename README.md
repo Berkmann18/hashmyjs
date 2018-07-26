@@ -8,6 +8,7 @@
 [![dependencies Status](https://david-dm.org/Berkmann18/hashmyjs/status.svg)](https://david-dm.org/Berkmann18/hashmyjs)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Berkmann18/hashmyjs/issues)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&identifier=115825259)](https://dependabot.com)
+[![BCH compliance](https://bettercodehub.com/edge/badge/Berkmann18/hashmyjs?branch=master)](https://bettercodehub.com/)
 
 It's a relatively simple NodeJS program that allows you to get the base64 encoded SHA-256 hash for a JS file or the code itself that you could later on use as the integrity of a script that you would integrate to a page so it won't be flagged by CSP or else.
 
