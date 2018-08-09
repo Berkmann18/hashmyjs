@@ -6,9 +6,14 @@
  */
 /* eslint-env es6, node */
 
-const sjcl = require('sjcl'), readline = require('readline'), fs = require('fs'), clr = require('colors/safe');
-const DEBUG = (process.env.DEBUG === true || process.env.DEBUG === 'true');
-let outputFormat = 'text', outputDest = 'stdout', result = {}, fileLines = [];
+const sjcl = require('sjcl'),
+  readline = require('readline'),
+  fs = require('fs'),
+  clr = require('colors/safe');
+let outputFormat = 'text',
+  outputDest = 'stdout',
+  result = {},
+  fileLines = [];
 
 clr.setTheme(require('./clr'));
 
@@ -17,14 +22,14 @@ clr.setTheme(require('./clr'));
  * @return {boolean} true if argument or false for STDIN
  * @private
  */
-let argOrIn = () => process.argv.length > 2;
+const argOrIn = () => process.argv.length > 2;
 
 /**
  * @description Print an error.
  * @param {...*} data Data to print
  * @private
  */
-let _err = (...data) => {
+const _err = (...data) => {
   console.error(clr.err(...data));
   process.exit(1);
 };
@@ -34,28 +39,28 @@ let _err = (...data) => {
  * @param {...*} data Data to print
  * @private
  */
-let _inf = (...data) => console.log(clr.inf(...data));
+const _inf = (...data) => console.log(clr.inf(...data));
 
 /**
  * @description Print a debug message.
  * @param {...*} data Data to print
  * @private
  */
-let _dbg = (...data) => console.log(clr.debug(...data));
+const _dbg = (...data) => console.log(clr.debug(...data));
 
 /**
  * @description Print an output.
  * @param {...*} data Data to print
  * @private
  */
-let _out = (...data) => console.log(clr.out(...data));
+const _out = (...data) => console.log(clr.out(...data));
 
 /**
  * @description Print an input.
  * @param {...*} data Data to print
  * @private
  */
-let _in = (...data) => console.log(clr.in(...data));
+const _in = (...data) => console.log(clr.in(...data));
 
 /**
  * @description IO error message,
@@ -63,7 +68,7 @@ let _in = (...data) => console.log(clr.in(...data));
  * @param {Error} err Error
  * @param {string} filename Name of the file affected
  */
-let ioError = (type, err, filename) => _err(`IO ${type} error:`, err, `on '${filename}'`);
+const ioError = (type, err, filename) => _err(`IO ${type} error:`, err, `on '${filename}'`);
 
 /**
  * @description Generate base64-encoded SHA-256 for given string.
@@ -71,11 +76,9 @@ let ioError = (type, err, filename) => _err(`IO ${type} error:`, err, `on '${fil
  * @return {string} Base64 encoded SHA-256 hash
  * @protected
  */
-let hash = (data) => {
-  if (DEBUG) _dbg(`hash(${data}`);
+const hash = (data) => {
   try {
     let hashed = sjcl.hash.sha256.hash(data);
-    if (DEBUG) _dbg(`  hashed=${hashed}`);
     return `sha256-${sjcl.codec.base64.fromBits(hashed)}`;
   } catch (err) {
     _err('There was an error in hashing data=', data, '\nThe error is: ', err)
@@ -88,7 +91,7 @@ let hash = (data) => {
  * @param {string[]} [data=fileLines] Lines to write to the file
  * @private
  */
-let writeToFile = (filename, data=fileLines) => {
+const writeToFile = (filename, data = fileLines) => {
   if (!filename) return _err('No filename specified to be written to with data=', data);
   filename = ('' + filename).trim();
   fs.writeFile(filename, '', (err) => {
@@ -109,13 +112,12 @@ let writeToFile = (filename, data=fileLines) => {
  * @return {(void|string)} Hashed data or nothing
  * @protected
  */
-const scanInput = (input, noOutput=false) => {
+const scanInput = (input, noOutput = false) => {
   let data = (Array.isArray(input)) ? input.join('\n') : input;
   if (!input) return _err('scanInput didn\'t received any input');
-  if (DEBUG) _dbg(`Data scanned:\n\`\`${data}\`\``);
   let digest = `${hash(data)}`;
   if (noOutput) return digest;
-  if (outputDest.toLowerCase() === 'stdout') _out(`${digest}`);
+  if (outputDest === 'stdout') _out(`${digest}`);
 };
 
 /**
@@ -124,26 +126,25 @@ const scanInput = (input, noOutput=false) => {
  * @return {(undefined|string)} Data or nothing
  * @protected
  */
-const readIn = (prettify=false) => {
+const readIn = (prettify = false) => {
   resetVars();
   _inf('Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)');
   let rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
       terminal: false
-    }), EOF = (str) => {
-      return str === '\\$' || str === '\\EOF'
-    }, lines = [];
+    }),
+    EOF = (str) => str === '\\$' || str === '\\EOF',
+    lines = [];
 
   rl.on('line', (line) => {
     if (EOF(line)) {
-      if (DEBUG) _dbg('Lines:', lines);
       if (outputFormat === 'json' || outputFormat === 'csv') {
         result['STDIN'] = scanInput(lines, true);
         let output = (outputFormat === 'json') ? result : `STDIN,${result['STDIN']}`;
         if (prettify) output = prettifyOutput(output);
-        if (outputDest.toLowerCase() === 'stdout') _out(output);
-        else if (outputDest.toLowerCase() === 'var') return output;
+        if (outputDest === 'stdout') _out(output);
+        else if (outputDest === 'var') return output;
         else {
           fileLines.push(output);
           writeToFile(outputDest, fileLines);
@@ -153,7 +154,7 @@ const readIn = (prettify=false) => {
         if (outputDest === 'stdout') {
           _out(output);
           scanInput(lines);
-        } else if (outputDest.toLowerCase() === 'var') return output;
+        } else if (outputDest === 'var') return output;
         else {
           fileLines.push(output);
           fileLines.push(scanInput(lines, true));
@@ -173,24 +174,18 @@ const readIn = (prettify=false) => {
  * @return {(undefined|string|string[])} Data or nothing
  * @throws {TypeError} Argument type error
  */
-const handleData = (files, inputs, i=0, prettify=false) => {
+const handleData = (files, inputs, i = 0, prettify = false) => {
   let res = [];
-  if (DEBUG) {
-    _dbg(`handling files=${files}\t at i=${i}`);
-  }
   if (!Array.isArray(files) || !Array.isArray(inputs) || isNaN(i)) throw new TypeError('handleData was called with an argument of the wrong type');
-  let postData = (output) => {
+  const postData = (output) => {
     if (outputDest === 'stdout') {
       if (prettify) _out(output);
       else {
         _out(outputFormat === 'json' ? JSON.stringify(output, null, 0) : output);
       }
-    }
-    else if (outputDest.toLowerCase() === 'var') {
-      if (DEBUG) console.log('hdlData', output, 'pretty=', prettify);
+    } else if (outputDest === 'var') {
       return output;
-    }
-    else fileLines.push(output);
+    } else fileLines.push(output);
   };
   if (outputFormat === 'json' || outputFormat === 'csv') {
     result[files[i]] = scanInput(inputs[i], true);
@@ -212,7 +207,7 @@ const handleData = (files, inputs, i=0, prettify=false) => {
     let output = `${i > 0 ? '\n' : ''}- ${files[i]}`;
     if (outputDest === 'stdout') {
       scanInput(inputs[i]);
-    } else if (outputDest.toLowerCase() === 'var') return scanInput(inputs[i], true);
+    } else if (outputDest === 'var') return scanInput(inputs[i], true);
     else {
       fileLines.push(output);
       fileLines.push(scanInput(inputs[i], true));
@@ -227,30 +222,24 @@ const handleData = (files, inputs, i=0, prettify=false) => {
  * @return {(undefined|string[])} Data or nothing
  * @protected
  */
-const readFiles = (files=process.argv.slice(2, process.argv.length)) => {
+const readFiles = (files = process.argv.slice(2, process.argv.length)) => {
   resetVars();
-  let inputs = [], res = [];
-  if (DEBUG) _dbg(`readFiles(files=[${files}])`);
+  let inputs = [],
+    res = [];
   for (let i = 0; i < files.length; ++i) {
     fs.open(files[i], 'r+', (err, fd) => {
-      if (DEBUG) _dbg('Opening', files[i]);
       let buf = new Buffer(8192);
       if (err) return ioError('open', err, files[i]);
       fs.read(fd, buf, 0, buf.length, 0, (err, bytes) => {
-        if (DEBUG) _dbg('Reading', files[i]);
         if (err) return ioError('read', err, files[i]);
         if (bytes > 0) inputs.push(buf.slice(0, bytes).toString());
       });
 
       fs.close(fd, (err) => {
-        if (DEBUG) _dbg('Closing', fd);
         if (err) ioError('close', err, fd);
         let data = handleData(files, inputs, i);
         if (outputDest === 'var') res.push(data);
-        else if (outputDest !== 'stdout' && i === files.length - 1) {
-          if (DEBUG) _dbg('fileLines=', fileLines);
-          writeToFile(outputDest);
-        }
+        else if (outputDest !== 'stdout' && i === files.length - 1) writeToFile(outputDest);
       });
     });
   }
@@ -264,40 +253,27 @@ const readFiles = (files=process.argv.slice(2, process.argv.length)) => {
  * @return {(undefined|string[]|{...string})} Data or nothing
  * @protected
  */
-const readFilesSync = (files=process.argv.slice(2, process.argv.length), prettify=false) => {
+const readFilesSync = (files = process.argv.slice(2, process.argv.length), prettify = false) => {
   resetVars();
-  let inputs = [], res = [];
-  if (DEBUG) _dbg(`readFilesSync(files=[${files}])`);
+  let inputs = [],
+    res = [];
+
   for (let i = 0; i < files.length; ++i) {
     inputs.push(fs.readFileSync(files[i], (err) => {
       if (err) ioError('readSync', err, files[i]);
     }));
 
-    if (DEBUG) _dbg(`inputs[${i}]=`, inputs[i]);
     let data = handleData(files, inputs, i, prettify);
-    if (DEBUG) {
-      _dbg('data=');
-      console.dir(data);
-    }
     if (outputDest === 'var') {
-      if (DEBUG) {
-        _dbg(`Data pushed=V, i=${i}`);
-        console.dir(data);
-      }
       if (outputFormat !== 'json' && data && data.length > 0) res.push(data);
       else if (outputFormat === 'json') res = data;
-      else if (DEBUG) {
-        _dbg('Ignoring empty data=');
-        console.dir(data);
-      }
     }
   }
-  if (DEBUG) _dbg('res=', res);
+
   if (outputDest === 'var') {
     if (outputFormat === 'csv') res = res[0];
-    return /*prettify ? prettifyOutput(res) :*/ res;
+    return res;
   } else if (outputDest !== 'stdout') {
-    if (DEBUG) _dbg('fileLines=', fileLines);
     writeToFile(outputDest, fileLines);
     fileLines = [];
   }
@@ -310,8 +286,8 @@ const readFilesSync = (files=process.argv.slice(2, process.argv.length), prettif
  * @return {string} Prettified output
  * @protected
  */
-const prettifyOutput = (output, format=outputFormat) => {
-  switch (format.toLowerCase()) {
+const prettifyOutput = (output, format = outputFormat) => {
+  switch (format) {
   case 'json':
     return JSON.stringify(output, null, 2);
   case 'csv':
@@ -340,12 +316,13 @@ const resetVars = () => {
  * @return {(undefined|string[]|string)} Data or nothing
  * @public
  */
-const run = (format='text', input='any', output='stdout', files=[], prettify=false) => {
-  if (DEBUG) _dbg(`run(format=${format}, input=${input}, output=${output}, files=[${files}], prettify=${prettify})`);
+const run = (format = 'text', input = 'any', output = 'stdout', files = [], prettify = false) => {
+  format = format.toLowerCase();
   if (format === 'csv' || format === 'json') outputFormat = format;
-  if (output.toLowerCase() !== 'stdout') outputDest = output;
+  output = output.toLowerCase();
+  if (output !== 'stdout') outputDest = output;
 
-  switch (input.toLowerCase()) {
+  switch (input) {
   case 'stdin':
     return readIn(prettify);
     break;
@@ -358,5 +335,11 @@ const run = (format='text', input='any', output='stdout', files=[], prettify=fal
 };
 
 module.exports = {
-  run, scanInput, hash, readIn, readFiles, readFilesSync, prettifyOutput
+  run,
+  scanInput,
+  hash,
+  readIn,
+  readFiles,
+  readFilesSync,
+  prettifyOutput
 };
