@@ -37,7 +37,7 @@
   "homepage": "https://github.com/Berkmann18/hashmyjs#readme",
   "dependencies": {
     "colors": "^1.3.1",
-    "commander": "^2.16.0",
+    "commander": "^2.17.1",
     "sjcl": "^1.0.7"
   },
   "devDependencies": {
@@ -45,7 +45,7 @@
     "babel-eslint": "^8.2.6",
     "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "eslint": "^5.2.0",
+    "eslint": "^5.3.0",
     "eslint-plugin-security": "^1.4.0",
     "jest": "^23.4.1",
     "jest-cli": "^23.4.1",
