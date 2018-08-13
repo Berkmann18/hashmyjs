@@ -9,7 +9,8 @@
 const sjcl = require('sjcl'),
   readline = require('readline'),
   fs = require('fs'),
-  clr = require('colors/safe');
+  clr = require('colors/safe'),
+  { error, IoError, info, out } = require('./utils');
 let outputFormat = 'text',
   outputDest = 'stdout',
   result = {},
@@ -25,52 +26,6 @@ clr.setTheme(require('./clr'));
 const argOrIn = () => process.argv.length > 2;
 
 /**
- * @description Print an error.
- * @param {...*} data Data to print
- * @private
- */
-const _err = (...data) => {
-  console.error(clr.err(...data));
-  process.exit(1);
-};
-
-/**
- * @description Print an information.
- * @param {...*} data Data to print
- * @private
- */
-const _inf = (...data) => console.log(clr.inf(...data));
-
-/**
- * @description Print a debug message.
- * @param {...*} data Data to print
- * @private
- */
-const _dbg = (...data) => console.log(clr.debug(...data));
-
-/**
- * @description Print an output.
- * @param {...*} data Data to print
- * @private
- */
-const _out = (...data) => console.log(clr.out(...data));
-
-/**
- * @description Print an input.
- * @param {...*} data Data to print
- * @private
- */
-const _in = (...data) => console.log(clr.in(...data));
-
-/**
- * @description IO error message,
- * @param {string} type IO type (open, read, write, append, ...)
- * @param {Error} err Error
- * @param {string} filename Name of the file affected
- */
-const ioError = (type, err, filename) => _err(`IO ${type} error:`, err, `on '${filename}'`);
-
-/**
  * @description Generate base64-encoded SHA-256 for given string.
  * @param {string} data Data oto encode
  * @return {string} Base64 encoded SHA-256 hash
@@ -81,7 +36,8 @@ const hash = (data) => {
     let hashed = sjcl.hash.sha256.hash(data);
     return `sha256-${sjcl.codec.base64.fromBits(hashed)}`;
   } catch (err) {
-    _err('There was an error in hashing data=', data, '\nThe error is: ', err)
+    error('There was an error in hashing data=', data, '\nThe error is: ', err)
+    return err;
   }
 };
 
@@ -92,15 +48,15 @@ const hash = (data) => {
  * @private
  */
 const writeToFile = (filename, data = fileLines) => {
-  if (!filename) return _err('No filename specified to be written to with data=', data);
+  if (!filename) throw new Error(`No filename specified to be written to with data=${data}`);
   filename = ('' + filename).trim();
   fs.writeFile(filename, '', (err) => {
-    if (err) return ioError('write', err, filename);
+    if (err) return IoError('write', err, filename);
     let writer = fs.createWriteStream(filename, {
       flags: 'a'
     });
     data.forEach((line) => writer.write(`${prettifyOutput(line, outputFormat)}\n`));
-    _inf(`Successfully written the result to ${filename}`);
+    info(`Successfully written the result to ${filename}`);
   });
 
 };
@@ -114,10 +70,10 @@ const writeToFile = (filename, data = fileLines) => {
  */
 const scanInput = (input, noOutput = false) => {
   let data = (Array.isArray(input)) ? input.join('\n') : input;
-  if (!input) return _err('scanInput didn\'t received any input');
+  if (!input) throw new Error('scanInput didn\'t received any input');
   let digest = `${hash(data)}`;
   if (noOutput) return digest;
-  if (outputDest === 'stdout') _out(`${digest}`);
+  if (outputDest === 'stdout') out(`${digest}`);
 };
 
 /**
@@ -128,7 +84,7 @@ const scanInput = (input, noOutput = false) => {
  */
 const readIn = (prettify = false) => {
   resetVars();
-  _inf('Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)');
+  info('Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)');
   let rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
@@ -143,7 +99,7 @@ const readIn = (prettify = false) => {
         result['STDIN'] = scanInput(lines, true);
         let output = (outputFormat === 'json') ? result : `STDIN,${result['STDIN']}`;
         if (prettify) output = prettifyOutput(output);
-        if (outputDest === 'stdout') _out(output);
+        if (outputDest === 'stdout') out(output);
         else if (outputDest === 'var') return output;
         else {
           fileLines.push(output);
@@ -152,7 +108,7 @@ const readIn = (prettify = false) => {
       } else if (outputFormat === 'text') {
         let output = '- STDIN';
         if (outputDest === 'stdout') {
-          _out(output);
+          out(output);
           scanInput(lines);
         } else if (outputDest === 'var') return output;
         else {
@@ -160,7 +116,7 @@ const readIn = (prettify = false) => {
           fileLines.push(scanInput(lines, true));
           writeToFile(outputDest, fileLines);
         }
-      } else _err(new Error(`outputFormat was found to have an invalid value being ${outputFormat}`)); //Should never happen
+      } else throw new Error(`outputFormat was found to have an invalid value being ${outputFormat}`); //Should never happen
     } else lines.push(line);
   });
 };
@@ -179,9 +135,9 @@ const handleData = (files, inputs, i = 0, prettify = false) => {
   if (!Array.isArray(files) || !Array.isArray(inputs) || isNaN(i)) throw new TypeError('handleData was called with an argument of the wrong type');
   const postData = (output) => {
     if (outputDest === 'stdout') {
-      if (prettify) _out(output);
+      if (prettify) out(output);
       else {
-        _out(outputFormat === 'json' ? JSON.stringify(output, null, 0) : output);
+        out(outputFormat === 'json' ? JSON.stringify(output, null, 0) : output);
       }
     } else if (outputDest === 'var') {
       return output;
@@ -212,7 +168,7 @@ const handleData = (files, inputs, i = 0, prettify = false) => {
       fileLines.push(output);
       fileLines.push(scanInput(inputs[i], true));
     }
-  } else _err(new Error(`outputFormat was found to have an invalid value being ${outputFormat}`)); //Should never happen
+  } else throw new Error(`outputFormat was found to have an invalid value being ${outputFormat}`); //Should never happen
   if (outputDest === 'var') return res;
 };
 
@@ -229,14 +185,14 @@ const readFiles = (files = process.argv.slice(2, process.argv.length)) => {
   for (let i = 0; i < files.length; ++i) {
     fs.open(files[i], 'r+', (err, fd) => {
       let buf = new Buffer(8192);
-      if (err) return ioError('open', err, files[i]);
+      if (err) return IoError('open', err, files[i]);
       fs.read(fd, buf, 0, buf.length, 0, (err, bytes) => {
-        if (err) return ioError('read', err, files[i]);
+        if (err) return IoError('read', err, files[i]);
         if (bytes > 0) inputs.push(buf.slice(0, bytes).toString());
       });
 
       fs.close(fd, (err) => {
-        if (err) ioError('close', err, fd);
+        if (err) IoError('close', err, fd);
         let data = handleData(files, inputs, i);
         if (outputDest === 'var') res.push(data);
         else if (outputDest !== 'stdout' && i === files.length - 1) writeToFile(outputDest);
@@ -260,7 +216,7 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), prett
 
   for (let i = 0; i < files.length; ++i) {
     inputs.push(fs.readFileSync(files[i], (err) => {
-      if (err) ioError('readSync', err, files[i]);
+      if (err) IoError('readSync', err, files[i]);
     }));
 
     let data = handleData(files, inputs, i, prettify);
@@ -288,12 +244,12 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), prett
  */
 const prettifyOutput = (output, format = outputFormat) => {
   switch (format) {
-  case 'json':
-    return JSON.stringify(output, null, 2);
-  case 'csv':
-    return Array.isArray(output) ? output.map(item => item.replace(/(\S+),(\S+)/, '$1, $2')) : output.replace(/(\S+),(\S+)/, '$1, $2');
-  default:
-    return output;
+    case 'json':
+      return JSON.stringify(output, null, 2);
+    case 'csv':
+      return Array.isArray(output) ? output.map(item => item.replace(/(\S+),(\S+)/, '$1, $2')) : output.replace(/(\S+),(\S+)/, '$1, $2');
+    default:
+      return output;
   }
 };
 
@@ -308,29 +264,27 @@ const resetVars = () => {
 
 /**
  * @description Start the hasher.
+ * @param {string[]} [files=[]] List of files to go through
  * @param {string} [format='text'] Format of the result (text, csv, json)
  * @param {string} [input='any'] Reads either from STDIN or the arguments (any, stdin, args)
  * @param {string} [output='stdout'] Output the resulting hash in STDOUT (stdout) or a file (fileName)or as a returned value (var)
- * @param {string[]} [files=[]] List of files to go through
  * @param {boolean} [prettify=false] Prettify the output
  * @return {(undefined|string[]|string)} Data or nothing
  * @public
  */
-const run = (format = 'text', input = 'any', output = 'stdout', files = [], prettify = false) => {
+const run = (files = [], { format = 'text', input = 'any', output = 'stdout', prettify = false } = {}) => {
   format = format.toLowerCase();
   if (format === 'csv' || format === 'json') outputFormat = format;
   output = output.toLowerCase();
   if (output !== 'stdout') outputDest = output;
 
   switch (input) {
-  case 'stdin':
-    return readIn(prettify);
-    break;
-  case 'args':
-    return readFilesSync(files, prettify);
-    break;
-  default: //any
-    return (files.length > 0 || argOrIn()) ? readFilesSync(files, prettify) : readIn(prettify);
+    case 'stdin':
+      return readIn(prettify);
+    case 'args':
+      return readFilesSync(files, prettify);
+    default: //any
+      return (files.length > 0 || argOrIn()) ? readFilesSync(files, prettify) : readIn(prettify);
   }
 };
 

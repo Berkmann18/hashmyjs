@@ -8,8 +8,7 @@
 /**
  * @type {{in: string, out: string[], inf: string, err: string, warn: string, debug: string, quest: string}}
  */
-const scheme = {
-  in: 'white',
+module.exports = { in: 'white',
   out: ['cyan', 'bold'],
   inf: 'green',
   err: 'red',
@@ -17,5 +16,3 @@ const scheme = {
   debug: 'grey',
   quest: 'blue'
 };
-
-module.exports = scheme;

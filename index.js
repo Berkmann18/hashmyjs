@@ -16,7 +16,6 @@ clr.setTheme(require('./src/clr'));
 
 const str = (val) => val;
 
-
 prgm.arguments('[files...]')
   .version(pkg.version)
   .description(pkg.description)
@@ -25,12 +24,12 @@ prgm.arguments('[files...]')
   .option('-i, --interactive', 'Forces to read the input from the STDIN')
   .option('-p, --prettify', 'Prettify the output')
   .action((files) => {
-    // console.debug('format=', prgm.format);
-    // console.debug('output=', prgm.output);
-    // console.debug('interactive=', prgm.interactive);
-
-    validInput = true;
-    let input = (prgm.interactive) ? 'stdin' : 'any';
-    hmj.run(prgm.format, input, prgm.output, files, !!prgm.prettify);
+    let opts = {
+      format: prgm.format,
+      input: (prgm.interactive) ? 'stdin' : 'any',
+      output: prgm.output,
+      prettify: !!prgm.prettify
+    };
+    hmj.run(files, opts);
   })
   .parse(process.argv);
