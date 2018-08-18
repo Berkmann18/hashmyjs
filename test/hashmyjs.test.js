@@ -49,7 +49,7 @@ let json01 = {
   prettyJson01 = JSON.stringify(json01, null, 2),
   prettyCsv01 = [prettyCsv0, prettyCsv1];
 
-/* test(`run(files=["${ex0}"], {format=text, input=any, output=var})`, () => {
+test(`run(files=["${ex0}"], {format=text, input=any, output=var})`, () => {
   expect(hmj.run([ex0], { format: 'text', input: 'any', output: 'var' })).toEqual([hashEx0])
 });
 
@@ -111,19 +111,93 @@ test(`run(files=[], {input=args, output='./test/test.txt'})`, () => {
 });
 
 test(`run(files=[], {input=stdin, output=var})`, () => {
-  expect(hmj.run([], { input: 'stdin', output: 'var' })).toBeUndefined();
-}); */
+  expect.assertions(1);
+  let h = hmj.run([], { input: 'stdin', output: 'var' });
+  stdin.reset();
+  stdin.send('const greeter = (name) => console.log(`Hello ${name}!`);');
+  stdin.send('\n\\$');
+  stdin.end();
+  h.then(res => {
+      expect(res).toBe('- STDIN\nsha256-631s7BgZWUQPh3L/kg22uOBHmyaQoJ6DQtB0uVSJxh4=');
+    })
+    .catch(err => {
+      throw new Error(err);
+    });
+});
 
-test(`run(files=["${ex0}"], {input=stdin, output=var})`, () => {
-  console.log('stdin');
-  const tst = () => {
-    let h = hmj.run([ex0], { input: 'stdin', output: 'var' });
-    stdin.send('const greeter = (name) => console.log(`Hello ${name}!`);');
-    stdin.send('\n\\$');
-    stdin.end();
-    return h;
-  };
-  expect(tst()).toBe(hashEx0);
+test(`run(files=[], {input=stdin, output=var, prettify=true})`, () => {
+  expect.assertions(1);
+  let h = hmj.run([], { input: 'stdin', output: 'var', prettify: true });
+  stdin.reset();
+  stdin.send('const greeter = (name) => console.log(`Hello ${name}!`);');
+  stdin.send('\n\\$');
+  stdin.end();
+  h.then(res => {
+      expect(res).toBe('- STDIN\nsha256-631s7BgZWUQPh3L/kg22uOBHmyaQoJ6DQtB0uVSJxh4=');
+    })
+    .catch(err => {
+      throw new Error(err);
+    });
+});
+
+test(`run(files=[], {format=csv, input=stdin, output=var})`, () => {
+  expect.assertions(1);
+  let h = hmj.run([], { input: 'stdin', output: 'var', format: 'csv' });
+  stdin.reset();
+  stdin.send('const greeter = (name) => console.log(`Hello ${name}!`);');
+  stdin.send('\n\\$');
+  stdin.end();
+  h.then(res => {
+      expect(res).toBe('STDIN,sha256-631s7BgZWUQPh3L/kg22uOBHmyaQoJ6DQtB0uVSJxh4=');
+    })
+    .catch(err => {
+      throw new Error(err);
+    });
+});
+
+test(`run(files=[], {format=csv, input=stdin, output=var, prettify=true})`, () => {
+  expect.assertions(1);
+  let h = hmj.run([], { input: 'stdin', output: 'var', format: 'csv', prettify: true });
+  stdin.reset();
+  stdin.send('const greeter = (name) => console.log(`Hello ${name}!`);');
+  stdin.send('\n\\$');
+  stdin.end();
+  h.then(res => {
+      expect(res).toBe('STDIN, sha256-631s7BgZWUQPh3L/kg22uOBHmyaQoJ6DQtB0uVSJxh4=');
+    })
+    .catch(err => {
+      throw new Error(err);
+    });
+});
+
+test(`run(files=[], {format=json, input=stdin, output=var})`, () => {
+  expect.assertions(1);
+  let h = hmj.run([], { input: 'stdin', output: 'var', format: 'json' });
+  stdin.reset();
+  stdin.send('const greeter = (name) => console.log(`Hello ${name}!`);');
+  stdin.send('\n\\$');
+  stdin.end();
+  h.then(res => {
+      expect(res).toStrictEqual({ STDIN: 'sha256-631s7BgZWUQPh3L/kg22uOBHmyaQoJ6DQtB0uVSJxh4=' });
+    })
+    .catch(err => {
+      throw new Error(err);
+    });
+});
+
+test(`run(files=[], {format=json, input=stdin, output=var, prettify=true})`, () => {
+  expect.assertions(1);
+  let h = hmj.run([], { input: 'stdin', output: 'var', format: 'json', prettify: true });
+  stdin.reset();
+  stdin.send('const greeter = (name) => console.log(`Hello ${name}!`);');
+  stdin.send('\n\\$');
+  stdin.end();
+  h.then(res => {
+      expect(res).toStrictEqual(JSON.stringify({ STDIN: 'sha256-631s7BgZWUQPh3L/kg22uOBHmyaQoJ6DQtB0uVSJxh4=' }, null, 2));
+    })
+    .catch(err => {
+      throw new Error(err);
+    });
 });
 
 /* prettifyOutput */
