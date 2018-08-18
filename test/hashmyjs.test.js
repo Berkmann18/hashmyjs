@@ -1,4 +1,5 @@
 const hmj = require('../src/hashmyjs');
+const stdin = require('mock-stdin').stdin();
 /*
  run(format=(text | json | csv), input=(any | stdin | args), output=(stdout | ...fileNames | var), files=[...files]
  paths:
@@ -48,7 +49,7 @@ let json01 = {
   prettyJson01 = JSON.stringify(json01, null, 2),
   prettyCsv01 = [prettyCsv0, prettyCsv1];
 
-test(`run(files=["${ex0}"], {format=text, input=any, output=var})`, () => {
+/* test(`run(files=["${ex0}"], {format=text, input=any, output=var})`, () => {
   expect(hmj.run([ex0], { format: 'text', input: 'any', output: 'var' })).toEqual([hashEx0])
 });
 
@@ -111,12 +112,19 @@ test(`run(files=[], {input=args, output='./test/test.txt'})`, () => {
 
 test(`run(files=[], {input=stdin, output=var})`, () => {
   expect(hmj.run([], { input: 'stdin', output: 'var' })).toBeUndefined();
-});
-
-/* test(`run(files=["${ex0}"], {input=stdin, output=var})`, () => {
-  expect(hmj.run([ex0], { input: 'stdin', output: 'var' })).toBe(hashEx0);
 }); */
 
+test(`run(files=["${ex0}"], {input=stdin, output=var})`, () => {
+  console.log('stdin');
+  const tst = () => {
+    let h = hmj.run([ex0], { input: 'stdin', output: 'var' });
+    stdin.send('const greeter = (name) => console.log(`Hello ${name}!`);');
+    stdin.send('\n\\$');
+    stdin.end();
+    return h;
+  };
+  expect(tst()).toBe(hashEx0);
+});
 
 /* prettifyOutput */
 test('prettifyOutput(data, json)', () => {

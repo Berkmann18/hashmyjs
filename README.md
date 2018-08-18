@@ -21,6 +21,7 @@ npm i hashmyjs
 _Note_: Don't forget to use `-g`, `--save`, `--save-dev` if appropriate.
 
 ## Usage
+### In NodeJS
 ```js
 const hmj = require('hashmyjs');
 
@@ -31,6 +32,27 @@ hmj.run();
 let code = `...`;
 let digest = hmj.hash(code);
 ```
+
+### In the CLI
+```bash
+hashmyjs -- [options] [files] #If used via an npm script
+```
+**Help**:
+```cli
+Usage: hashmyjs [options] [files...]
+
+  A simple NodeJS JS file/code hasher.
+
+  Options:
+
+    -V, --version          output the version number
+    -f, --format [format]  Specify the format of the output (text (default), json, csv) (default: text)
+    -o, --output [path]    Output to a file instead of in the STDOUT (default: stdout)
+    -i, --interactive      Forces to read the input from the STDIN
+    -p, --prettify         Prettify the output
+    -h, --help             output usage information
+```
+
 ## Nota bene
 If you use wildcard `*` in the CLI to get files, NodeJS will have a hard time getting the file from the right URL so it will lead in errors.
 

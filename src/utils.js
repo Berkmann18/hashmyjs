@@ -8,7 +8,7 @@ clr.setTheme(require('./clr'));
  */
 const error = (...data) => {
   console.error(clr.err(...data));
-  process.exit(1);
+  // process.exit(1);
 };
 
 /**
@@ -36,12 +36,16 @@ const out = (...data) => console.log(clr.out(...data));
 const inp = (...data) => console.log(clr.in(...data));
 
 /**
- * @description IO error message.
- * @param {string} type IO type (open, read, write, append, ...)
- * @param {Error} err Error
- * @param {string} filename Name of the file affected
+ * @description Print a warning.
+ * @param {...*} data Data to print
  */
-const ioError = (type, err, filename) => error(`IO ${type} error:`, err, `on '${filename}'`);
+const warn = (...data) => console.warn(clr.warn(...data));
+
+/**
+ * @description Print a question.
+ * @param {...*} data Data to print
+ */
+const quest = (...data) => console.log(clr.quest(...data));
 
 /**
  * @description IO error.
@@ -53,4 +57,4 @@ const IoError = (type, err, filename) => {
   throw new Error(`IO ${type} error:`, err, `on '${filename}'`);
 }
 
-module.exports = { error, info, dbg, out, inp, IoError, IoError }
+module.exports = { error, info, dbg, out, inp, warn, quest, IoError }

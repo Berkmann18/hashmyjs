@@ -10,7 +10,7 @@ const sjcl = require('sjcl'),
   readline = require('readline'),
   fs = require('fs'),
   clr = require('colors/safe'),
-  { error, IoError, info, out } = require('./utils');
+  { error, IoError, info, out, dbg } = require('./utils');
 let outputFormat = 'text',
   outputDest = 'stdout',
   result = {},
@@ -93,32 +93,59 @@ const readIn = (prettify = false) => {
     EOF = (str) => str === '\\$' || str === '\\EOF',
     lines = [];
 
-  rl.on('line', (line) => {
-    if (EOF(line)) {
-      if (outputFormat === 'json' || outputFormat === 'csv') {
-        result['STDIN'] = scanInput(lines, true);
-        let output = (outputFormat === 'json') ? result : `STDIN,${result['STDIN']}`;
-        if (prettify) output = prettifyOutput(output);
-        if (outputDest === 'stdout') out(output);
-        else if (outputDest === 'var') return output;
-        else {
-          fileLines.push(output);
-          writeToFile(outputDest, fileLines);
-        }
-      } else if (outputFormat === 'text') {
-        let output = '- STDIN';
-        if (outputDest === 'stdout') {
-          out(output);
-          scanInput(lines);
-        } else if (outputDest === 'var') return output;
-        else {
-          fileLines.push(output);
-          fileLines.push(scanInput(lines, true));
-          writeToFile(outputDest, fileLines);
-        }
-      } else throw new Error(`outputFormat was found to have an invalid value being ${outputFormat}`); //Should never happen
-    } else lines.push(line);
-  });
+  let res = null;
+  new Promise((resolve, reject) => {
+    rl.on('line', (line) => {
+      dbg('Found line=' + line);
+      if (EOF(line)) {
+        console.log('EOF');
+        if (outputFormat === 'json' || outputFormat === 'csv') {
+          console.log('format');
+          result['STDIN'] = scanInput(lines, true);
+          let output = (outputFormat === 'json') ? result : `STDIN,${result['STDIN']}`;
+          if (prettify) output = prettifyOutput(output);
+          if (outputDest === 'stdout') resolve(out(output));
+          else if (outputDest === 'var') {
+            res = output;
+            resolve({ output, result });
+          } else {
+            fileLines.push(output);
+            writeToFile(outputDest, fileLines);
+            resolve(output);
+          }
+        } else if (outputFormat === 'text') {
+          console.log('text');
+          let output = '- STDIN';
+          if (outputDest === 'stdout') {
+            console.log('stdout');
+            out(output);
+            res = scanInput(lines);
+            resolve({ output, result });
+          } else if (outputDest === 'var') {
+            console.log('var');
+            console.debug(output);
+            res = scanInput(lines);
+            resolve({ output, result });
+            return output; //scanInput(lines)?
+          } else {
+            console.log('file')
+            fileLines.push(output);
+            fileLines.push(scanInput(lines, true));
+            writeToFile(outputDest, fileLines);
+            resolve(fileLines);
+          }
+        } else /* throw */ reject(new Error(`outputFormat was found to have an invalid value being ${outputFormat}`)); //Should never happen
+      } else lines.push(line);
+      console.log('Lines so far:', lines);
+      console.debug('result');
+      console.dir(result);
+    })
+  }).then(x => console.log('Read and x=', x)).catch(err => console.log('err=', err));
+
+  if (outputDest === 'var') {
+    console.log('out out');
+    // return lines; //scanInput(lines);
+  }
 };
 
 /**
@@ -233,6 +260,7 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), prett
     writeToFile(outputDest, fileLines);
     fileLines = [];
   }
+  if (outputDest === 'var') dbg('Nooope');
 };
 
 /**
@@ -267,7 +295,7 @@ const resetVars = () => {
  * @param {string[]} [files=[]] List of files to go through
  * @param {string} [format='text'] Format of the result (text, csv, json)
  * @param {string} [input='any'] Reads either from STDIN or the arguments (any, stdin, args)
- * @param {string} [output='stdout'] Output the resulting hash in STDOUT (stdout) or a file (fileName)or as a returned value (var)
+ * @param {string} [output='stdout'] Output the resulting hash in STDOUT (stdout) or a file (fileName) or as a returned value (var)
  * @param {boolean} [prettify=false] Prettify the output
  * @return {(undefined|string[]|string)} Data or nothing
  * @public
