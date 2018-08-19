@@ -142,20 +142,14 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
     res = {},
     fileLines = [];
 
-  // dbg(`prettify=${prettify}  outputDest=${outputDest}  outputFormat=${outputFormat}`);
-
   for (let i = 0; i < files.length; ++i) {
-    // dbg('i=' + i + '\nfile=' + files[i]);
     inputs.push(fs.readFileSync(files[i], (err) => {
       if (err) IoError('readSync', err, files[i]);
     }));
-    // console.debug('inputs=[' + inputs + ']');
 
     let data = scanInput(inputs[i], true);
 
-    // console.debug('data=', data);
     res[files[i]] = data;
-    // console.debug('res=', res);
     if (outputDest === 'stdout') {
       if (outputFormat === 'text') log(`${i > 0 ? '\n' : ''}- ${files[i]}\n${data}`);
       else if (outputFormat === 'csv') log(prettify ? `${files[i]}, ${data}` : `${files[i]},${data}`);
@@ -164,7 +158,6 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
   }
 
   if (outputDest === 'var') {
-    // if (outputFormat === 'csv') res = res[0];
     if (outputFormat === 'json') return prettify ? prettifyOutput(res, 'json') : res;
     else if (outputFormat === 'csv') {
       let result = [];
