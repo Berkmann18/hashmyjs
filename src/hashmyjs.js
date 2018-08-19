@@ -10,7 +10,8 @@
 const sjcl = require('sjcl'),
   readline = require('readline'),
   fs = require('fs'),
-  clr = require('colors/safe');
+  clr = require('colors/safe'),
+  stdout = require('test-console').stdout;
 const { error, IoError, info, out, dbg } = require('./utils');
 clr.setTheme(require('./clr'));
 
@@ -45,7 +46,7 @@ const hash = (data) => {
  * @param {string} filename File name
  * @param {string[]} data Lines to write to the file
  * @param {string} [outputFormat=OUTPUT_FORMAT] Format of the output
- * @private
+ * @protected
  */
 const writeToFile = (filename, data, outputFormat = OUTPUT_FORMAT) => {
   if (!filename) throw new Error(`No filename specified to be written to with data=${data}`);
@@ -94,7 +95,6 @@ const scanInput = (input, noOutput = false) => {
   if (noOutput) return digest;
   out(`${digest}`);
 };
-
 
 /**
  * @description Read files and scan them.
@@ -155,10 +155,8 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
     let data = scanInput(inputs[i], true);
 
     // console.debug('data=', data);
-    // if (outputDest === 'var') {
     res[files[i]] = data;
     // console.debug('res=', res);
-    // } /* else if (outputDest !== 'stdout') */
     if (outputDest === 'stdout') {
       if (outputFormat === 'text') out(`${i > 0 ? '\n' : ''}- ${files[i]}\n${data}`);
       else if (outputFormat === 'csv') out(prettify ? `${files[i]}, ${data}` : `${files[i]},${data}`);
@@ -201,26 +199,24 @@ const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUT
 
   let res = null;
   return new Promise((resolve, reject) => {
-      rl.on('line', (line) => {
-        // console.debug('Found line=', line);
-        if (EOF(line)) {
-          res = scanInput(lines, true);
-          // console.debug('res=', res);
-          let output = null;
-          if (outputFormat === 'json' || outputFormat === 'csv') {
-            output = (outputFormat === 'json') ? { STDIN: res } : `STDIN,${res}`;
-            if (prettify) output = prettifyOutput(output, outputFormat);
-          } else if (outputFormat === 'text') output = `- STDIN\n${res}`;
-          // console.debug('output=', output);
+    rl.on('line', (line) => {
+      // console.debug('Found line=', line);
+      if (EOF(line)) {
+        res = scanInput(lines, true);
+        // console.debug('res=', res);
+        let output = null;
+        if (outputFormat === 'json' || outputFormat === 'csv') {
+          output = (outputFormat === 'json') ? { STDIN: res } : `STDIN,${res}`;
+          if (prettify) output = prettifyOutput(output, outputFormat);
+        } else if (outputFormat === 'text') output = `- STDIN\n${res}`;
+        // console.debug('output=', output);
 
-          if (outputDest === 'stdout') out(output);
-          else if (outputDest !== 'var') writeToFile(outputDest, (outputFormat === 'text') ? output.split('\n') : output);
-          resolve(output);
-        } else lines.push(line);
-      });
-    })
-    .then(x => x /* console.log('Read:', x) */ )
-    .catch(err => error('err=' + err));
+        if (outputDest === 'stdout') out(output);
+        else if (outputDest !== 'var') writeToFile(outputDest, (outputFormat === 'text') ? output.split('\n') : output);
+        resolve(output);
+      } else lines.push(line);
+    });
+  })
 };
 
 /**
@@ -257,5 +253,6 @@ module.exports = {
   readIn,
   readFiles,
   readFilesSync,
-  prettifyOutput
+  prettifyOutput,
+  writeToFile
 }

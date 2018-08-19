@@ -1,15 +1,8 @@
-const { info, dbg, out, inp, warn, quest, error, IoError } = require('../src/utils'),
-  stdout = require('test-console').stdout;
+const { info, dbg, out, inp, warn, quest, error, IoError } = require('../src/utils');
+const stdout = require('test-console').stdout;
 
 const clr = require('colors/safe');
 clr.setTheme(require('../src/clr'));
-
-test('init', () => {
-  const text = 'Hello world';
-  // const output = stdout.inspectSync(() => console.log('foo'));
-  const output = stdout.inspectSync(() => process.stdout.write(text));
-  expect(output).toStrictEqual([text]);
-})
 
 test('info', () => {
   const text = 'Hello';
