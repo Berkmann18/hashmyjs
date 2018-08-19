@@ -1,4 +1,4 @@
-const { info, dbg, out, inp, warn, quest, error, IoError } = require('../src/utils');
+const { info, dbg, out, inp, warn, quest, error, IoError, log } = require('../src/utils');
 const stdout = require('test-console').stdout;
 
 const clr = require('colors/safe');
@@ -56,4 +56,10 @@ test('error', () => {
 
 test('IoError', () => {
   expect(() => IoError('open', 'Fake error', 'null')).toThrowError('IO open error:', 'Fake error', `on 'null'`)
+});
+
+test('log', () => {
+  const text = 'Hello';
+  const output = stdout.inspectSync(() => log(text));
+  expect(output).toStrictEqual([text]);
 });

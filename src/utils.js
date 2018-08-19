@@ -57,4 +57,10 @@ const IoError = (type, err, filename) => {
   throw new Error(`IO ${type} error:`, err, `on '${filename}'`);
 }
 
-module.exports = { error, info, dbg, out, inp, warn, quest, IoError }
+/**
+ * @description STDOUT log.
+ * @param {*} data Data to print
+ */
+const log = (...data) => process.stdout.write(...data);
+
+module.exports = { error, info, dbg, out, inp, warn, quest, IoError, log }

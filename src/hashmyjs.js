@@ -10,9 +10,8 @@
 const sjcl = require('sjcl'),
   readline = require('readline'),
   fs = require('fs'),
-  clr = require('colors/safe'),
-  stdout = require('test-console').stdout;
-const { error, IoError, info, out, dbg } = require('./utils');
+  clr = require('colors/safe');
+const { error, IoError, info, out, dbg, log } = require('./utils');
 clr.setTheme(require('./clr'));
 
 const OUTPUT_DEST = 'stdout',
@@ -96,7 +95,7 @@ const scanInput = (input, noOutput = false) => {
   out(`${digest}`);
 };
 
-/**
+/* /**
  * @description Read files and scan them.
  * @param {string[]} [files=process.argv.slice(2, process.argv.length)] Array of file paths
  * @param {string} [outputDest=OUTPUT_DEST] Destination of the output
@@ -105,7 +104,7 @@ const scanInput = (input, noOutput = false) => {
  * @protected
  * @deprecated
  */
-const readFiles = (files = process.argv.slice(2, process.argv.length), { outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
+/* const readFiles = (files = process.argv.slice(2, process.argv.length), { outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
   let inputs = [],
     res = [];
   for (let i = 0; i < files.length; ++i) {
@@ -122,12 +121,12 @@ const readFiles = (files = process.argv.slice(2, process.argv.length), { outputD
         let data = handleData(files, inputs, i);
         if (outputDest === 'var') res.push(data);
         else if (outputDest !== 'stdout' && i === files.length - 1) writeToFile(outputDest, data, outputFormat);
-        else console.log(data);
+        else log(data);
       });
     });
   }
   if (outputDest === 'var') return res;
-};
+}; */
 
 /**
  * @description Synchronously read files and scan them.
@@ -158,8 +157,8 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
     res[files[i]] = data;
     // console.debug('res=', res);
     if (outputDest === 'stdout') {
-      if (outputFormat === 'text') out(`${i > 0 ? '\n' : ''}- ${files[i]}\n${data}`);
-      else if (outputFormat === 'csv') out(prettify ? `${files[i]}, ${data}` : `${files[i]},${data}`);
+      if (outputFormat === 'text') log(`${i > 0 ? '\n' : ''}- ${files[i]}\n${data}`);
+      else if (outputFormat === 'csv') log(prettify ? `${files[i]}, ${data}` : `${files[i]},${data}`);
     } else if (outputDest !== 'var') fileLines = fileLines.concat([`- ${files[i]}`, data]);
 
   }
@@ -177,7 +176,7 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
       return result;
     }
   } else if (outputDest === 'stdout') {
-    if (outputFormat === 'json') out(prettify ? prettifyOutput(res, 'json') : res);
+    if (outputFormat === 'json') log(prettify ? prettifyOutput(res, 'json') : res);
   } else writeToFile(outputDest, fileLines);
 };
 
@@ -211,7 +210,7 @@ const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUT
         } else if (outputFormat === 'text') output = `- STDIN\n${res}`;
         // console.debug('output=', output);
 
-        if (outputDest === 'stdout') out(output);
+        if (outputDest === 'stdout') log(output);
         else if (outputDest !== 'var') writeToFile(outputDest, (outputFormat === 'text') ? output.split('\n') : output);
         resolve(output);
       } else lines.push(line);
@@ -251,7 +250,7 @@ module.exports = {
   scanInput,
   hash,
   readIn,
-  readFiles,
+  // readFiles,
   readFilesSync,
   prettifyOutput,
   writeToFile

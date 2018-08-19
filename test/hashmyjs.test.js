@@ -202,10 +202,24 @@ test(`run(files=[], {format=json, input=stdin, output=var, prettify=true})`, () 
     });
 });
 
-test(`run(files=["${ex0}"], {format=text, input=any, output=var})`, () => {
-  console.log('stdout');
-  const output = stdout.inspectSync(() => out('i') /* hmj.run([ex0], { format: 'text', input: 'any', output: 'stdout' }) */ );
-  expect(output).toEqual([hashEx0])
+test(`run(files=["${ex0}"], {format=text, input=any, output=stdout})`, () => {
+  const output = stdout.inspectSync(() => hmj.run([ex0], { format: 'text', input: 'any', output: 'stdout' }));
+  expect(output).toEqual([`- ${ex0}\n${hashEx0}`])
+});
+
+test(`run(files=["${ex0}"], {format=text, input=args, output=stdout})`, () => {
+  const output = stdout.inspectSync(() => hmj.run([ex0], { format: 'text', input: 'args', output: 'stdout' }));
+  expect(output).toEqual([`- ${ex0}\n${hashEx0}`])
+});
+
+test(`run(files=["${ex0}"], {format=json, input=any, output=stdout})`, () => {
+  const output = stdout.inspectSync(() => hmj.run([ex0], { format: 'json', input: 'any', output: 'stdout' }));
+  expect(output).toEqual([json0])
+});
+
+test(`run(files=["${ex0}"], {format=csv, input=any, output=stdout})`, () => {
+  const output = stdout.inspectSync(() => hmj.run([ex0], { format: 'csv', input: 'any', output: 'stdout' }));
+  expect(output).toEqual([csv0])
 });
 
 /* prettifyOutput */
