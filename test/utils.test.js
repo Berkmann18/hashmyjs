@@ -55,7 +55,30 @@ test('error', () => {
 });
 
 test('IoError', () => {
-  expect(() => IoError('open', 'Fake error', 'null')).toThrowError('IO open error:', 'Fake error', `on 'null'`)
+  expect(() => {
+    throw new IoError();
+  }).toThrowError(IoError);
+  let txt = 'Invalid IO operation',
+    named = () => {
+      throw new IoError(txt);
+    };
+  expect(named).toThrowError(IoError);
+  expect(named).toThrowError(txt);
+  let ctxted = () => {
+    throw new IoError(txt, test);
+  };
+  expect(ctxted).toThrowError(txt);
+  let gstack = () => {
+    let stk = null;
+    try {
+      throw new IoError();
+    } catch (err) {
+      stk = err.stack;
+    }
+    return stk;
+  };
+  expect(typeof gstack()).toBe('string');
+  expect(gstack().startsWith('IoError')).toBeTruthy();
 });
 
 test('log', () => {

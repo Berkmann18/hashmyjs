@@ -31,13 +31,13 @@ const argOrIn = () => process.argv.length > 2;
  * @protected
  */
 const hash = (data) => {
-  try {
-    let hashed = sjcl.hash.sha256.hash(data);
-    return `sha256-${sjcl.codec.base64.fromBits(hashed)}`;
-  } catch (err) {
-    error('There was an error in hashing data=', data, '\nThe error is: ', err);
-    return err;
-  }
+  // try {
+  let hashed = sjcl.hash.sha256.hash(data);
+  return `sha256-${sjcl.codec.base64.fromBits(hashed)}`;
+  // } catch (err) { //Will fail when data === (null || undefined)
+  //   error('There was an error in hashing data=', data, '\nThe error is: ', err);
+  //   return err;
+  // }
 };
 
 /**
@@ -46,35 +46,36 @@ const hash = (data) => {
  * @param {string[]} data Lines to write to the file
  * @param {string} [outputFormat=OUTPUT_FORMAT] Format of the output
  * @protected
+ * @throws {IoError} Writing error
  */
 const writeToFile = (filename, data, outputFormat = OUTPUT_FORMAT) => {
   if (!filename) throw new Error(`No filename specified to be written to with data=${data}`);
   filename = ('' + filename).trim();
   fs.writeFile(filename, '', (err) => {
-    if (err) return IoError('write', err, filename);
+    if (err) throw new Error(`Couldn't write in ${filename}` /* err.message, err.context */ );
     let writer = fs.createWriteStream(filename, {
       flags: 'a'
     });
     data.forEach((line) => writer.write(`${prettifyOutput(line, outputFormat)}\n`));
-    info(`Successfully written the result to ${filename}`);
+    // info(`Successfully written the result to ${filename}`);
   });
 };
 
 /**
  * @description Prettify the ouptut according to the format used or keep it as it is.
  * @param {(string|object)} output Output
- * @param {string} [format=outputFormat] Format of the output (json, csv, ...)
+ * @param {string} [format=OUTPUT_FORMAT] Format of the output (json, csv, ...)
  * @return {string} Prettified output
  * @protected
  */
-const prettifyOutput = (output, format = outputFormat) => {
+const prettifyOutput = (output, format = OUTPUT_FORMAT) => {
   switch (format) {
-    case 'json':
-      return JSON.stringify(output, null, 2);
-    case 'csv':
-      return Array.isArray(output) ? output.map(item => item.replace(/(\S+),(\S+)/, '$1, $2')) : output.replace(/(\S+),(\S+)/, '$1, $2');
-    default:
-      return output;
+  case 'json':
+    return JSON.stringify(output, null, 2);
+  case 'csv':
+    return Array.isArray(output) ? output.map(item => item.replace(/(\S+),(\S+)/, '$1, $2')) : output.replace(/(\S+),(\S+)/, '$1, $2');
+  default:
+    return output;
   }
 };
 
@@ -110,14 +111,14 @@ const scanInput = (input, noOutput = false) => {
   for (let i = 0; i < files.length; ++i) {
     fs.open(files[i], 'r+', (err, fd) => {
       let buf = new Buffer(8192);
-      if (err) return IoError('open', err, files[i]);
+      if (err) throw new IoError('open', err, files[i]);
       fs.read(fd, buf, 0, buf.length, 0, (err, bytes) => {
-        if (err) return IoError('read', err, files[i]);
+        if (err) throw new IoError('read', err, files[i]);
         if (bytes > 0) inputs.push(buf.slice(0, bytes).toString());
       });
 
       fs.close(fd, (err) => {
-        if (err) IoError('close', err, fd);
+        if (err) throw new IoError('close', err, fd);
         let data = handleData(files, inputs, i);
         if (outputDest === 'var') res.push(data);
         else if (outputDest !== 'stdout' && i === files.length - 1) writeToFile(outputDest, data, outputFormat);
@@ -144,7 +145,7 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
 
   for (let i = 0; i < files.length; ++i) {
     inputs.push(fs.readFileSync(files[i], (err) => {
-      if (err) IoError('readSync', err, files[i]);
+      if (err) throw new IoError(err.message);
     }));
 
     let data = scanInput(inputs[i], true);
@@ -192,16 +193,13 @@ const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUT
   let res = null;
   return new Promise((resolve, reject) => {
     rl.on('line', (line) => {
-      // console.debug('Found line=', line);
       if (EOF(line)) {
         res = scanInput(lines, true);
-        // console.debug('res=', res);
         let output = null;
         if (outputFormat === 'json' || outputFormat === 'csv') {
           output = (outputFormat === 'json') ? { STDIN: res } : `STDIN,${res}`;
           if (prettify) output = prettifyOutput(output, outputFormat);
         } else if (outputFormat === 'text') output = `- STDIN\n${res}`;
-        // console.debug('output=', output);
 
         if (outputDest === 'stdout') log(output);
         else if (outputDest !== 'var') writeToFile(outputDest, (outputFormat === 'text') ? output.split('\n') : output);
@@ -229,12 +227,12 @@ const run = (files = [], { format = 'text', input = 'any', output = 'stdout', pr
   };
 
   switch (input) {
-    case 'stdin':
-      return readIn(opts);
-    case 'args':
-      return readFilesSync(files, opts);
-    default: //any
-      return (files.length || argOrIn()) ? readFilesSync(files, opts) : readIn(opts);
+  case 'stdin':
+    return readIn(opts);
+  case 'args':
+    return readFilesSync(files, opts);
+  default: //any
+    return (files.length || argOrIn()) ? readFilesSync(files, opts) : readIn(opts);
   }
 };
 

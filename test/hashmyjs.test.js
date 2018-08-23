@@ -1,7 +1,7 @@
 const hmj = require('../src/hashmyjs'),
   stdin = require('mock-stdin').stdin(),
   stdout = require('test-console').stdout;
-const { out } = require('../src/utils');
+const { out, IoError } = require('../src/utils');
 /*
  run(format=(text | json | csv), input=(any | stdin | args), output=(stdout | ...fileNames | var), files=[...files]
  paths:
@@ -19,12 +19,6 @@ test('scanInput(code, true)', () => {
 test('scanInput(code)', () => {
   expect(hmj.scanInput(code)).toBeUndefined();
 });
-
-/* readIn */
-
-/* readFiles */
-
-/* readFilesSync */
 
 /* run */
 let ex0 = './examples/ex0.js',
@@ -231,6 +225,10 @@ test('prettifyOutput(data, csv)', () => {
   expect(hmj.prettifyOutput(csv0, 'csv')).toEqual(prettyCsv0)
 });
 
+test('prettifyOutput(data)', () => {
+  expect(hmj.prettifyOutput(hashEx0)).toEqual(hashEx0)
+});
+
 /* writeToFile */
 test(`writeToFile('file.txt', 'test', text)`, () => {
   expect(hmj.writeToFile('file.txt', ['test'])).toBeUndefined();
@@ -238,4 +236,22 @@ test(`writeToFile('file.txt', 'test', text)`, () => {
 
 test(`writeToFile('', 'test', text)`, () => {
   expect(() => hmj.writeToFile('', ['test'])).toThrowError('No filename specified to be written to with data=test');
+});
+
+test(`writeToFile('empty.txt', '', text)`, () => {
+  expect(hmj.writeToFile('empty.txt', [''])).toBeUndefined();
+});
+
+test(`writeToFile('some&InvalidFile name.txt', 'test', text)`, () => {
+  //Target hashmyjs#54
+  expect(() => hmj.writeToFile('some&I/nvalidFile name.txt', ['test'])).toThrowError(IoError);
+});
+
+/* hash */
+test('hash(null)', () => {
+  expect(() => hmj.hash(null)).toThrowError(Error);
+});
+
+test('hash(undefined)', () => {
+  expect(() => hmj.hash(undefined)).toThrowError(Error);
 });

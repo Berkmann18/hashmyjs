@@ -7,7 +7,7 @@ clr.setTheme(require('./clr'));
  * @param {...*} data Data to print
  */
 const error = (...data) => {
-  console.error(clr.err(...data));
+  console.error(clr.err(data.join(' ')));
   // process.exit(1);
 };
 
@@ -15,46 +15,49 @@ const error = (...data) => {
  * @description Print an information.
  * @param {...*} data Data to print
  */
-const info = (...data) => console.log(clr.inf(...data));
+const info = (...data) => console.log(clr.inf(data.join(' ')));
 
 /**
  * @description Print a debug message.
  * @param {...*} data Data to print
  */
-const dbg = (...data) => console.log(clr.debug(...data));
+const dbg = (...data) => console.log(clr.debug(data.join(' ')));
 
 /**
  * @description Print an output.
  * @param {...*} data Data to print
  */
-const out = (...data) => console.log(clr.out(...data));
+const out = (...data) => console.log(clr.out(data.join(' ')));
 
 /**
  * @description Print an input.
  * @param {...*} data Data to print
  */
-const inp = (...data) => console.log(clr.in(...data));
+const inp = (...data) => console.log(clr.in(data.join(' ')));
 
 /**
  * @description Print a warning.
  * @param {...*} data Data to print
  */
-const warn = (...data) => console.warn(clr.warn(...data));
+const warn = (...data) => console.warn(clr.warn(data.join(' ')));
 
 /**
  * @description Print a question.
  * @param {...*} data Data to print
  */
-const quest = (...data) => console.log(clr.quest(...data));
+const quest = (...data) => console.log(clr.quest(data.join(' ')));
 
 /**
- * @description IO error.
- * @param {string} type IO type (open, read, write, append, ...)
- * @param {Error} err Error
- * @param {string} filename Name of the file affected
+ * I/O error.
  */
-const IoError = (type, err, filename) => {
-  throw new Error(`IO ${type} error:`, err, `on '${filename}'`);
+class IoError extends Error {
+  constructor(message = 'IO error:', context) {
+    super();
+    this.message = message;
+    this.name = this.constructor.name;
+    Error.captureStackTrace(this, this.constructor);
+    this.context = context;
+  }
 }
 
 /**
