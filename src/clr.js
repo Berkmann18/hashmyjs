@@ -8,14 +8,11 @@
 /**
  * @type {{in: string, out: string[], inf: string, err: string, warn: string, debug: string, quest: string}}
  */
-const scheme = {
-  in: 'white',
-  out: ['cyan', 'bold'],
-  inf: 'green',
-  err: 'red',
-  warn: 'yellow',
-  debug: 'grey',
-  quest: 'blue'
+module.exports = { in: 'white', //input
+  out: ['cyan', 'bold'], //Output
+  inf: 'green', //Information
+  err: 'red', //Error
+  warn: 'yellow', //Warning
+  debug: 'grey', //Debug statement
+  quest: 'blue' //Question
 };
-
-module.exports = scheme;

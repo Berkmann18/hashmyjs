@@ -9,6 +9,7 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Berkmann18/hashmyjs/issues)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&identifier=115825259)](https://dependabot.com)
 [![BCH compliance](https://bettercodehub.com/edge/badge/Berkmann18/hashmyjs?branch=master)](https://bettercodehub.com/)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 It's a relatively simple NodeJS program that allows you to get the base64 encoded SHA-256 hash for a JS file or the code itself that you could later on use as the integrity of a script that you would integrate to a page so it won't be flagged by CSP or else.
 
@@ -21,6 +22,7 @@ npm i hashmyjs
 _Note_: Don't forget to use `-g`, `--save`, `--save-dev` if appropriate.
 
 ## Usage
+### In NodeJS
 ```js
 const hmj = require('hashmyjs');
 
@@ -31,6 +33,27 @@ hmj.run();
 let code = `...`;
 let digest = hmj.hash(code);
 ```
+
+### In the CLI
+```bash
+hashmyjs -- [options] [files] #If used via an npm script
+```
+**Help**:
+```cli
+Usage: hashmyjs [options] [files...]
+
+  A simple NodeJS JS file/code hasher.
+
+  Options:
+
+    -V, --version          output the version number
+    -f, --format [format]  Specify the format of the output (text (default), json, csv) (default: text)
+    -o, --output [path]    Output to a file instead of in the STDOUT (default: stdout)
+    -i, --interactive      Forces to read the input from the STDIN
+    -p, --prettify         Prettify the output
+    -h, --help             output usage information
+```
+
 ## Nota bene
 If you use wildcard `*` in the CLI to get files, NodeJS will have a hard time getting the file from the right URL so it will lead in errors.
 

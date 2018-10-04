@@ -30,27 +30,39 @@
 
     <section>
         <article><h1>HashMyJS</h1><p><a href="https://nodei.co/npm/hashmyjs/"><img src="https://nodei.co/npm/hashmyjs.png" alt="NPM"></a>
-<!--[![npm version](https://badge.fury.io/js/hashmyjs.svg)](http://badge.fury.io/js/hashmyjs)-->
+<a href="http://badge.fury.io/js/hashmyjs"><img src="https://badge.fury.io/js/hashmyjs.svg" alt="npm version"></a>
 <a href="https://github.com/facebook/jest"><img src="https://img.shields.io/badge/tested_with-jest-99424f.svg" alt="tested with jest"></a>
 <a href="http://inch-ci.org/github/Berkmann18/hashmyjs"><img src="http://inch-ci.org/github/Berkmann18/hashmyjs.svg?branch=master" alt="Inline docs"></a>
 <a href="https://nodesecurity.io/orgs/berkmann18/projects/ea369eec-8c46-4ad6-903c-739aa66d006a"><img src="https://nodesecurity.io/orgs/berkmann18/projects/ea369eec-8c46-4ad6-903c-739aa66d006a/badge" alt="NSP Status"></a>
 <a href="https://codecov.io/github/Berkmann18/hashmyjs?branch=master"><img src="https://img.shields.io/codecov/c/github/Berkmann18/hashmyjs.svg?maxAge=2592000" alt="codecov.io Code Coverage"></a>
-<a href="https://www.bithound.io/github/Berkmann18/hashmyjs"><img src="https://www.bithound.io/github/Berkmann18/hashmyjs/badges/score.svg" alt="bitHound Overall Score"></a>
-<a href="https://www.bithound.io/github/Berkmann18/hashmyjs/master/dependencies/npm"><img src="https://www.bithound.io/github/Berkmann18/hashmyjs/badges/devDependencies.svg" alt="bitHound Dev Dependencies"></a>
-<a href="https://www.bithound.io/github/Berkmann18/hashmyjs"><img src="https://www.bithound.io/github/Berkmann18/hashmyjs/badges/code.svg" alt="bitHound Code"></a>
 <a href="https://david-dm.org/Berkmann18/hashmyjs"><img src="https://david-dm.org/Berkmann18/hashmyjs/status.svg" alt="dependencies Status"></a>
-<a href="https://github.com/Berkmann18/hashmyjs/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="contributions welcome"></a></p>
+<a href="https://github.com/Berkmann18/hashmyjs/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="contributions welcome"></a>
+<a href="https://dependabot.com"><img src="https://api.dependabot.com/badges/status?host=github&amp;identifier=115825259" alt="Dependabot Status"></a>
+<a href="https://bettercodehub.com/"><img src="https://bettercodehub.com/edge/badge/Berkmann18/hashmyjs?branch=master" alt="BCH compliance"></a>
+<a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen friendly"></a></p>
 <p>It's a relatively simple NodeJS program that allows you to get the base64 encoded SHA-256 hash for a JS file or the code itself that you could later on use as the integrity of a script that you would integrate to a page so it won't be flagged by CSP or else.</p>
 <h2>Install</h2><p>To install it you need to execute the following:</p>
 <pre class="prettyprint source lang-cli"><code>npm i hashmyjs</code></pre><p><em>Note</em>: Don't forget to use <code>-g</code>, <code>--save</code>, <code>--save-dev</code> if appropriate.</p>
-<h2>Usage</h2><pre class="prettyprint source lang-js"><code>const hmj = require('hashmyjs');
+<h2>Usage</h2><h3>In NodeJS</h3><pre class="prettyprint source lang-js"><code>const hmj = require('hashmyjs');
 
 //Hashing from the STDIN (followed by a new line: `\$`, `\EOF`) or from file passed as arguments
 hmj.run();
 
 //Or if you want to hash code that is already present in your script:
 let code = `...`;
-let digest = hmj.hash(code);</code></pre><h2>Nota bene</h2><p>If you use wildcard <code>*</code> in the CLI to get files, NodeJS will have a hard time getting the file from the right URL so it will lead in errors.</p>
+let digest = hmj.hash(code);</code></pre><h3>In the CLI</h3><pre class="prettyprint source lang-bash"><code>hashmyjs -- [options] [files] #If used via an npm script</code></pre><p><strong>Help</strong>:</p>
+<pre class="prettyprint source lang-cli"><code>Usage: hashmyjs [options] [files...]
+
+  A simple NodeJS JS file/code hasher.
+
+  Options:
+
+    -V, --version          output the version number
+    -f, --format [format]  Specify the format of the output (text (default), json, csv) (default: text)
+    -o, --output [path]    Output to a file instead of in the STDOUT (default: stdout)
+    -i, --interactive      Forces to read the input from the STDIN
+    -p, --prettify         Prettify the output
+    -h, --help             output usage information</code></pre><h2>Nota bene</h2><p>If you use wildcard <code>*</code> in the CLI to get files, NodeJS will have a hard time getting the file from the right URL so it will lead in errors.</p>
 <h2>Contribution</h2><p>If you discover bugs, errors or/and have suggestions/feedback please create an <a href="http://github.com/Berkmann18/hashmyjs/issues">issue</a> or/and submit a <a href="http://github.com/Berkmann18/hashmyjs/pulls">PR</a>.</p>
 <p>If you want to contribute, make sure you stick with the coding style that ESLint is enforcing (cf. configuration file).
 To check if a file stick to the standards:</p>
@@ -73,7 +85,7 @@ To check if a file stick to the standards:</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jul 03 2018 15:31:45 GMT+0100 (British Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Oct 04 2018 21:38:25 GMT+0100 (British Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>
