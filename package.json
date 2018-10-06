@@ -12,7 +12,7 @@
     "test": "jest",
     "test-debug": "node --inspect-brk ./node_modules/.bin/jest -i --env jest-environment-node-debug",
     "lint": "eslint -c ./config/.eslintrc.js *.js src/*.js",
-    "doc": "jsdoc -c ./config/.jsdocrc",
+    "doc": "documentation build src/** -f html -o doc/",
     "fmt": "eslint -c ./config/.eslintrc.js *.js src/*.js --fix",
     "flowchart": "js2flowchart",
     "cc": "cr -c ./config/.complexrc",
