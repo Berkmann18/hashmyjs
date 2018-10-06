@@ -1,94 +1,1761 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <title>JSDoc: Home</title>
-
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <meta charset='utf-8' />
+  <title>hashmyjs 2.0.0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+  <link href='assets/split.css' type='text/css' rel='stylesheet' />
+  <meta name='description' content='A simple NodeJS JS file/code hasher.'>
 </head>
+<body class='documentation m0'>
+    <div class='flex'>
+      <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>hashmyjs</h3>
+          <div class='mb1'><code>2.0.0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#clr'
+                  class="">
+                  clr
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#clr'
+                  class="">
+                  clr
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#hashmyjs'
+                  class="">
+                  hashmyjs
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#config'
+                  class="">
+                  Config
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#hash'
+                  class="">
+                  hash
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#writetofile'
+                  class="">
+                  writeToFile
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#prettifyoutput'
+                  class="">
+                  prettifyOutput
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#scaninput'
+                  class="">
+                  scanInput
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#readfilessync'
+                  class="">
+                  readFilesSync
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#readin'
+                  class="">
+                  readIn
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#run'
+                  class="">
+                  run
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#error'
+                  class="">
+                  error
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#info'
+                  class="">
+                  info
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#dbg'
+                  class="">
+                  dbg
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#out'
+                  class="">
+                  out
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#inp'
+                  class="">
+                  inp
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#warn'
+                  class="">
+                  warn
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#quest'
+                  class="">
+                  quest
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#ioerror'
+                  class="">
+                  IoError
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#log'
+                  class="">
+                  log
+                  
+                </a>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div id='split-right' class='relative overflow-auto height-viewport-100'>
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
 
-<body>
-
-<div id="main">
-
-    <h1 class="page-title">Home</h1>
-
+  
+  <div class='clearfix'>
     
-
-
-
+    <h3 class='fl m0' id='clr'>
+      clr
+    </h3>
     
+    
+  </div>
+  
+
+  <p>CLI colours.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>clr</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='clr'>
+      clr
+    </h3>
+    
+    
+  </div>
+  
+
+  
+ 
+  
+    <div class='pre p1 fill-light mt0'>clr</div>
+   
+  
+    <p>
+      Type:
+      {in: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, out: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>, inf: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, err: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, warn: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, debug: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, quest: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>}
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='hashmyjs'>
+      hashmyjs
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>base64(SHA-256) text encoder inspired by <a href="https://stackoverflow.com/a/38554505/5893085">https://stackoverflow.com/a/38554505/5893085</a>.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>hashmyjs</div>
+   
+  
+  
+
+  
+  
+  
+  <div>Author: Maximilian Berkmann</div>
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='config'>
+      Config
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Configuration</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>Config</div>
+   
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>prettify</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?)</code>
+          : Prettify the output
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>outputDest</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?)</code>
+          : Output destination (stdout, var, 
+<i>
+filename
+</i>
+)
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>outputFormat</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?)</code>
+          : Output format (text, json, csv)
+
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='hash'>
+      hash
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Generate base64-encoded SHA-256 for given string.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>hash</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>data</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    Data to encode
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        Base64 encoded SHA-256 hash
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='writetofile'>
+      writeToFile
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Write to a file (while prettifying the content).</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>writeToFile</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>filename</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    File name
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>data</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>)</code>
+	    Lines to write to the file
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>outputFormat</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+            = <code>OUTPUT_FORMAT</code>)</code>
+	    Format of the output
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Throws</div>
+    <ul>
+      
+        <li><a href="#ioerror">IoError</a>: Writing error
+</li>
+      
+    </ul>
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='prettifyoutput'>
+      prettifyOutput
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Prettify the ouptut according to the format used or keep it as it is.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>prettifyOutput</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>output</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>))</code>
+	    Output
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>format</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+            = <code>OUTPUT_FORMAT</code>)</code>
+	    Format of the output (json, csv, ...)
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        Prettified output
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='scaninput'>
+      scanInput
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Scan an input and output it's integrity hash.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>scanInput</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>input</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>))</code>
+	    Input to hash (i.e. JS code)
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>noOutput</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>
+            = <code>false</code>)</code>
+	    Don't output the result to the terminal but return the hash
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(void | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>:
+        Hashed data or nothing
+
+      
+    
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Throws</div>
+    <ul>
+      
+        <li><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a>: Hashing or input error
+</li>
+      
+    </ul>
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='readfilessync'>
+      readFilesSync
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Synchronously read files and scan them.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>readFilesSync</div>
+   
+  
+  
+    <p>
+      Extends
+      
+        <a href="#config">Config</a>
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>files</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>
+            = <code>process.argv.slice(2,process.argv.length)</code>)</code>
+	    Array of file paths
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>obj</span> <code class='quiet'>(<a href="#config">Config</a>
+            = <code>{}</code>)</code>
+	    Configuration (prettify: boolean, outputDest: string, outputFormat: string).
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.prettify</span> <code class='quiet'>any</code>
+  
+    (default <code>false</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
 
 
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.outputDest</span> <code class='quiet'>any</code>
+  
+    (default <code>OUTPUT_DEST</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
 
 
-    <section>
-        <article><h1>HashMyJS</h1><p><a href="https://nodei.co/npm/hashmyjs/"><img src="https://nodei.co/npm/hashmyjs.png" alt="NPM"></a>
-<a href="http://badge.fury.io/js/hashmyjs"><img src="https://badge.fury.io/js/hashmyjs.svg" alt="npm version"></a>
-<a href="https://github.com/facebook/jest"><img src="https://img.shields.io/badge/tested_with-jest-99424f.svg" alt="tested with jest"></a>
-<a href="http://inch-ci.org/github/Berkmann18/hashmyjs"><img src="http://inch-ci.org/github/Berkmann18/hashmyjs.svg?branch=master" alt="Inline docs"></a>
-<a href="https://nodesecurity.io/orgs/berkmann18/projects/ea369eec-8c46-4ad6-903c-739aa66d006a"><img src="https://nodesecurity.io/orgs/berkmann18/projects/ea369eec-8c46-4ad6-903c-739aa66d006a/badge" alt="NSP Status"></a>
-<a href="https://codecov.io/github/Berkmann18/hashmyjs?branch=master"><img src="https://img.shields.io/codecov/c/github/Berkmann18/hashmyjs.svg?maxAge=2592000" alt="codecov.io Code Coverage"></a>
-<a href="https://david-dm.org/Berkmann18/hashmyjs"><img src="https://david-dm.org/Berkmann18/hashmyjs/status.svg" alt="dependencies Status"></a>
-<a href="https://github.com/Berkmann18/hashmyjs/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="contributions welcome"></a>
-<a href="https://dependabot.com"><img src="https://api.dependabot.com/badges/status?host=github&amp;identifier=115825259" alt="Dependabot Status"></a>
-<a href="https://bettercodehub.com/"><img src="https://bettercodehub.com/edge/badge/Berkmann18/hashmyjs?branch=master" alt="BCH compliance"></a>
-<a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen friendly"></a></p>
-<p>It's a relatively simple NodeJS program that allows you to get the base64 encoded SHA-256 hash for a JS file or the code itself that you could later on use as the integrity of a script that you would integrate to a page so it won't be flagged by CSP or else.</p>
-<h2>Install</h2><p>To install it you need to execute the following:</p>
-<pre class="prettyprint source lang-cli"><code>npm i hashmyjs</code></pre><p><em>Note</em>: Don't forget to use <code>-g</code>, <code>--save</code>, <code>--save-dev</code> if appropriate.</p>
-<h2>Usage</h2><h3>In NodeJS</h3><pre class="prettyprint source lang-js"><code>const hmj = require('hashmyjs');
-
-//Hashing from the STDIN (followed by a new line: `\$`, `\EOF`) or from file passed as arguments
-hmj.run();
-
-//Or if you want to hash code that is already present in your script:
-let code = `...`;
-let digest = hmj.hash(code);</code></pre><h3>In the CLI</h3><pre class="prettyprint source lang-bash"><code>hashmyjs -- [options] [files] #If used via an npm script</code></pre><p><strong>Help</strong>:</p>
-<pre class="prettyprint source lang-cli"><code>Usage: hashmyjs [options] [files...]
-
-  A simple NodeJS JS file/code hasher.
-
-  Options:
-
-    -V, --version          output the version number
-    -f, --format [format]  Specify the format of the output (text (default), json, csv) (default: text)
-    -o, --output [path]    Output to a file instead of in the STDOUT (default: stdout)
-    -i, --interactive      Forces to read the input from the STDIN
-    -p, --prettify         Prettify the output
-    -h, --help             output usage information</code></pre><h2>Nota bene</h2><p>If you use wildcard <code>*</code> in the CLI to get files, NodeJS will have a hard time getting the file from the right URL so it will lead in errors.</p>
-<h2>Contribution</h2><p>If you discover bugs, errors or/and have suggestions/feedback please create an <a href="http://github.com/Berkmann18/hashmyjs/issues">issue</a> or/and submit a <a href="http://github.com/Berkmann18/hashmyjs/pulls">PR</a>.</p>
-<p>If you want to contribute, make sure you stick with the coding style that ESLint is enforcing (cf. configuration file).
-To check if a file stick to the standards:</p>
-<pre class="prettyprint source lang-cli"><code>eslint -c ./config/.eslintrc.js yourFile.js
-#Or `npm lint` if appropriate</code></pre><p>To fix formatting errors and such, run:</p>
-<pre class="prettyprint source lang-cli"><code>./fixjs.sh [your js files seperated by spaces]</code></pre><h2>License</h2><p>MIT</p></article>
-    </section>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.outputFormat</span> <code class='quiet'>any</code>
+  
+    (default <code>OUTPUT_FORMAT</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
 
 
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='readin'>
+      readIn
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Read user's input from STDIN.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>readIn</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>obj</span> <code class='quiet'>(<a href="#config">Config</a>
+            = <code>{}</code>)</code>
+	    Configuration (prettify: boolean, outDest: string, outFormat: string).
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.prettify</span> <code class='quiet'>any</code>
+  
+    (default <code>false</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
 
 
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.outputDest</span> <code class='quiet'>any</code>
+  
+    (default <code>OUTPUT_DEST</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
 
 
-</div>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.outputFormat</span> <code class='quiet'>any</code>
+  
+    (default <code>OUTPUT_FORMAT</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
 
-<nav>
-    <h2><a href="index.html">Home</a></h2>
-</nav>
 
-<br class="clear">
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
 
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Oct 04 2018 21:38:25 GMT+0100 (British Summer Time)
-</footer>
+  
 
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>:
+        Data or nothing
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='run'>
+      run
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Start the hasher.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>run</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>files</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>
+            = <code>[]</code>)</code>
+	    List of files to go through
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>obj</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            = <code>{}</code>)</code>
+	    Configuration
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.format</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  
+    (default <code>&#39;text&#39;</code>)
+  </td>
+  <td class='break-word'><span>Format of the output (text, json, csv)
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.input</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  
+    (default <code>&#39;any&#39;</code>)
+  </td>
+  <td class='break-word'><span>Location of the input (any, stdin, args)
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.output</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
+  
+    (default <code>&#39;stdout&#39;</code>)
+  </td>
+  <td class='break-word'><span>Destination for the output (stdout, var, 
+<i>
+filename
+</i>
+)s
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.prettify</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>
+  
+    (default <code>false</code>)
+  </td>
+  <td class='break-word'><span>Prettify the output
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>:
+        Data or nothing
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='error'>
+      error
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Print an error.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>error</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>data</span> <code class='quiet'>(...any)</code>
+	    Data to print
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='info'>
+      info
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Print an information.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>info</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>data</span> <code class='quiet'>(...any)</code>
+	    Data to print
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='dbg'>
+      dbg
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Print a debug message.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>dbg</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>data</span> <code class='quiet'>(...any)</code>
+	    Data to print
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='out'>
+      out
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Print an output.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>out</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>data</span> <code class='quiet'>(...any)</code>
+	    Data to print
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='inp'>
+      inp
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Print an input.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>inp</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>data</span> <code class='quiet'>(...any)</code>
+	    Data to print
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='warn'>
+      warn
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Print a warning.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>warn</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>data</span> <code class='quiet'>(...any)</code>
+	    Data to print
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='quest'>
+      quest
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Print a question.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>quest</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>data</span> <code class='quiet'>(...any)</code>
+	    Data to print
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='ioerror'>
+      IoError
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>I/O error.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>new IoError(message: any, context: any)</div>
+   
+  
+  
+    <p>
+      Extends
+      
+        <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a>
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>message</span> <code class='quiet'>(any
+            = <code>&#39;IO error:&#39;</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>context</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='log'>
+      log
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>STDOUT log.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>log</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>data</span> <code class='quiet'>(any)</code>
+	    Data to print
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+      </div>
+    </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/split.js'></script>
+  <script src='assets/site.js'></script>
 </body>
 </html>

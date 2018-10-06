@@ -3,15 +3,22 @@
  * @description base64(SHA-256) text encoder inspired by {@link https://stackoverflow.com/a/38554505/5893085}.
  * @author Maximilian Berkmann
  * @module hashmyjs
- * @exports {run, scanInput, hash, readIn, readFiles, readFilesSync, prettifyOutput}
  */
 /* eslint-env es6, node */
+
+/**
+ * Configuration
+ * @typedef {Object} Config
+ * @property {boolean} [prettify=false] Prettify the output
+ * @property {string} [outputDest=OUTPUT_DEST] Output destination (stdout, var, <i>filename</i>)
+ * @property {string} [outputFormat=OUTPUT_FORMAT] Output format (text, json, csv)
+ */
 
 const sjcl = require('sjcl'),
   readline = require('readline'),
   fs = require('fs'),
   clr = require('colors/safe');
-const { error, IoError, info, out, dbg, log } = require('./utils');
+const { IoError, info, out, log } = require('./utils');
 clr.setTheme(require('./clr'));
 
 const OUTPUT_DEST = 'stdout',
@@ -31,13 +38,8 @@ const argOrIn = () => process.argv.length > 2;
  * @protected
  */
 const hash = (data) => {
-  // try {
   let hashed = sjcl.hash.sha256.hash(data);
   return `sha256-${sjcl.codec.base64.fromBits(hashed)}`;
-  // } catch (err) { //Will fail when data === (null || undefined)
-  //   error('There was an error in hashing data=', data, '\nThe error is: ', err);
-  //   return err;
-  // }
 };
 
 /**
@@ -63,7 +65,7 @@ const writeToFile = (filename, data, outputFormat = OUTPUT_FORMAT) => {
 
 /**
  * @description Prettify the ouptut according to the format used or keep it as it is.
- * @param {(string|object)} output Output
+ * @param {(string|Object)} output Output
  * @param {string} [format=OUTPUT_FORMAT] Format of the output (json, csv, ...)
  * @return {string} Prettified output
  * @protected
@@ -84,7 +86,7 @@ const prettifyOutput = (output, format = OUTPUT_FORMAT) => {
  * @param {(string|string[])} input Input to hash (i.e. JS code)
  * @param {boolean} [noOutput=false] Don't output the result to the terminal but return the hash
  * @return {(void|string)} Hashed data or nothing
- * @throws {Error} Hashing error
+ * @throws {Error} Hashing or input error
  * @protected
  */
 const scanInput = (input, noOutput = false) => {
@@ -96,45 +98,11 @@ const scanInput = (input, noOutput = false) => {
   out(`${digest}`);
 };
 
-/* /**
- * @description Read files and scan them.
- * @param {string[]} [files=process.argv.slice(2, process.argv.length)] Array of file paths
- * @param {string} [outputDest=OUTPUT_DEST] Destination of the output
- * @param {string} [outputFormat=OUTPUT_FORMAT] Format of the output
- * @return {(undefined|string[])} Data or nothing
- * @protected
- * @deprecated
- */
-/* const readFiles = (files = process.argv.slice(2, process.argv.length), { outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
-  let inputs = [],
-    res = [];
-  for (let i = 0; i < files.length; ++i) {
-    fs.open(files[i], 'r+', (err, fd) => {
-      let buf = new Buffer(8192);
-      if (err) throw new IoError('open', err, files[i]);
-      fs.read(fd, buf, 0, buf.length, 0, (err, bytes) => {
-        if (err) throw new IoError('read', err, files[i]);
-        if (bytes > 0) inputs.push(buf.slice(0, bytes).toString());
-      });
-
-      fs.close(fd, (err) => {
-        if (err) throw new IoError('close', err, fd);
-        let data = handleData(files, inputs, i);
-        if (outputDest === 'var') res.push(data);
-        else if (outputDest !== 'stdout' && i === files.length - 1) writeToFile(outputDest, data, outputFormat);
-        else log(data);
-      });
-    });
-  }
-  if (outputDest === 'var') return res;
-}; */
-
 /**
  * @description Synchronously read files and scan them.
  * @param {string[]} [files=process.argv.slice(2, process.argv.length)] Array of file paths
- * @param {boolean} [prettify=false] Prettify the output
- * @param {string} [outputDest=OUTPUT_DEST] Destination of the output
- * @param {string} [outputFormat=OUTPUT_FORMAT] Format of the output
+ * @param {Config} obj Configuration (prettify: boolean, outputDest: string, outputFormat: string).
+ * @extend Config
  * @return {(undefined|string[]|{...string})} Data or nothing
  * @protected
  */
@@ -176,7 +144,7 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
 
 /**
  * @description Read user's input from STDIN.
- * @param {boolean} [prettify=false] Prettify the output
+ * @param {Config} obj Configuration (prettify: boolean, outDest: string, outFormat: string).
  * @return {(undefined|string)} Data or nothing
  * @protected
  */
@@ -212,10 +180,11 @@ const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUT
 /**
  * @description Start the hasher.
  * @param {string[]} [files=[]] List of files to go through
- * @param {string} [format='text'] Format of the result (text, csv, json)
- * @param {string} [input='any'] Reads either from STDIN or the arguments (any, stdin, args)
- * @param {string} [output='stdout'] Output the resulting hash in STDOUT (stdout) or a file (fileName) or as a returned value (var)
- * @param {boolean} [prettify=false] Prettify the output
+ * @param {Object} obj Configuration
+ * @param {string} obj.format Format of the output (text, json, csv)
+ * @param {string} obj.input Location of the input (any, stdin, args)
+ * @param {string} obj.output Destination for the output (stdout, var, <i>filename</i>)s
+ * @param {boolean} obj.prettify Prettify the output
  * @return {(undefined|string[]|string)} Data or nothing
  * @public
  */
