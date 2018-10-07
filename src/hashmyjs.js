@@ -21,8 +21,15 @@ const sjcl = require('sjcl'),
 const { IoError, info, out, log } = require('./utils');
 clr.setTheme(require('./clr'));
 
-const OUTPUT_DEST = 'stdout',
-  OUTPUT_FORMAT = 'text';
+/**
+ * Default output destination.
+ */
+const OUTPUT_DEST = 'stdout';
+
+/**
+ * Default output format.
+ */
+const OUTPUT_FORMAT = 'text';
 
 /**
  * @description Decides whether the program will use the file in the argument or STDIN.
