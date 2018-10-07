@@ -58,7 +58,7 @@ Usage: hashmyjs [options] [files...]
 If you use wildcard `*` in the CLI to get files, NodeJS will have a hard time getting the file from the right URL so it will lead in errors.
 
 ## Documentation
-See [this](./github/DOCUMENTATION.md) for more info or go to `./doc`.
+See [this](./DOCUMENTATION.md) for more info or go to `./doc`.
 
 ## Contribution
 If you discover bugs, errors or/and have suggestions/feedback please create an [issue](http://github.com/Berkmann18/hashmyjs/issues) or/and submit a [PR](http://github.com/Berkmann18/hashmyjs/pulls).
