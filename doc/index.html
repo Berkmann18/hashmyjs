@@ -156,6 +156,16 @@
               
                 
                 <li><a
+                  href='#utils'
+                  class="">
+                  utils
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#error'
                   class="">
                   error
@@ -315,7 +325,8 @@
   </div>
   
 
-  
+  <p>Colour/style scheme for the CLI.</p>
+
  
   
     <div class='pre p1 fill-light mt0'>clr</div>
@@ -604,7 +615,9 @@ filename
   </div>
   
 
-  <p>Generate base64-encoded SHA-256 for given string.</p>
+  <p>Generate a base64-encoded SHA-256 hash for a given data.<br>
+<em>Objects can be passed to this function but will generate the <strong>same</strong> hash regardless
+of its content</em>.</p>
 
  
   
@@ -626,7 +639,7 @@ filename
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>data</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+            <span class='code bold'>data</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a>))</code>
 	    Data to encode
 
           </div>
@@ -650,6 +663,12 @@ filename
 
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>hash(<span class="hljs-string">'Lorem Ipsum dolore sit amet'</span>); <span class="hljs-comment">//returns 'sha256-7almix3trlcKWVAN+fhV/Bzbx4BixTwzjYpZDWUxctM='</span></pre>
+    
   
 
   
@@ -733,12 +752,26 @@ filename
     <div class='py1 quiet mt1 prose-big'>Throws</div>
     <ul>
       
+        <li><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a>: No filename specified
+</li>
+      
         <li><a href="#ioerror">IoError</a>: Writing error
 </li>
       
     </ul>
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>writeToFile(<span class="hljs-string">'output.txt'</span>, [<span class="hljs-string">'Lorem ipsum dolore sit amet'</span>]);</pre>
+    
+      <p><p>With a specified format:</p>
+</p>
+      <pre class='p1 overflow-auto round fill-light'>writeToFile(<span class="hljs-string">'output.json'</span>, [{<span class="hljs-attr">key</span>: <span class="hljs-string">'val'</span>}], <span class="hljs-string">'json'</span>);
+writeToFile(<span class="hljs-string">'output.csv'</span>, [<span class="hljs-string">'0,john,doe'</span>, <span class="hljs-string">'1,lorem,ipsum'</span>], <span class="hljs-string">'csv'</span>);</pre>
+    
   
 
   
@@ -785,7 +818,7 @@ filename
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>output</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>))</code>
+            <span class='code bold'>output</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>))</code>
 	    Output
 
           </div>
@@ -819,6 +852,17 @@ filename
 
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>prettifyOutput(<span class="hljs-string">'some unchanged text'</span>); <span class="hljs-comment">//returns 'some unchanged text'</span></pre>
+    
+      <p><p>With a specified format:</p>
+</p>
+      <pre class='p1 overflow-auto round fill-light'>prettifyOutput({<span class="hljs-attr">key</span>: <span class="hljs-string">'val'</span>}, <span class="hljs-string">'json'</span>); <span class="hljs-comment">//returns {&lt;br&gt;  "key": "val"&lt;br&gt;}</span>
+prettifyOutput(<span class="hljs-string">'0,john,doe'</span>, <span class="hljs-string">'csv'</span>); <span class="hljs-comment">//returns '0, joh, doe'</span></pre>
+    
   
 
   
@@ -866,7 +910,7 @@ filename
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>input</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>))</code>
-	    Input to hash (i.e. JS code)
+	    Input to hash (e.g. JS code)
 
           </div>
           
@@ -907,6 +951,18 @@ filename
     </ul>
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>scanInput(<span class="hljs-string">'Lorem ipsum dolore sit amet'</span>); <span class="hljs-comment">//logs 'sha256-HBQ/am1i8gw1bl8qJDhm0naAsChqeYsBEiCWTRLEaE8='</span>
+scanInput([<span class="hljs-string">'Lorem ipsum dolore sit amet'</span>]); <span class="hljs-comment">//logs the same as above</span></pre>
+    
+      <p><p>Without output disabled</p>
+</p>
+      <pre class='p1 overflow-auto round fill-light'>scanInput(<span class="hljs-string">'Lorem ipsum dolore sit amet'</span>, <span class="hljs-literal">true</span>); <span class="hljs-comment">//returns 'sha256-HBQ/am1i8gw1bl8qJDhm0naAsChqeYsBEiCWTRLEaE8='</span>
+scanInput([<span class="hljs-string">'Lorem ipsum dolore sit amet'</span>]); <span class="hljs-comment">//returns the same as above</span></pre>
+    
   
 
   
@@ -965,7 +1021,7 @@ filename
           <div>
             <span class='code bold'>obj</span> <code class='quiet'>(<a href="#config">Config</a>
             = <code>{}</code>)</code>
-	    Configuration (prettify: boolean, outputDest: string, outputFormat: string).
+	    Configuration.
 
           </div>
           
@@ -1027,6 +1083,22 @@ filename
   
 
   
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      <p><p>Reading from the CLI</p>
+</p>
+      <pre class='p1 overflow-auto round fill-light'>readFilesSync();</pre>
+    
+      <p><p>Reading from specific files</p>
+</p>
+      <pre class='p1 overflow-auto round fill-light'>readFilesSync([<span class="hljs-string">'output.txt'</span>]);</pre>
+    
+      <p><p>... With specific configurations</p>
+</p>
+      <pre class='p1 overflow-auto round fill-light'>readFilesSync([<span class="hljs-string">'input.json'</span>], {<span class="hljs-attr">prettify</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">outputFormat</span>: <span class="hljs-string">'json'</span>});
+readFilesSync([<span class="hljs-string">'input.csv'</span>], {<span class="hljs-attr">outputDest</span>: <span class="hljs-string">'output.json'</span>, <span class="hljs-attr">outputFormat</span>: <span class="hljs-string">'json'</span>});</pre>
+    
+  
 
   
 
@@ -1074,7 +1146,7 @@ filename
           <div>
             <span class='code bold'>obj</span> <code class='quiet'>(<a href="#config">Config</a>
             = <code>{}</code>)</code>
-	    Configuration (prettify: boolean, outDest: string, outFormat: string).
+	    Configuration.
 
           </div>
           
@@ -1247,9 +1319,9 @@ filename
   </td>
   <td class='break-word'><span>Destination for the output (stdout, var, 
 <i>
-filename
+filenames
 </i>
-)s
+)
 </span></td>
 </tr>
 
@@ -1284,6 +1356,54 @@ filename
 
       
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='utils'>
+      utils
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Utility module for HMJ.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>utils</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
   
 
   
@@ -1351,6 +1471,12 @@ filename
   
 
   
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>error(<span class="hljs-string">'Something wrong happened with'</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-keyword">this</span>));</pre>
+    
+  
 
   
 
@@ -1412,6 +1538,12 @@ filename
 
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>info(<span class="hljs-string">'Welcome John'</span>);</pre>
+    
   
 
   
@@ -1475,6 +1607,12 @@ filename
   
 
   
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>dbg(<span class="hljs-string">'i='</span>, i);</pre>
+    
+  
 
   
 
@@ -1536,6 +1674,12 @@ filename
 
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>out(<span class="hljs-string">'1 + 1 = ${rpc('</span><span class="hljs-number">1</span> <span class="hljs-number">1</span> +<span class="hljs-string">')}`);</span></pre>
+    
   
 
   
@@ -1599,6 +1743,12 @@ filename
   
 
   
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>inp(name);</pre>
+    
+  
 
   
 
@@ -1660,6 +1810,12 @@ filename
 
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>warn(<span class="hljs-string">'The following function is deprecated'</span>);</pre>
+    
   
 
   
@@ -1723,6 +1879,12 @@ filename
   
 
   
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>quest(<span class="hljs-string">'What is your username?'</span>);</pre>
+    
+  
 
   
 
@@ -1750,7 +1912,7 @@ filename
 
  
   
-    <div class='pre p1 fill-light mt0'>new IoError(message: any, context: any)</div>
+    <div class='pre p1 fill-light mt0'>new IoError(message: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, context: any)</div>
    
   
   
@@ -1775,9 +1937,10 @@ filename
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>message</span> <code class='quiet'>(any
+            <span class='code bold'>message</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
             = <code>&#39;IO error:&#39;</code>)</code>
-	    
+	    Error message
+
           </div>
           
         </div>
@@ -1785,7 +1948,8 @@ filename
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>context</span> <code class='quiet'>(any)</code>
-	    
+	    I/O context
+
           </div>
           
         </div>
@@ -1799,6 +1963,12 @@ filename
 
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">new</span> IoError(<span class="hljs-string">'File not found'</span>);</pre>
+    
   
 
   
@@ -1861,6 +2031,12 @@ filename
 
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>log(<span class="hljs-string">'Lorem ipsum dolore sit amet'</span>);</pre>
+    
   
 
   
