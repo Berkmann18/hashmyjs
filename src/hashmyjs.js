@@ -22,12 +22,18 @@ const { IoError, info, out, log } = require('./utils');
 clr.setTheme(require('./clr'));
 
 /**
- * Default output destination.
+ * @description Default output destination.
+ * @summary stdout
+ * @constant
+ * @type {string}
  */
 const OUTPUT_DEST = 'stdout';
 
 /**
- * Default output format.
+ * @description Default output format.
+ * @summary text  
+ * @constant
+ * @type {string}
  */
 const OUTPUT_FORMAT = 'text';
 
@@ -39,10 +45,13 @@ const OUTPUT_FORMAT = 'text';
 const argOrIn = () => process.argv.length > 2;
 
 /**
- * @description Generate base64-encoded SHA-256 for given string.
- * @param {string} data Data to encode
+ * @description Generate a base64-encoded SHA-256 hash for a given data.<br>
+ * <em>Objects can be passed to this function but will generate the <strong>same</strong> hash regardless
+ * of its content</em>.
+ * @param {(string|number|Array|Date)} data Data to encode
  * @return {string} Base64 encoded SHA-256 hash
- * @protected
+ * @public
+ * @example hash('Lorem Ipsum dolore sit amet'); //returns 'sha256-7almix3trlcKWVAN+fhV/Bzbx4BixTwzjYpZDWUxctM='
  */
 const hash = (data) => {
   let hashed = sjcl.hash.sha256.hash(data);
@@ -54,8 +63,13 @@ const hash = (data) => {
  * @param {string} filename File name
  * @param {string[]} data Lines to write to the file
  * @param {string} [outputFormat=OUTPUT_FORMAT] Format of the output
- * @protected
+ * @throws {Error} No filename specified
  * @throws {IoError} Writing error
+ * @public
+ * @example writeToFile('output.txt', ['Lorem ipsum dolore sit amet']);
+ * @example <caption>With a specified format:</caption>
+ * writeToFile('output.json', [{key: 'val'}], 'json');
+ * writeToFile('output.csv', ['0,john,doe', '1,lorem,ipsum'], 'csv');
  */
 const writeToFile = (filename, data, outputFormat = OUTPUT_FORMAT) => {
   if (!filename) throw new Error(`No filename specified to be written to with data=${data}`);
@@ -66,23 +80,28 @@ const writeToFile = (filename, data, outputFormat = OUTPUT_FORMAT) => {
       flags: 'a'
     });
     data.forEach((line) => writer.write(`${prettifyOutput(line, outputFormat)}\n`));
-    // info(`Successfully written the result to ${filename}`);
+    info(`Successfully written the result to ${filename}`);
   });
 };
 
 /**
  * @description Prettify the ouptut according to the format used or keep it as it is.
- * @param {(string|Object)} output Output
+ * @param {(string|Object|string[])} output Output
  * @param {string} [format=OUTPUT_FORMAT] Format of the output (json, csv, ...)
  * @return {string} Prettified output
- * @protected
+ * @public
+ * @example prettifyOutput('some unchanged text'); //returns 'some unchanged text'
+ * @example <caption>With a specified format:</caption>
+ * prettifyOutput({key: 'val'}, 'json'); //returns {<br>  "key": "val"<br>}
+ * prettifyOutput('0,john,doe', 'csv'); //returns '0, joh, doe'
  */
 const prettifyOutput = (output, format = OUTPUT_FORMAT) => {
   switch (format) {
   case 'json':
     return JSON.stringify(output, null, 2);
   case 'csv':
-    return Array.isArray(output) ? output.map(item => item.replace(/(\S+),(\S+)/, '$1, $2')) : output.replace(/(\S+),(\S+)/, '$1, $2');
+    const re = /,(?=[^\s])/g;
+    return Array.isArray(output) ? output.map(item => item.replace(re, ', ')) : output.replace(re, ', ');
   default:
     return output;
   }
@@ -90,14 +109,19 @@ const prettifyOutput = (output, format = OUTPUT_FORMAT) => {
 
 /**
  * @description Scan an input and output it's integrity hash.
- * @param {(string|string[])} input Input to hash (i.e. JS code)
+ * @param {(string|string[])} input Input to hash (e.g. JS code)
  * @param {boolean} [noOutput=false] Don't output the result to the terminal but return the hash
  * @return {(void|string)} Hashed data or nothing
  * @throws {Error} Hashing or input error
- * @protected
+ * @public
+ * @example scanInput('Lorem ipsum dolore sit amet'); //logs 'sha256-HBQ/am1i8gw1bl8qJDhm0naAsChqeYsBEiCWTRLEaE8='
+ * scanInput(['Lorem ipsum dolore sit amet']); //logs the same as above
+ * @example <caption>Without output disabled</caption>
+ * scanInput('Lorem ipsum dolore sit amet', true); //returns 'sha256-HBQ/am1i8gw1bl8qJDhm0naAsChqeYsBEiCWTRLEaE8='
+ * scanInput(['Lorem ipsum dolore sit amet']); //returns the same as above
  */
 const scanInput = (input, noOutput = false) => {
-  let data = (Array.isArray(input)) ? input.join('\n') : input;
+  let data = Array.isArray(input) ? input.join('\n') : input;
   if (!input) throw new Error('scanInput didn\'t received any input');
   let digest = hash(data);
   if (typeof digest !== 'string' && 'message' in digest) throw new Error(digest.message);
@@ -108,10 +132,17 @@ const scanInput = (input, noOutput = false) => {
 /**
  * @description Synchronously read files and scan them.
  * @param {string[]} [files=process.argv.slice(2, process.argv.length)] Array of file paths
- * @param {Config} obj Configuration (prettify: boolean, outputDest: string, outputFormat: string).
- * @extend Config
+ * @param {Config} obj Configuration.
+ * @see Config
  * @return {(undefined|string[]|{...string})} Data or nothing
- * @protected
+ * @public
+ * @example <caption>Reading from the CLI</caption>
+ * readFilesSync();
+ * @example <caption>Reading from specific files</caption>
+ * readFilesSync(['output.txt']);
+ * @example <caption>... With specific configurations</caption>
+ * readFilesSync(['input.json'], {prettify: true, outputFormat: 'json'}); //logs {<br>  "output.json": "sha256-iTyF6rE+vAUIIWrWaC6bWt9NwI/74kpOuk4JZl9zCMM="<br>}
+ * readFilesSync(['input.csv'], {outputDest: 'output.json', outputFormat: 'json'}); //logs 
  */
 const readFilesSync = (files = process.argv.slice(2, process.argv.length), { prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
   let inputs = [],
@@ -129,8 +160,15 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
     if (outputDest === 'stdout') {
       if (outputFormat === 'text') log(`${i > 0 ? '\n' : ''}- ${files[i]}\n${data}`);
       else if (outputFormat === 'csv') log(prettify ? `${files[i]}, ${data}` : `${files[i]},${data}`);
-    } else if (outputDest !== 'var') fileLines = fileLines.concat([`- ${files[i]}`, data]);
+    } else if (outputDest !== 'var') {
+      if (outputFormat === 'csv') fileLines.push(prettify ? `${files[i]}, ${data}` : `${files[i]},${data}`);
+      else fileLines = fileLines.concat([outputFormat === 'json'? files[i] : `- ${files[i]}`, data]);
+    }
+  }
 
+  if (outputDest !== 'var' && outputDest !== 'stdout') {
+    console.log('fileLines=', fileLines);
+    console.log('res=', res);
   }
 
   if (outputDest === 'var') {
@@ -146,14 +184,15 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
     }
   } else if (outputDest === 'stdout') {
     if (outputFormat === 'json') log(prettify ? prettifyOutput(res, 'json') : res);
-  } else writeToFile(outputDest, fileLines);
+  } else writeToFile(outputDest, (outputFormat === 'json') ? [JSON.stringify(res, null, prettify * 2)] : fileLines);
 };
 
 /**
  * @description Read user's input from STDIN.
- * @param {Config} obj Configuration (prettify: boolean, outDest: string, outFormat: string).
+ * @param {Config} obj Configuration.
  * @return {(undefined|string)} Data or nothing
- * @protected
+ * @see Config
+ * @public
  */
 const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
   info('Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)');
@@ -190,7 +229,7 @@ const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUT
  * @param {Object} obj Configuration
  * @param {string} obj.format Format of the output (text, json, csv)
  * @param {string} obj.input Location of the input (any, stdin, args)
- * @param {string} obj.output Destination for the output (stdout, var, <i>filename</i>)s
+ * @param {string} obj.output Destination for the output (stdout, var, <i>filenames</i>)
  * @param {boolean} obj.prettify Prettify the output
  * @return {(undefined|string[]|string)} Data or nothing
  * @public
@@ -217,7 +256,6 @@ module.exports = {
   scanInput,
   hash,
   readIn,
-  // readFiles,
   readFilesSync,
   prettifyOutput,
   writeToFile

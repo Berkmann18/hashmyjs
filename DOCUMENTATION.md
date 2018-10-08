@@ -23,24 +23,34 @@
     -   [Parameters][19]
 -   [run][20]
     -   [Parameters][21]
--   [error][22]
-    -   [Parameters][23]
--   [info][24]
-    -   [Parameters][25]
--   [dbg][26]
+-   [utils][22]
+-   [error][23]
+    -   [Parameters][24]
+    -   [Examples][25]
+-   [info][26]
     -   [Parameters][27]
--   [out][28]
-    -   [Parameters][29]
--   [inp][30]
-    -   [Parameters][31]
--   [warn][32]
+    -   [Examples][28]
+-   [dbg][29]
+    -   [Parameters][30]
+    -   [Examples][31]
+-   [out][32]
     -   [Parameters][33]
--   [quest][34]
-    -   [Parameters][35]
--   [IoError][36]
-    -   [Parameters][37]
--   [log][38]
+    -   [Examples][34]
+-   [inp][35]
+    -   [Parameters][36]
+    -   [Examples][37]
+-   [warn][38]
     -   [Parameters][39]
+    -   [Examples][40]
+-   [quest][41]
+    -   [Parameters][42]
+    -   [Examples][43]
+-   [IoError][44]
+    -   [Parameters][45]
+    -   [Examples][46]
+-   [log][47]
+    -   [Parameters][48]
+    -   [Examples][49]
 
 ## clr
 
@@ -48,23 +58,25 @@ CLI colours.
 
 ## clr
 
-Type: {in: [string][40], out: [Array][41]&lt;[string][40]>, inf: [string][40], err: [string][40], warn: [string][40], debug: [string][40], quest: [string][40]}
+Colour/style scheme for the CLI.
+
+Type: {in: [string][50], out: [Array][51]&lt;[string][50]>, inf: [string][50], err: [string][50], warn: [string][50], debug: [string][50], quest: [string][50]}
 
 ## Config
 
 Configuration
 
-Type: [Object][42]
+Type: [Object][52]
 
 ### Properties
 
--   `prettify` **[boolean][43]?** Prettify the output
--   `outputDest` **[string][40]?** Output destination (stdout, var, <i>filename</i>)
--   `outputFormat` **[string][40]?** Output format (text, json, csv)
+-   `prettify` **[boolean][53]?** Prettify the output
+-   `outputDest` **[string][50]?** Output destination (stdout, var, <i>filename</i>)
+-   `outputFormat` **[string][50]?** Output format (text, json, csv)
 
 ## hashmyjs
 
-base64(SHA-256) text encoder inspired by [https://stackoverflow.com/a/38554505/5893085][44].
+base64(SHA-256) text encoder inspired by [https://stackoverflow.com/a/38554505/5893085][54].
 
 **Meta**
 
@@ -74,13 +86,13 @@ base64(SHA-256) text encoder inspired by [https://stackoverflow.com/a/38554505/5
 
 Default output destination.
 
-Type: [string][40]
+Type: [string][50]
 
 ## OUTPUT_FORMAT
 
 Default output format.
 
-Type: [string][40]
+Type: [string][50]
 
 ## hash
 
@@ -88,9 +100,9 @@ Generate base64-encoded SHA-256 for given string.
 
 ### Parameters
 
--   `data` **[string][40]** Data to encode
+-   `data` **[string][50]** Data to encode
 
-Returns **[string][40]** Base64 encoded SHA-256 hash
+Returns **[string][50]** Base64 encoded SHA-256 hash
 
 ## writeToFile
 
@@ -98,12 +110,13 @@ Write to a file (while prettifying the content).
 
 ### Parameters
 
--   `filename` **[string][40]** File name
--   `data` **[Array][41]&lt;[string][40]>** Lines to write to the file
--   `outputFormat` **[string][40]** Format of the output (optional, default `OUTPUT_FORMAT`)
+-   `filename` **[string][50]** File name
+-   `data` **[Array][51]&lt;[string][50]>** Lines to write to the file
+-   `outputFormat` **[string][50]** Format of the output (optional, default `OUTPUT_FORMAT`)
 
 
--   Throws **[IoError][45]** Writing error
+-   Throws **[Error][55]** No filename specified
+-   Throws **[IoError][56]** Writing error
 
 ## prettifyOutput
 
@@ -111,10 +124,10 @@ Prettify the ouptut according to the format used or keep it as it is.
 
 ### Parameters
 
--   `output` **([string][40] \| [Object][42])** Output
--   `format` **[string][40]** Format of the output (json, csv, ...) (optional, default `OUTPUT_FORMAT`)
+-   `output` **([string][50] \| [Object][52])** Output
+-   `format` **[string][50]** Format of the output (json, csv, ...) (optional, default `OUTPUT_FORMAT`)
 
-Returns **[string][40]** Prettified output
+Returns **[string][50]** Prettified output
 
 ## scanInput
 
@@ -122,38 +135,42 @@ Scan an input and output it's integrity hash.
 
 ### Parameters
 
--   `input` **([string][40] \| [Array][41]&lt;[string][40]>)** Input to hash (i.e. JS code)
--   `noOutput` **[boolean][43]** Don't output the result to the terminal but return the hash (optional, default `false`)
+-   `input` **([string][50] \| [Array][51]&lt;[string][50]>)** Input to hash (e.g. JS code)
+-   `noOutput` **[boolean][53]** Don't output the result to the terminal but return the hash (optional, default `false`)
 
 
--   Throws **[Error][46]** Hashing or input error
+-   Throws **[Error][55]** Hashing or input error
 
-Returns **(void | [string][40])** Hashed data or nothing
+Returns **(void | [string][50])** Hashed data or nothing
 
 ## readFilesSync
+
+-   **See: Config**
 
 Synchronously read files and scan them.
 
 ### Parameters
 
--   `files` **[Array][41]&lt;[string][40]>** Array of file paths (optional, default `process.argv.slice(2,process.argv.length)`)
--   `obj` **[Config][47]** Configuration (prettify: boolean, outputDest: string, outputFormat: string). (optional, default `{}`)
+-   `files` **[Array][51]&lt;[string][50]>** Array of file paths (optional, default `process.argv.slice(2,process.argv.length)`)
+-   `obj` **[Config][57]** Configuration. (optional, default `{}`)
     -   `obj.prettify`   (optional, default `false`)
     -   `obj.outputDest`   (optional, default `OUTPUT_DEST`)
     -   `obj.outputFormat`   (optional, default `OUTPUT_FORMAT`)
 
 ## readIn
 
+-   **See: Config**
+
 Read user's input from STDIN.
 
 ### Parameters
 
--   `obj` **[Config][47]** Configuration (prettify: boolean, outDest: string, outFormat: string). (optional, default `{}`)
+-   `obj` **[Config][57]** Configuration. (optional, default `{}`)
     -   `obj.prettify`   (optional, default `false`)
     -   `obj.outputDest`   (optional, default `OUTPUT_DEST`)
     -   `obj.outputFormat`   (optional, default `OUTPUT_FORMAT`)
 
-Returns **([undefined][48] \| [string][40])** Data or nothing
+Returns **([undefined][58] \| [string][50])** Data or nothing
 
 ## run
 
@@ -161,14 +178,18 @@ Start the hasher.
 
 ### Parameters
 
--   `files` **[Array][41]&lt;[string][40]>** List of files to go through (optional, default `[]`)
--   `obj` **[Object][42]** Configuration (optional, default `{}`)
-    -   `obj.format` **[string][40]** Format of the output (text, json, csv) (optional, default `'text'`)
-    -   `obj.input` **[string][40]** Location of the input (any, stdin, args) (optional, default `'any'`)
-    -   `obj.output` **[string][40]** Destination for the output (stdout, var, <i>filename</i>)s (optional, default `'stdout'`)
-    -   `obj.prettify` **[boolean][43]** Prettify the output (optional, default `false`)
+-   `files` **[Array][51]&lt;[string][50]>** List of files to go through (optional, default `[]`)
+-   `obj` **[Object][52]** Configuration (optional, default `{}`)
+    -   `obj.format` **[string][50]** Format of the output (text, json, csv) (optional, default `'text'`)
+    -   `obj.input` **[string][50]** Location of the input (any, stdin, args) (optional, default `'any'`)
+    -   `obj.output` **[string][50]** Destination for the output (stdout, var, <i>filenames</i>) (optional, default `'stdout'`)
+    -   `obj.prettify` **[boolean][53]** Prettify the output (optional, default `false`)
 
-Returns **([undefined][48] \| [Array][41]&lt;[string][40]> | [string][40])** Data or nothing
+Returns **([undefined][58] \| [Array][51]&lt;[string][50]> | [string][50])** Data or nothing
+
+## utils
+
+Utility module for HMJ.
 
 ## error
 
@@ -178,6 +199,12 @@ Print an error.
 
 -   `data` **...any** Data to print
 
+### Examples
+
+```javascript
+error('Something wrong happened with', new Error(this));
+```
+
 ## info
 
 Print an information.
@@ -185,6 +212,12 @@ Print an information.
 ### Parameters
 
 -   `data` **...any** Data to print
+
+### Examples
+
+```javascript
+info('Welcome John');
+```
 
 ## dbg
 
@@ -194,6 +227,12 @@ Print a debug message.
 
 -   `data` **...any** Data to print
 
+### Examples
+
+```javascript
+dbg('i=', i);
+```
+
 ## out
 
 Print an output.
@@ -201,6 +240,12 @@ Print an output.
 ### Parameters
 
 -   `data` **...any** Data to print
+
+### Examples
+
+```javascript
+out('1 + 1 = ${rpc('1 1 +')}`);
+```
 
 ## inp
 
@@ -210,6 +255,12 @@ Print an input.
 
 -   `data` **...any** Data to print
 
+### Examples
+
+```javascript
+inp(name);
+```
+
 ## warn
 
 Print a warning.
@@ -217,6 +268,12 @@ Print a warning.
 ### Parameters
 
 -   `data` **...any** Data to print
+
+### Examples
+
+```javascript
+warn('The following function is deprecated');
+```
 
 ## quest
 
@@ -226,6 +283,12 @@ Print a question.
 
 -   `data` **...any** Data to print
 
+### Examples
+
+```javascript
+quest('What is your username?');
+```
+
 ## IoError
 
 **Extends Error**
@@ -234,8 +297,14 @@ I/O error.
 
 ### Parameters
 
--   `message`   (optional, default `'IO error:'`)
--   `context`  
+-   `message` **[string][50]** Error message (optional, default `'IO error:'`)
+-   `context` **any** I/O context
+
+### Examples
+
+```javascript
+new IoError('File not found');
+```
 
 ## log
 
@@ -244,6 +313,12 @@ STDOUT log.
 ### Parameters
 
 -   `data` **any** Data to print
+
+### Examples
+
+```javascript
+log('Lorem ipsum dolore sit amet');
+```
 
 [1]: #clr
 
@@ -287,56 +362,76 @@ STDOUT log.
 
 [21]: #parameters-6
 
-[22]: #error
+[22]: #utils
 
-[23]: #parameters-7
+[23]: #error
 
-[24]: #info
+[24]: #parameters-7
 
-[25]: #parameters-8
+[25]: #examples
 
-[26]: #dbg
+[26]: #info
 
-[27]: #parameters-9
+[27]: #parameters-8
 
-[28]: #out
+[28]: #examples-1
 
-[29]: #parameters-10
+[29]: #dbg
 
-[30]: #inp
+[30]: #parameters-9
 
-[31]: #parameters-11
+[31]: #examples-2
 
-[32]: #warn
+[32]: #out
 
-[33]: #parameters-12
+[33]: #parameters-10
 
-[34]: #quest
+[34]: #examples-3
 
-[35]: #parameters-13
+[35]: #inp
 
-[36]: #ioerror
+[36]: #parameters-11
 
-[37]: #parameters-14
+[37]: #examples-4
 
-[38]: #log
+[38]: #warn
 
-[39]: #parameters-15
+[39]: #parameters-12
 
-[40]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[40]: #examples-5
 
-[41]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[41]: #quest
 
-[42]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[42]: #parameters-13
 
-[43]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[43]: #examples-6
 
-[44]: https://stackoverflow.com/a/38554505/5893085
+[44]: #ioerror
 
-[45]: #ioerror
+[45]: #parameters-14
 
-[46]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
+[46]: #examples-7
 
-[47]: #config
+[47]: #log
 
-[48]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined
+[48]: #parameters-15
+
+[49]: #examples-8
+
+[50]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[51]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+[52]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+[53]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[54]: https://stackoverflow.com/a/38554505/5893085
+
+[55]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
+
+[56]: #ioerror
+
+[57]: #config
+
+[58]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined
