@@ -8,12 +8,19 @@ const clr = require('colors/safe');
 clr.setTheme(require('./clr'));
 
 /**
+ * @description STDOUT log.
+ * @param {*} data Data to print
+ * @example log('Lorem ipsum dolore sit amet');
+ */
+const log = (...data) => process.stdout.write(...data);
+
+/**
  * @description Print an error.
  * @param {...*} data Data to print
  * @example error('Something wrong happened with', new Error(this));
  */
 const error = (...data) => {
-  console.error(clr.err(data.join(' ')));
+  log(clr.err(data.join(' ')) + '\n');
   // process.exit(1);
 };
 
@@ -22,42 +29,42 @@ const error = (...data) => {
  * @param {...*} data Data to print
  * @example info('Welcome John');
  */
-const info = (...data) => console.log(clr.inf(data.join(' ')));
+const info = (...data) => log(clr.inf(data.join(' ')) + '\n');
 
 /**
  * @description Print a debug message.
  * @param {...*} data Data to print
  * @example dbg('i=', i);
  */
-const dbg = (...data) => console.log(clr.debug(data.join(' ')));
+const dbg = (...data) => log(clr.debug(data.join(' ')) + '\n');
 
 /**
  * @description Print an output.
  * @param {...*} data Data to print
  * @example out('1 + 1 = ${rpc('1 1 +')}`);
  */
-const out = (...data) => console.log(clr.out(data.join(' ')));
+const out = (...data) => log(clr.out(data.join(' ')) + '\n');
 
 /**
  * @description Print an input.
  * @param {...*} data Data to print
  * @example inp(name);
  */
-const inp = (...data) => console.log(clr.in(data.join(' ')));
+const inp = (...data) => log(clr.in(data.join(' ')) + '\n');
 
 /**
  * @description Print a warning.
  * @param {...*} data Data to print
  * @example warn('The following function is deprecated');
  */
-const warn = (...data) => console.warn(clr.warn(data.join(' ')));
+const warn = (...data) => log(clr.warn(data.join(' ')) + '\n');
 
 /**
  * @description Print a question.
  * @param {...*} data Data to print
  * @example quest('What is your username?');
  */
-const quest = (...data) => console.log(clr.quest(data.join(' ')));
+const quest = (...data) => log(clr.quest(data.join(' ')) + '\n');
 
 /**
  * @description I/O error.
@@ -78,12 +85,5 @@ class IoError extends Error {
     this.context = context;
   }
 }
-
-/**
- * @description STDOUT log.
- * @param {*} data Data to print
- * @example log('Lorem ipsum dolore sit amet');
- */
-const log = (...data) => process.stdout.write(...data);
 
 module.exports = { error, info, dbg, out, inp, warn, quest, IoError, log }

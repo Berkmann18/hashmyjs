@@ -158,11 +158,11 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
 
     res[files[i]] = data;
     if (outputDest === 'stdout') {
-      if (outputFormat === 'text') out(`${i > 0 ? '\n' : ''}- ${files[i]}\n${data}`);
+      if (outputFormat === 'text') out(`${i > 0 ? '\n' : ''}- ${files[i]}: ${data}`);
       else if (outputFormat === 'csv') out(prettify ? `${files[i]}, ${data}` : `${files[i]},${data}`);
     } else if (outputDest !== 'var') {
       if (outputFormat === 'csv') fileLines.push(prettify ? `${files[i]}, ${data}` : `${files[i]},${data}`);
-      else fileLines = fileLines.concat([outputFormat === 'json'? files[i] : `- ${files[i]}`, data]);
+      else fileLines = fileLines.concat([outputFormat === 'json'? files[i] : `- ${files[i]}: ${data}`]);
     }
   }
 
@@ -194,8 +194,7 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
  * readIn({prettify: true, outputDest: 'outputFromSTDIN.txt'});
  */
 const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
-  out(`pretty: ${prettify};  dest: ${outputDest};  format: ${outputFormat}`);
-  info('Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)');
+  // info('Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)\n');
   let rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
@@ -209,9 +208,13 @@ const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUT
     rl.on('line', (line) => {
       if (EOF(line)) {
         res = scanInput(lines, true);
-        let output = `- STDIN\n${res}`; //outputFormat = 'text'
-        if (outputFormat === 'json') output = JSON.stringify({STDIN: res}, null, prettify * 2);
-        else if (outputFormat === 'csv') output = prettify ? `STDIN, ${res}` : `STDIN,${res}`;
+        let output = `- STDIN: ${res}`; //outputFormat = 'text'
+        if (outputFormat === 'json') {
+          // console.log('pretty=', prettify);
+          const op = {STDIN: res};
+          if (outputDest === 'var') output = prettify ? prettifyOutput(op, 'json') : op;
+          else output = JSON.stringify(op, null, prettify * 2);
+        } else if (outputFormat === 'csv') output = prettify ? `STDIN, ${res}` : `STDIN,${res}`;
 
         if (outputDest === 'stdout') out(output);
         else if (outputDest !== 'var') writeToFile(outputDest, (outputFormat === 'text') ? output.split('\n') : output);
