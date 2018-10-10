@@ -31,7 +31,7 @@ const OUTPUT_DEST = 'stdout';
 
 /**
  * @description Default output format.
- * @summary text  
+ * @summary text
  * @constant
  * @type {string}
  */
@@ -142,7 +142,7 @@ const scanInput = (input, noOutput = false) => {
  * readFilesSync(['output.txt']);
  * @example <caption>... With specific configurations</caption>
  * readFilesSync(['input.json'], {prettify: true, outputFormat: 'json'}); //logs {<br>  "output.json": "sha256-iTyF6rE+vAUIIWrWaC6bWt9NwI/74kpOuk4JZl9zCMM="<br>}
- * readFilesSync(['input.csv'], {outputDest: 'output.json', outputFormat: 'json'}); //logs 
+ * readFilesSync(['input.csv'], {outputDest: 'output.json', outputFormat: 'json'}); //Writes the above to output.json
  */
 const readFilesSync = (files = process.argv.slice(2, process.argv.length), { prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
   let inputs = [],
