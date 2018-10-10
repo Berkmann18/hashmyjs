@@ -166,6 +166,16 @@
               
                 
                 <li><a
+                  href='#log'
+                  class="">
+                  log
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#error'
                   class="">
                   error
@@ -239,16 +249,6 @@
                   href='#ioerror'
                   class="">
                   IoError
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#log'
-                  class="">
-                  log
                   
                 </a>
                 
@@ -1095,8 +1095,8 @@ scanInput([<span class="hljs-string">'Lorem ipsum dolore sit amet'</span>]); <sp
     
       <p><p>... With specific configurations</p>
 </p>
-      <pre class='p1 overflow-auto round fill-light'>readFilesSync([<span class="hljs-string">'input.json'</span>], {<span class="hljs-attr">prettify</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">outputFormat</span>: <span class="hljs-string">'json'</span>});
-readFilesSync([<span class="hljs-string">'input.csv'</span>], {<span class="hljs-attr">outputDest</span>: <span class="hljs-string">'output.json'</span>, <span class="hljs-attr">outputFormat</span>: <span class="hljs-string">'json'</span>});</pre>
+      <pre class='p1 overflow-auto round fill-light'>readFilesSync([<span class="hljs-string">'input.json'</span>], {<span class="hljs-attr">prettify</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">outputFormat</span>: <span class="hljs-string">'json'</span>}); <span class="hljs-comment">//logs {&lt;br&gt;  "output.json": "sha256-iTyF6rE+vAUIIWrWaC6bWt9NwI/74kpOuk4JZl9zCMM="&lt;br&gt;}</span>
+readFilesSync([<span class="hljs-string">'input.csv'</span>], {<span class="hljs-attr">outputDest</span>: <span class="hljs-string">'output.json'</span>, <span class="hljs-attr">outputFormat</span>: <span class="hljs-string">'json'</span>}); <span class="hljs-comment">//Writes the above to output.json</span></pre>
     
   
 
@@ -1215,6 +1215,17 @@ readFilesSync([<span class="hljs-string">'input.csv'</span>], {<span class="hljs
 
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>readIn();</pre>
+    
+      <p><p>With configurations</p>
+</p>
+      <pre class='p1 overflow-auto round fill-light'>readIn({<span class="hljs-attr">outputFormat</span>: <span class="hljs-string">'json'</span>});
+readIn({<span class="hljs-attr">prettify</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">outputDest</span>: <span class="hljs-string">'outputFromSTDIN.txt'</span>});</pre>
+    
   
 
   
@@ -1361,6 +1372,31 @@ filenames
   
 
   
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      <p><p>Reading from files or STDIN</p>
+</p>
+      <pre class='p1 overflow-auto round fill-light'>run();</pre>
+    
+      <p><p>Reading from files</p>
+</p>
+      <pre class='p1 overflow-auto round fill-light'>run([<span class="hljs-string">'index.js'</span>]);
+run([<span class="hljs-string">'index.js'</span>], {<span class="hljs-attr">input</span>: <span class="hljs-string">'args'</span>});</pre>
+    
+      <p><p>Reading from STDIN</p>
+</p>
+      <pre class='p1 overflow-auto round fill-light'>run([]);
+run([], {<span class="hljs-attr">input</span>: <span class="hljs-string">'stdin'</span>});</pre>
+    
+      <p><p>Reading from files with configurations</p>
+</p>
+      <pre class='p1 overflow-auto round fill-light'>run([<span class="hljs-string">'index.js'</span>, <span class="hljs-string">'index.css'</span>], {<span class="hljs-attr">format</span>: <span class="hljs-string">'json'</span>, <span class="hljs-attr">output</span>: <span class="hljs-string">'index-hash.json'</span>, <span class="hljs-attr">prettify</span>: <span class="hljs-literal">true</span>});</pre>
+    
+      <p><p>Reading from STDIN with configurations</p>
+</p>
+      <pre class='p1 overflow-auto round fill-light'>run([], {<span class="hljs-attr">format</span>: <span class="hljs-string">'csv'</span>, <span class="hljs-attr">input</span>: <span class="hljs-string">'stdin'</span>, <span class="hljs-attr">prettify</span>: <span class="hljs-literal">true</span>});</pre>
+    
+  
 
   
 
@@ -1408,6 +1444,74 @@ filenames
 
   
 
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='log'>
+      log
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>STDOUT log.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>log</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>data</span> <code class='quiet'>(any)</code>
+	    Data to print
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>log(<span class="hljs-string">'Lorem ipsum dolore sit amet'</span>);</pre>
+    
   
 
   
@@ -1968,74 +2072,6 @@ filenames
     
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">new</span> IoError(<span class="hljs-string">'File not found'</span>);</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='log'>
-      log
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>STDOUT log.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>log</div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>data</span> <code class='quiet'>(any)</code>
-	    Data to print
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>log(<span class="hljs-string">'Lorem ipsum dolore sit amet'</span>);</pre>
     
   
 
