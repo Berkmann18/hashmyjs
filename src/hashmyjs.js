@@ -18,7 +18,7 @@ const sjcl = require('sjcl'),
   readline = require('readline'),
   fs = require('fs'),
   clr = require('colors/safe');
-const { IoError, info, out, log } = require('./utils');
+const { IoError, info, out } = require('./utils');
 clr.setTheme(require('./clr'));
 
 /**
@@ -36,13 +36,6 @@ const OUTPUT_DEST = 'stdout';
  * @type {string}
  */
 const OUTPUT_FORMAT = 'text';
-
-/**
- * @description Decides whether the program will use the file in the argument or STDIN.
- * @return {boolean} true if argument or false for STDIN
- * @private
- */
-const argOrIn = () => process.argv.length > 2;
 
 /**
  * @description Generate a base64-encoded SHA-256 hash for a given data.<br>
@@ -75,7 +68,7 @@ const writeToFile = (filename, data, outputFormat = OUTPUT_FORMAT) => {
   if (!filename) throw new Error(`No filename specified to be written to with data=${data}`);
   filename = ('' + filename).trim();
   fs.writeFile(filename, '', (err) => {
-    if (err) throw new Error(`Couldn't write in ${filename}` /* err.message, err.context */ );
+    if (err) throw new Error(`Couldn't write in ${filename}`);
     let writer = fs.createWriteStream(filename, {
       flags: 'a'
     });
@@ -149,6 +142,11 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
     res = {},
     fileLines = [];
 
+  const TO_STDOUT = outputDest === 'stdout',
+    TO_VAR = outputDest === 'var',
+    AS_CSV = outputFormat === 'csv',
+    AS_JSON = outputFormat === 'json';
+
   for (let i = 0; i < files.length; ++i) {
     inputs.push(fs.readFileSync(files[i], (err) => {
       if (err) throw new IoError(err.message);
@@ -157,18 +155,18 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
     let data = scanInput(inputs[i], true);
 
     res[files[i]] = data;
-    if (outputDest === 'stdout') {
+    if (TO_STDOUT) {
       if (outputFormat === 'text') out(`${i > 0 ? '\n' : ''}- ${files[i]}: ${data}`);
-      else if (outputFormat === 'csv') out(prettify ? `${files[i]}, ${data}` : `${files[i]},${data}`);
-    } else if (outputDest !== 'var') {
-      if (outputFormat === 'csv') fileLines.push(prettify ? `${files[i]}, ${data}` : `${files[i]},${data}`);
-      else fileLines = fileLines.concat([outputFormat === 'json'? files[i] : `- ${files[i]}: ${data}`]);
+      else if (AS_CSV) out(prettify ? `${files[i]}, ${data}` : `${files[i]},${data}`);
+    } else if (!TO_VAR) {
+      if (AS_CSV) fileLines.push(prettify ? `${files[i]}, ${data}` : `${files[i]},${data}`);
+      else fileLines = fileLines.concat([AS_JSON ? files[i] : `- ${files[i]}: ${data}`]);
     }
   }
 
-  if (outputDest === 'var') {
-    if (outputFormat === 'json') return prettify ? prettifyOutput(res, 'json') : res;
-    else if (outputFormat === 'csv') {
+  if (TO_VAR) {
+    if (AS_JSON) return prettify ? prettifyOutput(res, 'json') : res;
+    else if (AS_CSV) {
       let result = [];
       for (let file in res) result.push(prettify ? `${file}, ${res[file]}` : `${file},${res[file]}`);
       return result;
@@ -177,9 +175,9 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
       for (let file in res) result.push(res[file]);
       return result;
     }
-  } else if (outputDest === 'stdout') {
-    if (outputFormat === 'json') out(JSON.stringify(res, null, prettify * 2));
-  } else writeToFile(outputDest, (outputFormat === 'json') ? [JSON.stringify(res, null, prettify * 2)] : fileLines);
+  } else if (TO_STDOUT) {
+    if (AS_JSON) out(JSON.stringify(res, null, prettify * 2));
+  } else writeToFile(outputDest, AS_JSON ? [JSON.stringify(res, null, prettify * 2)] : fileLines);
 };
 
 /**
@@ -194,6 +192,7 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
  * readIn({prettify: true, outputDest: 'outputFromSTDIN.txt'});
  */
 const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
+  //@todo Uncomment the line below and fix the broken tests
   // info('Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)\n');
   let rl = readline.createInterface({
       input: process.stdin,
@@ -210,7 +209,6 @@ const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUT
         res = scanInput(lines, true);
         let output = `- STDIN: ${res}`; //outputFormat = 'text'
         if (outputFormat === 'json') {
-          // console.log('pretty=', prettify);
           const op = {STDIN: res};
           if (outputDest === 'var') output = prettify ? prettifyOutput(op, 'json') : op;
           else output = JSON.stringify(op, null, prettify * 2);
@@ -260,7 +258,7 @@ const run = (files = [], { format = 'text', input = 'any', output = 'stdout', pr
   case 'args':
     return readFilesSync(files, opts);
   default: //any
-    return (files.length /*|| argOrIn() */) ? readFilesSync(files, opts) : readIn(opts);
+    return files.length ? readFilesSync(files, opts) : readIn(opts);
   }
 };
 
