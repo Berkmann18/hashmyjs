@@ -193,7 +193,7 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
  */
 const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
   //@todo Uncomment the line below and fix the broken tests
-  // info('Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)\n');
+  info('Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)\n');
   let rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
