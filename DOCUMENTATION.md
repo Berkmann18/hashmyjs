@@ -4,9 +4,9 @@
 
 -   [clr][1]
 -   [clr][2]
--   [Config][3]
-    -   [Properties][4]
--   [hashmyjs][5]
+-   [hashmyjs][3]
+-   [Config][4]
+    -   [Properties][5]
 -   [OUTPUT_DEST][6]
 -   [OUTPUT_FORMAT][7]
 -   [hash][8]
@@ -69,25 +69,25 @@ Colour/style scheme for the CLI.
 
 Type: {in: [string][57], out: [Array][58]&lt;[string][57]>, inf: [string][57], err: [string][57], warn: [string][57], debug: [string][57], quest: [string][57]}
 
-## Config
-
-Configuration
-
-Type: [Object][59]
-
-### Properties
-
--   `prettify` **[boolean][60]?** Prettify the output
--   `outputDest` **[string][57]?** Output destination (stdout, var, <i>filename</i>)
--   `outputFormat` **[string][57]?** Output format (text, json, csv)
-
 ## hashmyjs
 
-base64(SHA-256) text encoder inspired by [https://stackoverflow.com/a/38554505/5893085][61].
+base64(SHA-256) text encoder inspired by [https://stackoverflow.com/a/38554505/5893085][59].
 
 **Meta**
 
 -   **author**: Maximilian Berkmann
+
+## Config
+
+Configuration
+
+Type: [Object][60]
+
+### Properties
+
+-   `prettify` **[boolean][61]?** Prettify the output
+-   `outputDest` **[string][57]?** Output destination (stdout, var, <i>filename</i>)
+-   `outputFormat` **[string][57]?** Output format (text, json, csv)
 
 ## OUTPUT_DEST
 
@@ -152,7 +152,7 @@ Prettify the ouptut according to the format used or keep it as it is.
 
 ### Parameters
 
--   `output` **([string][57] \| [Object][59] \| [Array][58]&lt;[string][57]>)** Output
+-   `output` **([string][57] \| [Object][60] \| [Array][58]&lt;[string][57]>)** Output
 -   `format` **[string][57]** Format of the output (json, csv, ...) (optional, default `OUTPUT_FORMAT`)
 
 ### Examples
@@ -178,7 +178,7 @@ Scan an input and output it's integrity hash.
 ### Parameters
 
 -   `input` **([string][57] \| [Array][58]&lt;[string][57]>)** Input to hash (e.g. JS code)
--   `noOutput` **[boolean][60]** Don't output the result to the terminal but return the hash (optional, default `false`)
+-   `noOutput` **[boolean][61]** Don't output the result to the terminal but return the hash (optional, default `false`)
 
 ### Examples
 
@@ -273,11 +273,11 @@ Start the hasher.
 ### Parameters
 
 -   `files` **[Array][58]&lt;[string][57]>** List of files to go through (optional, default `[]`)
--   `obj` **[Object][59]** Configuration (optional, default `{}`)
+-   `obj` **[Object][60]** Configuration (optional, default `{}`)
     -   `obj.format` **[string][57]** Format of the output (text, json, csv) (optional, default `'text'`)
     -   `obj.input` **[string][57]** Location of the input (any, stdin, args) (optional, default `'any'`)
     -   `obj.output` **[string][57]** Destination for the output (stdout, var, <i>filenames</i>) (optional, default `'stdout'`)
-    -   `obj.prettify` **[boolean][60]** Prettify the output (optional, default `false`)
+    -   `obj.prettify` **[boolean][61]** Prettify the output (optional, default `false`)
 
 ### Examples
 
@@ -471,11 +471,11 @@ new IoError('File not found');
 
 [2]: #clr-1
 
-[3]: #config
+[3]: #hashmyjs
 
-[4]: #properties
+[4]: #config
 
-[5]: #hashmyjs
+[5]: #properties
 
 [6]: #output_dest
 
@@ -583,11 +583,11 @@ new IoError('File not found');
 
 [58]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[59]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[59]: https://stackoverflow.com/a/38554505/5893085
 
-[60]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[60]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[61]: https://stackoverflow.com/a/38554505/5893085
+[61]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
 [62]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
