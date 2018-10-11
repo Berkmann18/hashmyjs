@@ -12,7 +12,7 @@ test('info', () => {
   expect(output).toStrictEqual([`\u001b[32m${text}${END}`]);
   const res = stdout.inspectSync(() => info(text));
   expect(res).toStrictEqual([`\u001b[32m${text}${END}\n`]);
-  // expect(info(text)).not.toBeUndefined();
+  expect(info(text)).not.toBeUndefined();
 });
 
 test('dbg', () => {
@@ -21,7 +21,7 @@ test('dbg', () => {
   expect(output).toStrictEqual([`\u001b[90m${text}${END}`]);
   const res = stdout.inspectSync(() => dbg(text));
   expect(res).toStrictEqual([`\u001b[90m${text}${END}\n`]);
-  // expect(dbg(text)).not.toBeUndefined();
+  expect(dbg(text)).not.toBeUndefined();
 });
 
 test('out', () => {
@@ -30,7 +30,7 @@ test('out', () => {
   expect(output).toStrictEqual([`\u001b[1m\u001b[36m${text}${OUT_END}`]);
   const res = stdout.inspectSync(() => out(text));
   expect(res).toStrictEqual([`\u001b[1m\u001b[36m${text}${OUT_END}\n`]);
-  // expect(out(text)).not.toBeUndefined();
+  expect(out(text)).not.toBeUndefined();
 });
 
 test('inp', () => {
@@ -39,7 +39,7 @@ test('inp', () => {
   expect(output).toStrictEqual([`\u001b[37m${text}${END}`]);
   const res = stdout.inspectSync(() => inp(text));
   expect(res).toStrictEqual([`\u001b[37m${text}${END}\n`]);
-  // expect(inp(text)).not.toBeUndefined();
+  expect(inp(text)).not.toBeUndefined();
 });
 
 test('warn', () => {
@@ -48,7 +48,7 @@ test('warn', () => {
   expect(output).toStrictEqual([`\u001b[33m${text}${END}`]);
   const res = stdout.inspectSync(() => warn(text));
   expect(res).toStrictEqual([`\u001b[33m${text}${END}\n`]);
-  // expect(warn(text)).not.toBeUndefined();
+  expect(warn(text)).not.toBeUndefined();
 });
 
 test('quest', () => {
@@ -57,7 +57,7 @@ test('quest', () => {
   expect(output).toStrictEqual([`\u001b[34m${text}${END}`]);
   const res = stdout.inspectSync(() => quest(text));
   expect(res).toStrictEqual([`\u001b[34m${text}${END}\n`]);
-  // expect(quest(text)).not.toBeUndefined();
+  expect(quest(text)).not.toBeUndefined();
 });
 
 test('error', () => {
@@ -66,7 +66,7 @@ test('error', () => {
   expect(output).toStrictEqual([`\u001b[31m${text}${END}`]);
   const res = stdout.inspectSync(() => error(text));
   expect(res).toStrictEqual([`\u001b[31m${text}${END}\n`]);
-  // expect(error(text)).not.toBeUndefined();
+  expect(error(text)).not.toBeUndefined();
 });
 
 test('IoError', () => {

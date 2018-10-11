@@ -1,7 +1,10 @@
+const stdin = require('mock-stdin').stdin(),
+  stdout = require('test-console').stdout,
+  clr = require('colors/safe');
 const hmj = require('../src/hashmyjs'),
-  stdin = require('mock-stdin').stdin(),
-  stdout = require('test-console').stdout;
-const { out, IoError } = require('../src/utils');
+  { out, IoError } = require('../src/utils');
+
+clr.setTheme(require('../src/clr'));
 /*
  run(format=(text | json | csv), input=(any | stdin | args), output=(stdout | ...fileNames | var), files=[...files]
  paths:
@@ -14,7 +17,6 @@ const code = 'const hello = (name) => console.log(`Hi ${name}!`);',
   hashCode = 'sha256-X75HP8ksYMVgXXuzmi9Acp/bAF2dOdYarpROmgVvVEU=',
   hashCode0 = 'sha256-631s7BgZWUQPh3L/kg22uOBHmyaQoJ6DQtB0uVSJxh4=';
 
-// test('run(format=text, input=any, output=stdout)', () => expect(hmj.run()));
 /* scanInput */
 test('scanInput(code, true)', () => {
   expect(hmj.scanInput(code, true)).toBe(hashCode);
@@ -199,11 +201,11 @@ test(`run(files=[], {format=json, input=stdin, output=var, prettify=true})`, () 
     });
 });
 
-const OUT_START = '\u001b[1m\u001b[36m', OUT_END = '\u001b[39m\u001b[22m\n';
+const OUT_START = '\u001b[1m\u001b[36m',
+  OUT_END = '\u001b[39m\u001b[22m\n';
 
 test(`run(files=[], {format=json, input=stdin, output=stdout, prettify=true})`, () => {
-  expect.assertions(1);
-  // const output = stdout.inspectSync(() => hmj.run([], { format: 'json', input: 'stdin', output: 'stdout' }));
+  expect.assertions(2);
   const inspect = stdout.inspect();
   const h = hmj.run([], { format: 'json', input: 'stdin', output: 'stdout' });
   stdin.reset();
@@ -212,7 +214,10 @@ test(`run(files=[], {format=json, input=stdin, output=stdout, prettify=true})`, 
   stdin.end();
   h.then(res => {
     inspect.restore();
-    expect(inspect.output).toEqual([`${OUT_START}${JSON.stringify({STDIN: hashCode0})}${OUT_END}`])
+    const msg = 'Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)\n\n',
+      expected = `${OUT_START}${JSON.stringify({STDIN: hashCode0})}${OUT_END}`;
+    expect(inspect.output[1]).toEqual(expected);
+    expect(inspect.output[0]).toContain(msg); //Since there's colour coding mind-boggles
   })
   .catch(err => {
     throw new Error(err);
@@ -253,8 +258,12 @@ test('prettifyOutput(data)', () => {
 });
 
 /* writeToFile */
-test(`writeToFile('file.txt', 'test', text)`, () => {
+test(`writeToFile('file.txt', ['test'], text)`, () => {
   expect(hmj.writeToFile('./test/file.txt', ['test'])).toBeUndefined();
+});
+
+test(`writeToFile('file.txt', ['lorem'...], text)`, () => {
+  expect(hmj.writeToFile('./test/file.txt', ['lorem', 'dolore', 'sit'])).toBeUndefined();
 });
 
 test(`writeToFile('', 'test', text)`, () => {
@@ -265,10 +274,10 @@ test(`writeToFile('empty.txt', '', text)`, () => {
   expect(hmj.writeToFile('./test/empty.txt', [''])).toBeUndefined();
 });
 
-// test(`writeToFile('some&InvalidFile name.txt', 'test', text)`, () => {
-//   //Target hashmyjs#54
-//   expect(() => hmj.writeToFile('some&I/nvalidFile name.txt', ['test'])).toThrowError(IoError);
-// });
+test(`writeToFile('some&InvalidFile name.txt', 'test', text)`, () => {
+  //Target hashmyjs#54
+  expect(() => hmj.writeToFile('some&I/nvalidFile name.txt', ['test'])).toThrowError(IoError);
+});
 
 /* hash */
 test('hash(null)', () => {
