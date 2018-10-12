@@ -1,4 +1,4 @@
-const { info, dbg, out, inp, warn, quest, error, IoError, log } = require('../src/utils');
+const { info, dbg, out, inp, warn, quest, error, IoError, log, EOF } = require('../src/utils');
 const stdout = require('test-console').stdout;
 
 const clr = require('colors/safe');
@@ -100,4 +100,20 @@ test('log', () => {
   const text = 'Hello';
   const output = stdout.inspectSync(() => log(text));
   expect(output).toStrictEqual([text]);
+});
+
+test('EOF', () => {
+  expect(EOF('\n')).toBeFalsy(); //Linux
+  expect(EOF('\r\n')).toBeFalsy(); //Win
+  expect(EOF('\r')).toBeFalsy(); //OSX
+  expect(EOF('\\n')).toBeFalsy();
+  expect(EOF('\\r\\n')).toBeFalsy();
+  expect(EOF('\\r\\n')).toBeFalsy();
+  expect(EOF('\\r')).toBeFalsy();
+  expect(EOF('\$')).toBeFalsy();
+  expect(EOF('\EOF')).toBeFalsy();
+  expect(EOF(' \\$')).toBeFalsy();
+  expect(EOF(' \\EOF')).toBeFalsy();
+  expect(EOF('\\$')).toBeTruthy();
+  expect(EOF('\\EOF')).toBeTruthy();
 });
