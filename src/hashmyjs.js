@@ -18,7 +18,7 @@ const sjcl = require('sjcl'),
   readline = require('readline'),
   fs = require('fs'),
   clr = require('colors/safe');
-const { IoError, info, out } = require('./utils');
+const { IoError, info, out, EOF } = require('./utils');
 clr.setTheme(require('./clr'));
 
 /**
@@ -124,7 +124,7 @@ const scanInput = (input, noOutput = false) => {
 
 /**
  * @description Synchronously read files and scan them.
- * @param {string[]} [files=process.argv.slice(2, process.argv.length)] Array of file paths
+ * @param {string[]} [files] Array of file paths
  * @param {Config} obj Configuration.
  * @see Config
  * @return {(undefined|string[]|{...string})} Data or nothing
@@ -192,17 +192,15 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
  * readIn({prettify: true, outputDest: 'outputFromSTDIN.txt'});
  */
 const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
-  //@todo Uncomment the line below and fix the broken tests
   info('Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)\n');
   let rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
       terminal: false
     }),
-    EOF = (str) => str === '\\$' || str === '\\EOF',
-    lines = [];
+    lines = [],
+    res = null;
 
-  let res = null;
   return new Promise((resolve, reject) => {
     rl.on('line', (line) => {
       if (EOF(line)) {

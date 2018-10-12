@@ -90,4 +90,18 @@ class IoError extends Error {
   }
 }
 
-module.exports = { error, info, dbg, out, inp, warn, quest, IoError, log }
+/**
+ * Check if a string is deemed to be an EOF symbol (<code>\$<code> or <code>\EOF</code>).
+ * @param {string} str Text
+ * @returns {boolean} Is it an EOF character?
+ * @example
+ * EOF('\n'); //returns false
+ * EOF('END\$'); //returns false
+ * EOF('\\$'); //returns true
+ * EOF('\\EOF'); //returns true
+ * EOF('\$'); //returns false
+ * EOF('\EOF'); //returns false
+ */
+const EOF = (str) => str === '\\$' || str === '\\EOF'
+
+module.exports = { error, info, dbg, out, inp, warn, quest, IoError, log, EOF }
