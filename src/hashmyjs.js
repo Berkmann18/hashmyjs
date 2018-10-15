@@ -101,6 +101,27 @@ const prettifyOutput = (output, format = OUTPUT_FORMAT) => {
 };
 
 /**
+ * @description Handle JSON data.
+ * @param {Object|string|Array} json JSON data
+ * @param {boolean} [prettify=false] Make it pretty
+ * @returns {Object|string|Array} (Stringified) JSON data
+ */
+const jsonHandler = (json, prettify = false) => {
+  return prettify ? JSON.stringify(json, null, 2) : json;
+};
+
+/**
+ * @description Handle CSV data.
+ * @param {string} lhs CSV data on the left hand side
+ * @param {string} rhs CSV data on the right hand side
+ * @param {boolean} [prettify=false] Make it pretty
+ * @returns {string} CSV data
+ */
+const csvHandler = (lhs, rhs, prettify = false) => {
+  return prettify ? `${lhs}, ${rhs}` : `${lhs},${rhs}`;
+};
+
+/**
  * @description Scan an input and output it's integrity hash.
  * @param {(string|string[])} input Input to hash (e.g. JS code)
  * @param {boolean} [noOutput=false] Don't output the result to the terminal but return the hash
@@ -157,27 +178,24 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
     res[files[i]] = data;
     if (TO_STDOUT) {
       if (outputFormat === 'text') out(`${i > 0 ? '\n' : ''}- ${files[i]}: ${data}`);
-      else if (AS_CSV) out(prettify ? `${files[i]}, ${data}` : `${files[i]},${data}`);
+      else if (AS_CSV) out(csvHandler(files[i], data, prettify));
     } else if (!TO_VAR) {
-      if (AS_CSV) fileLines.push(prettify ? `${files[i]}, ${data}` : `${files[i]},${data}`);
-      else fileLines = fileLines.concat([AS_JSON ? files[i] : `- ${files[i]}: ${data}`]);
+      if (AS_CSV) fileLines.push(csvHandler(files[i], data, prettify));
+      else fileLines.push(`- ${files[i]}: ${data}`);
     }
   }
 
   if (TO_VAR) {
-    if (AS_JSON) return prettify ? prettifyOutput(res, 'json') : res;
+    let result = [];
+    if (AS_JSON) return jsonHandler(res, prettify);
     else if (AS_CSV) {
-      let result = [];
-      for (let file in res) result.push(prettify ? `${file}, ${res[file]}` : `${file},${res[file]}`);
-      return result;
-    } else {
-      let result = [];
-      for (let file in res) result.push(res[file]);
+      for (let file in res) result.push(csvHandler(file, res[file], prettify));
       return result;
     }
-  } else if (TO_STDOUT) {
-    if (AS_JSON) out(JSON.stringify(res, null, prettify * 2));
-  } else writeToFile(outputDest, AS_JSON ? [JSON.stringify(res, null, prettify * 2)] : fileLines);
+    for (let file in res) result.push(res[file]);
+    return result;
+  } else if (TO_STDOUT) AS_JSON && out(JSON.stringify(res, null, prettify * 2));
+  else writeToFile(outputDest, AS_JSON ? [JSON.stringify(res, null, prettify * 2)] : fileLines);
 };
 
 /**
@@ -208,9 +226,10 @@ const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUT
         let output = `- STDIN: ${res}`; //outputFormat = 'text'
         if (outputFormat === 'json') {
           const op = {STDIN: res};
-          if (outputDest === 'var') output = prettify ? prettifyOutput(op, 'json') : op;
-          else output = JSON.stringify(op, null, prettify * 2);
-        } else if (outputFormat === 'csv') output = prettify ? `STDIN, ${res}` : `STDIN,${res}`;
+          // if (outputDest === 'var') output = jsonHandler(op, prettify);
+          // else output = JSON.stringify(op, null, prettify * 2);
+          output = (outputDest === 'var') ? jsonHandler(op, prettify) : JSON.stringify(op, null, prettify * 2);
+        } else if (outputFormat === 'csv') output = csvHandler('STDIN', res, prettify);
 
         if (outputDest === 'stdout') out(output);
         else if (outputDest !== 'var') writeToFile(outputDest, (outputFormat === 'text') ? output.split('\n') : output);
