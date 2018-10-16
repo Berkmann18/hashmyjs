@@ -168,7 +168,7 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
     AS_CSV = outputFormat === 'csv',
     AS_JSON = outputFormat === 'json';
 
-  for (let i = 0; i < files.length; ++i) {
+  for (let i = 0, len = files.length; i < len; ++i) {
     inputs.push(fs.readFileSync(files[i], (err) => {
       if (err) throw new IoError(err.message);
     }));
@@ -226,8 +226,6 @@ const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUT
         let output = `- STDIN: ${res}`; //outputFormat = 'text'
         if (outputFormat === 'json') {
           const op = {STDIN: res};
-          // if (outputDest === 'var') output = jsonHandler(op, prettify);
-          // else output = JSON.stringify(op, null, prettify * 2);
           output = (outputDest === 'var') ? jsonHandler(op, prettify) : JSON.stringify(op, null, prettify * 2);
         } else if (outputFormat === 'csv') output = csvHandler('STDIN', res, prettify);
 
