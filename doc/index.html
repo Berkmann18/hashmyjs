@@ -46,9 +46,9 @@
               
                 
                 <li><a
-                  href='#hashmyjs'
+                  href='#config'
                   class="">
-                  hashmyjs
+                  Config
                   
                 </a>
                 
@@ -56,9 +56,9 @@
               
                 
                 <li><a
-                  href='#config'
+                  href='#hashmyjs'
                   class="">
-                  Config
+                  hashmyjs
                   
                 </a>
                 
@@ -109,6 +109,26 @@
                   href='#prettifyoutput'
                   class="">
                   prettifyOutput
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#jsonhandler'
+                  class="">
+                  jsonHandler
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#csvhandler'
+                  class="">
+                  csvHandler
                   
                 </a>
                 
@@ -254,6 +274,16 @@
                 
                 </li>
               
+                
+                <li><a
+                  href='#eof'
+                  class="">
+                  EOF
+                  
+                </a>
+                
+                </li>
+              
             </ul>
           </div>
           <div class='mt1 h6 quiet'>
@@ -370,54 +400,6 @@
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='hashmyjs'>
-      hashmyjs
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>base64(SHA-256) text encoder inspired by <a href="https://stackoverflow.com/a/38554505/5893085">https://stackoverflow.com/a/38554505/5893085</a>.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>hashmyjs</div>
-   
-  
-  
-
-  
-  
-  
-  <div>Author: Maximilian Berkmann</div>
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
     <h3 class='fl m0' id='config'>
       Config
     </h3>
@@ -479,6 +461,54 @@ filename
         </div>
       
     </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='hashmyjs'>
+      hashmyjs
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>base64(SHA-256) text encoder inspired by <a href="https://stackoverflow.com/a/38554505/5893085">https://stackoverflow.com/a/38554505/5893085</a>.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>hashmyjs</div>
+   
+  
+  
+
+  
+  
+  
+  <div>Author: Maximilian Berkmann</div>
+  
+  
+
+  
+
   
 
   
@@ -879,6 +909,175 @@ prettifyOutput(<span class="hljs-string">'0,john,doe'</span>, <span class="hljs-
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='jsonhandler'>
+      jsonHandler
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Handle JSON data.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>jsonHandler</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>json</span> <code class='quiet'>((<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>))</code>
+	    JSON data
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>prettify</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>
+            = <code>false</code>)</code>
+	    Make it pretty
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>)</code>:
+        (Stringified) JSON data
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='csvhandler'>
+      csvHandler
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Handle CSV data.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>csvHandler</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>lhs</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    CSV data on the left hand side
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>rhs</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    CSV data on the right hand side
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>prettify</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>
+            = <code>false</code>)</code>
+	    Make it pretty
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        CSV data
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='scaninput'>
       scanInput
     </h3>
@@ -1009,7 +1208,7 @@ scanInput([<span class="hljs-string">'Lorem ipsum dolore sit amet'</span>]); <sp
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>files</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>
+            <span class='code bold'>files</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>?
             = <code>process.argv.slice(2,process.argv.length)</code>)</code>
 	    Array of file paths
 
@@ -2072,6 +2271,87 @@ run([], {<span class="hljs-attr">input</span>: <span class="hljs-string">'stdin'
     
       
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">new</span> IoError(<span class="hljs-string">'File not found'</span>);</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='eof'>
+      EOF
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Check if a string is deemed to be an EOF symbol (<code>\$<code> or <code>\EOF</code>).</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>EOF</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>str</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    Text
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>:
+        Is it an EOF character?
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>EOF(<span class="hljs-string">'\n'</span>); <span class="hljs-comment">//returns false</span>
+EOF(<span class="hljs-string">'END\$'</span>); <span class="hljs-comment">//returns false</span>
+EOF(<span class="hljs-string">'\\$'</span>); <span class="hljs-comment">//returns true</span>
+EOF(<span class="hljs-string">'\\EOF'</span>); <span class="hljs-comment">//returns true</span>
+EOF(<span class="hljs-string">'\$'</span>); <span class="hljs-comment">//returns false</span>
+EOF(<span class="hljs-string">'\EOF'</span>); <span class="hljs-comment">//returns false</span></pre>
     
   
 
