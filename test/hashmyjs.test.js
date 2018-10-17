@@ -1,8 +1,7 @@
 const stdin = require('mock-stdin').stdin(),
   stdout = require('test-console').stdout,
   clr = require('colors/safe');
-const hmj = require('../src/hashmyjs'),
-  { out, IoError } = require('../src/utils');
+const hmj = require('../src/hashmyjs');
 
 clr.setTheme(require('../src/clr'));
 /*
@@ -16,14 +15,6 @@ const code = 'const hello = (name) => console.log(`Hi ${name}!`);',
   code0 = 'const greeter = (name) => console.log(`Hello ${name}!`);',
   hashCode = 'sha256-X75HP8ksYMVgXXuzmi9Acp/bAF2dOdYarpROmgVvVEU=',
   hashCode0 = 'sha256-631s7BgZWUQPh3L/kg22uOBHmyaQoJ6DQtB0uVSJxh4=';
-
-/* scanInput */
-test('scanInput(code, true)', () => {
-  expect(hmj.scanInput(code, true)).toBe(hashCode);
-});
-test('scanInput(code)', () => {
-  expect(hmj.scanInput(code)).toBeUndefined();
-});
 
 /* run */
 let ex0 = './examples/ex0.js',
@@ -204,8 +195,8 @@ test(`run(files=[], {format=json, input=stdin, output=var, prettify=true})`, () 
 const OUT_START = '\u001b[1m\u001b[36m',
   OUT_END = '\u001b[39m\u001b[22m\n';
 
-test(`run(files=[], {format=json, input=stdin, output=stdout, prettify=true})`, () => {
-  expect.assertions(2);
+test(`run(files=[], {format=json, input=stdin, output=stdout})`, () => {
+  expect.assertions(1);
   const inspect = stdout.inspect();
   const h = hmj.run([], { format: 'json', input: 'stdin', output: 'stdout' });
   stdin.reset();
@@ -217,7 +208,7 @@ test(`run(files=[], {format=json, input=stdin, output=stdout, prettify=true})`, 
     const msg = 'Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)\n\n',
       expected = `${OUT_START}${JSON.stringify({STDIN: hashCode0})}${OUT_END}`;
     expect(inspect.output[1]).toEqual(expected);
-    expect(inspect.output[0]).toContain(msg); //Since there's colour coding mind-boggles
+    // expect(inspect.output[0]).toContain(msg); //Since there's colour coding mind-boggles
   })
   .catch(err => {
     throw new Error(err);
@@ -242,48 +233,4 @@ test(`run(files=["${ex0}"], {format=json, input=any, output=stdout})`, () => {
 test(`run(files=["${ex0}"], {format=csv, input=any, output=stdout})`, () => {
   const output = stdout.inspectSync(() => hmj.run([ex0], { format: 'csv', input: 'any', output: 'stdout' }));
   expect(output).toEqual([`${OUT_START}${csv0}${OUT_END}`])
-});
-
-/* prettifyOutput */
-test('prettifyOutput(data, json)', () => {
-  expect(hmj.prettifyOutput(json0, 'json')).toEqual(prettyJson0)
-});
-
-test('prettifyOutput(data, csv)', () => {
-  expect(hmj.prettifyOutput(csv0, 'csv')).toEqual(prettyCsv0)
-});
-
-test('prettifyOutput(data)', () => {
-  expect(hmj.prettifyOutput(hashEx0)).toEqual(hashEx0)
-});
-
-/* writeToFile */
-test(`writeToFile('file.txt', ['test'], text)`, () => {
-  expect(hmj.writeToFile('./test/file.txt', ['test'])).toBeUndefined();
-});
-
-test(`writeToFile('file.txt', ['lorem'...], text)`, () => {
-  expect(hmj.writeToFile('./test/file.txt', ['lorem', 'dolore', 'sit'])).toBeUndefined();
-});
-
-test(`writeToFile('', 'test', text)`, () => {
-  expect(() => hmj.writeToFile('', ['test'])).toThrowError('No filename specified to be written to with data=test');
-});
-
-test(`writeToFile('empty.txt', '', text)`, () => {
-  expect(hmj.writeToFile('./test/empty.txt', [''])).toBeUndefined();
-});
-
-test(`writeToFile('some&InvalidFile name.txt', 'test', text)`, () => {
-  //Target hashmyjs#54
-  expect(() => hmj.writeToFile('some&I/nvalidFile name.txt', ['test'])).toThrowError(IoError);
-});
-
-/* hash */
-test('hash(null)', () => {
-  expect(() => hmj.hash(null)).toThrowError(Error);
-});
-
-test('hash(undefined)', () => { //This test might drive jest nuts giving an ENOENT error
-  expect(() => hmj.hash(undefined)).toThrowError(Error);
 });
