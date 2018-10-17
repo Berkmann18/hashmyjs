@@ -4,17 +4,17 @@
 
 
 > hashmyjs@2.0.0 cc /mnt/c/Users/max/Projects/hashmyjs
-> cr -c ./config/.complexrc "index.js" "src/clr.js" "src/core.js" "src/files.js" "src/hashmyjs.js" "src/stdin.js" "src/utils.js"
+> cr -c ./config/.complexrc "index.js" "src/clr.js" "src/core.js" "src/csv.js" "src/hashmyjs.js" "src/json.js" "src/text.js" "src/utils.js"
 
 # Complexity report, 2018-10-17
 
-* Mean per-function logical LOC: 12
+* Mean per-function logical LOC: 14.25
 * Mean per-function parameter count: 0
 * Mean per-function cyclomatic complexity: 1
-* Mean per-function Halstead effort: 1089.7100659736875
-* Mean per-module maintainability index: 63.9913561406587
+* Mean per-function Halstead effort: 1334.6184847200602
+* Mean per-module maintainability index: 61.22787103550207
 * First-order density: 0%
-* Change cost: 14.285714285714285%
+* Change cost: 12.5%
 * Core size: 0%
 
 ## index.js
@@ -39,43 +39,53 @@
 
 ## src/core.js
 
-* Physical LOC: 153
-* Logical LOC: 21
+* Physical LOC: 83
+* Logical LOC: 16
 * Mean parameter count: 0
 * Cyclomatic complexity: 1
-* Cyclomatic complexity density: 4.761904761904762%
-* Maintainability index: 55.99999249838648
-* Dependency count: 3
+* Cyclomatic complexity density: 6.25%
+* Maintainability index: 59.031588927036324
+* Dependency count: 6
 
-## src/files.js
+## src/csv.js
 
-* Physical LOC: 75
-* Logical LOC: 8
+* Physical LOC: 141
+* Logical LOC: 16
 * Mean parameter count: 0
 * Cyclomatic complexity: 1
-* Cyclomatic complexity density: 12.5%
-* Maintainability index: 68.17186712772045
-* Dependency count: 5
+* Cyclomatic complexity density: 6.25%
+* Maintainability index: 59.29865171228536
+* Dependency count: 6
 
 ## src/hashmyjs.js
 
-* Physical LOC: 58
-* Logical LOC: 10
+* Physical LOC: 87
+* Logical LOC: 13
 * Mean parameter count: 0
 * Cyclomatic complexity: 1
-* Cyclomatic complexity density: 10%
-* Maintainability index: 64.4610149090271
-* Dependency count: 4
-
-## src/stdin.js
-
-* Physical LOC: 60
-* Logical LOC: 8
-* Mean parameter count: 0
-* Cyclomatic complexity: 1
-* Cyclomatic complexity density: 12.5%
-* Maintainability index: 68.17186712772045
+* Cyclomatic complexity density: 7.6923076923076925%
+* Maintainability index: 61.5797973057103
 * Dependency count: 5
+
+## src/json.js
+
+* Physical LOC: 141
+* Logical LOC: 18
+* Mean parameter count: 0
+* Cyclomatic complexity: 1
+* Cyclomatic complexity density: 5.555555555555555%
+* Maintainability index: 57.894797846093574
+* Dependency count: 6
+
+## src/text.js
+
+* Physical LOC: 129
+* Logical LOC: 14
+* Mean parameter count: 0
+* Cyclomatic complexity: 1
+* Cyclomatic complexity density: 7.142857142857142%
+* Maintainability index: 60.88338117113447
+* Dependency count: 6
 
 ## src/utils.js
 

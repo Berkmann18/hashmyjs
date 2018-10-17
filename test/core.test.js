@@ -1,6 +1,5 @@
-// const clr = require('colors/safe');
-// clr.setTheme(require('../src/clr'));
-const { scanInput, prettifyOutput, writeToFile, hash } = require('../src/core'),
+const stdin = require('mock-stdin').stdin();
+const { scanInput, prettifyOutput, writeToFile, hash, readFilesSync, readIn } = require('../src/core'),
   { IoError } = require('../src/utils');
 
 const code = 'const hello = (name) => console.log(`Hi ${name}!`);',
@@ -40,41 +39,11 @@ test('scanInput(code)', () => {
 
 test('scanInput()', () => {
   expect(() => scanInput()).toThrowError(Error);
-})
-/* prettifyOutput */
-test('prettifyOutput(data, json)', () => {
-  expect(prettifyOutput(json0, 'json')).toEqual(prettyJson0)
 });
 
-test('prettifyOutput(data, csv)', () => {
-  expect(prettifyOutput(csv0, 'csv')).toEqual(prettyCsv0)
+test('scanInput(null)', () => {
+  expect(() => scanInput(null)).toThrowError(Error);
 });
-
-test('prettifyOutput(data)', () => {
-  expect(prettifyOutput(hashEx0)).toEqual(hashEx0)
-});
-
-/* writeToFile */
-test('writeToFile(\'file.txt\', [\'test\'], text)', () => {
-  expect(writeToFile('./test/file.txt', ['test'])).toBeUndefined();
-});
-
-test('writeToFile(\'file.txt\', [\'lorem\'...], text)', () => {
-  expect(writeToFile('./test/file.txt', ['lorem', 'dolore', 'sit'])).toBeUndefined();
-});
-
-test('writeToFile(\'\', \'test\', text)', () => {
-  expect(() => writeToFile('', ['test'])).toThrowError('No filename specified to be written to with data=test');
-});
-
-test('writeToFile(\'empty.txt\', \'\', text)', () => {
-  expect(writeToFile('./test/empty.txt', [''])).toBeUndefined();
-});
-
-// test(`writeToFile('some&InvalidFile name.txt', 'test', text)`, () => {
-//   //Target core#66
-//   expect(() => writeToFile('some&I/nvalidFile name.txt', ['test'])).toThrowError(IoError);
-// });
 
 /* hash */
 test('hash(null)', () => {

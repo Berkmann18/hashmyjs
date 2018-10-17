@@ -8,9 +8,39 @@
 
 const clr = require('colors/safe');
 clr.setTheme(require('./clr'));
-const readIn = require('./stdin'),
-  readFilesSync = require('./files');
+const { readJsonFiles, readJson } = require('./json'),
+  { readCsvFiles, readCsv } = require('./csv'),
+  { readTxtFiles, readTxt } = require('./text');
 
+/**
+ * @description Send the function that will synchronously read files based on the specified format.
+ * @param {string} [format='text'] Format of the files (json, csv, text)
+ */
+const readFiles = (format) => {
+  switch (format) {
+  case 'json':
+    return readJsonFiles;
+  case 'csv':
+    return readCsvFiles;
+  default:
+    return readTxtFiles;
+  }
+}
+
+/**
+ * @description Send the function that will read the STDIN based on the specified format.
+ * @param {string} [format='text'] Format of the files (json, csv, text)
+ */
+const readIn = (format) => {
+  switch (format) {
+  case 'json':
+    return readJson;
+  case 'csv':
+    return readCsv;
+  default:
+    return readTxt;
+  }
+}
 /**
  * @description Start the hasher.
  * @param {string[]} [files=[]] List of files to go through
@@ -38,21 +68,20 @@ const run = (files = [], { format = 'text', input = 'any', output = 'stdout', pr
   const opts = {
     prettify,
     outputDest: output,
-    outputFormat: format
   };
 
   switch (input) {
   case 'stdin':
-    return readIn(opts);
+    return readIn(format)(opts);
   case 'args':
-    return readFilesSync(files, opts);
+    return readFiles(format)(files, opts);
   default: //any
-    return files.length ? readFilesSync(files, opts) : readIn(opts);
+    return files.length ? readFiles(format)(files, opts) : readIn(format)(opts);
   }
 };
 
 module.exports = {
   run,
   readIn,
-  readFilesSync
+  readFiles
 }
