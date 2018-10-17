@@ -234,3 +234,33 @@ test(`run(files=["${ex0}"], {format=csv, input=any, output=stdout})`, () => {
   const output = stdout.inspectSync(() => hmj.run([ex0], { format: 'csv', input: 'any', output: 'stdout' }));
   expect(output).toEqual([`${OUT_START}${csv0}${OUT_END}`])
 });
+
+test(`run(files=[], {input=any, output=var})`, () => {
+  expect.assertions(1);
+  let h = hmj.run([], { input: 'any', output: 'var' });
+  stdin.reset();
+  stdin.send(code0);
+  stdin.send('\n\\$');
+  stdin.end();
+  h.then(res => {
+      expect(res).toEqual(`- STDIN: ${hashCode0}`);
+    })
+    .catch(err => {
+      throw new Error(err);
+    });
+});
+
+test(`run()`, () => {
+  expect.assertions(1);
+  let h = hmj.run();
+  stdin.reset();
+  stdin.send(code0);
+  stdin.send('\n\\$');
+  stdin.end();
+  h.then(res => {
+      expect(res).toEqual(`- STDIN: ${hashCode0}`);
+    })
+    .catch(err => {
+      throw new Error(err);
+    });
+});

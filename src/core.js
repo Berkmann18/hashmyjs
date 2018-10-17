@@ -67,6 +67,7 @@ const writeToFile = (filename, data, outputFormat = OUTPUT_FORMAT) => {
     let writer = fs.createWriteStream(filename, {
       flags: 'a'
     });
+
     data.forEach((line) => writer.write(`${prettifyOutput(line, outputFormat)}\n`));
     info(`Successfully written the result to ${filename}`);
   });
@@ -132,7 +133,7 @@ const csvHandler = (lhs, rhs, prettify = false) => {
 const scanInput = (input, noOutput = false) => {
   let emptyInput = !input || input.toString() === '';
   if (emptyInput) throw new Error('scanInput didn\'t received any input');
-  
+
   let data = Array.isArray(input) ? input.join('\n') : input;
   let digest = hash(data);
   if (typeof digest !== 'string' && 'message' in digest) throw new Error(digest.message);

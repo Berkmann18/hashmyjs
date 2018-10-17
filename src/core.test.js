@@ -55,19 +55,19 @@ test('prettifyOutput(data)', () => {
 });
 
 /* writeToFile */
-test(`writeToFile('file.txt', ['test'], text)`, () => {
+test('writeToFile(\'file.txt\', [\'test\'], text)', () => {
   expect(writeToFile('./test/file.txt', ['test'])).toBeUndefined();
 });
 
-test(`writeToFile('file.txt', ['lorem'...], text)`, () => {
+test('writeToFile(\'file.txt\', [\'lorem\'...], text)', () => {
   expect(writeToFile('./test/file.txt', ['lorem', 'dolore', 'sit'])).toBeUndefined();
 });
 
-test(`writeToFile('', 'test', text)`, () => {
+test('writeToFile(\'\', \'test\', text)', () => {
   expect(() => writeToFile('', ['test'])).toThrowError('No filename specified to be written to with data=test');
 });
 
-test(`writeToFile('empty.txt', '', text)`, () => {
+test('writeToFile(\'empty.txt\', \'\', text)', () => {
   expect(writeToFile('./test/empty.txt', [''])).toBeUndefined();
 });
 

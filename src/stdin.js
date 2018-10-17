@@ -32,7 +32,7 @@ const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUT
     }),
     lines = [],
     res = null;
-  
+
   return new Promise((resolve, reject) => {
     rl.on('line', (line) => {
       if (EOF(line)) {
@@ -50,7 +50,7 @@ const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUT
         if (outputDest === 'stdout') out(output);
         else if (outputDest !== 'var') {
           writeToFile(outputDest, (outputFormat === 'text') ?
-            output.split('\n') :output);
+            output.split('\n') : [output]);
         } resolve(output);
       } else lines.push(line);
     });
