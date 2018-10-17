@@ -46,19 +46,9 @@
               
                 
                 <li><a
-                  href='#config'
+                  href='#core'
                   class="">
-                  Config
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#hashmyjs'
-                  class="">
-                  hashmyjs
+                  core
                   
                 </a>
                 
@@ -79,6 +69,16 @@
                   href='#output_format'
                   class="">
                   OUTPUT_FORMAT
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#config'
+                  class="">
+                  Config
                   
                 </a>
                 
@@ -146,6 +146,16 @@
               
                 
                 <li><a
+                  href='#files'
+                  class="">
+                  files
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#readfilessync'
                   class="">
                   readFilesSync
@@ -156,9 +166,9 @@
               
                 
                 <li><a
-                  href='#readin'
+                  href='#hashmyjs'
                   class="">
-                  readIn
+                  hashmyjs
                   
                 </a>
                 
@@ -169,6 +179,26 @@
                   href='#run'
                   class="">
                   run
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stdin'
+                  class="">
+                  stdin
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#readin'
+                  class="">
+                  readIn
                   
                 </a>
                 
@@ -400,102 +430,19 @@
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='config'>
-      Config
+    <h3 class='fl m0' id='core'>
+      core
     </h3>
     
     
   </div>
   
 
-  <p>Configuration</p>
+  <p>Core module for HMJ.</p>
 
  
   
-    <div class='pre p1 fill-light mt0'>Config</div>
-   
-  
-    <p>
-      Type:
-      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
-    </p>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Properties</div>
-    <div>
-      
-        <div class='space-bottom0'>
-          <span class='code bold'>prettify</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?)</code>
-          : Prettify the output
-
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <span class='code bold'>outputDest</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?)</code>
-          : Output destination (stdout, var, 
-<i>
-filename
-</i>
-)
-
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <span class='code bold'>outputFormat</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?)</code>
-          : Output format (text, json, csv)
-
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='hashmyjs'>
-      hashmyjs
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>base64(SHA-256) text encoder inspired by <a href="https://stackoverflow.com/a/38554505/5893085">https://stackoverflow.com/a/38554505/5893085</a>.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>hashmyjs</div>
+    <div class='pre p1 fill-light mt0'>core</div>
    
   
   
@@ -503,7 +450,7 @@ filename
   
   
   
-  <div>Author: Maximilian Berkmann</div>
+  
   
   
 
@@ -615,6 +562,89 @@ filename
 
   
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='config'>
+      Config
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Configuration</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>Config</div>
+   
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Properties</div>
+    <div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>prettify</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?)</code>
+          : Prettify the output
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>outputDest</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?)</code>
+          : Output destination (stdout, var, 
+<i>
+filename
+</i>
+)
+
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <span class='code bold'>outputFormat</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>?)</code>
+          : Output format (text, json, csv)
+
+          
+        </div>
+      
+    </div>
   
 
   
@@ -1178,6 +1208,54 @@ scanInput([<span class="hljs-string">'Lorem ipsum dolore sit amet'</span>]); <sp
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='files'>
+      files
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>File reader</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>files</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='readfilessync'>
       readFilesSync
     </h3>
@@ -1313,19 +1391,19 @@ readFilesSync([<span class="hljs-string">'input.csv'</span>], {<span class="hljs
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='readin'>
-      readIn
+    <h3 class='fl m0' id='hashmyjs'>
+      hashmyjs
     </h3>
     
     
   </div>
   
 
-  <p>Read user's input from STDIN.</p>
+  <p>base64(SHA-256) text encoder inspired by <a href="https://stackoverflow.com/a/38554505/5893085">https://stackoverflow.com/a/38554505/5893085</a>.</p>
 
  
   
-    <div class='pre p1 fill-light mt0'>readIn</div>
+    <div class='pre p1 fill-light mt0'>hashmyjs</div>
    
   
   
@@ -1333,98 +1411,18 @@ readFilesSync([<span class="hljs-string">'input.csv'</span>], {<span class="hljs
   
   
   
+  <div>Author: Maximilian Berkmann</div>
   
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>obj</span> <code class='quiet'>(<a href="#config">Config</a>
-            = <code>{}</code>)</code>
-	    Configuration.
-
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>obj.prettify</span> <code class='quiet'>any</code>
-  
-    (default <code>false</code>)
-  </td>
-  <td class='break-word'><span></span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>obj.outputDest</span> <code class='quiet'>any</code>
-  
-    (default <code>OUTPUT_DEST</code>)
-  </td>
-  <td class='break-word'><span></span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>obj.outputFormat</span> <code class='quiet'>any</code>
-  
-    (default <code>OUTPUT_FORMAT</code>)
-  </td>
-  <td class='break-word'><span></span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
   
 
   
 
   
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>:
-        Data or nothing
-
-      
-    
-  
 
   
 
   
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>readIn();</pre>
-    
-      <p><p>With configurations</p>
-</p>
-      <pre class='p1 overflow-auto round fill-light'>readIn({<span class="hljs-attr">outputFormat</span>: <span class="hljs-string">'json'</span>});
-readIn({<span class="hljs-attr">prettify</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">outputDest</span>: <span class="hljs-string">'outputFromSTDIN.txt'</span>});</pre>
-    
+
   
 
   
@@ -1594,6 +1592,182 @@ run([], {<span class="hljs-attr">input</span>: <span class="hljs-string">'stdin'
       <p><p>Reading from STDIN with configurations</p>
 </p>
       <pre class='p1 overflow-auto round fill-light'>run([], {<span class="hljs-attr">format</span>: <span class="hljs-string">'csv'</span>, <span class="hljs-attr">input</span>: <span class="hljs-string">'stdin'</span>, <span class="hljs-attr">prettify</span>: <span class="hljs-literal">true</span>});</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='stdin'>
+      stdin
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>STDIN reader.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>stdin</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='readin'>
+      readIn
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Read user's input from STDIN.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>readIn</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>obj</span> <code class='quiet'>(<a href="#config">Config</a>
+            = <code>{}</code>)</code>
+	    Configuration.
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.prettify</span> <code class='quiet'>any</code>
+  
+    (default <code>false</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.outputDest</span> <code class='quiet'>any</code>
+  
+    (default <code>OUTPUT_DEST</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.outputFormat</span> <code class='quiet'>any</code>
+  
+    (default <code>OUTPUT_FORMAT</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>:
+        Data or nothing
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>readIn();</pre>
+    
+      <p><p>With configurations</p>
+</p>
+      <pre class='p1 overflow-auto round fill-light'>readIn({<span class="hljs-attr">outputFormat</span>: <span class="hljs-string">'json'</span>});
+readIn({<span class="hljs-attr">prettify</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">outputDest</span>: <span class="hljs-string">'outputFromSTDIN.txt'</span>});</pre>
     
   
 
