@@ -6,7 +6,7 @@
 > hashmyjs@2.0.0 cc /mnt/c/Users/max/Projects/hashmyjs
 > cr -c ./config/.complexrc "index.js" "src/clr.js" "src/core.js" "src/csv.js" "src/hashmyjs.js" "src/json.js" "src/text.js" "src/utils.js"
 
-# Complexity report, 2018-10-17
+# Complexity report, 2018-10-18
 
 * Mean per-function logical LOC: 14.25
 * Mean per-function parameter count: 0
