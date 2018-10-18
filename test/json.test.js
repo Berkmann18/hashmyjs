@@ -38,12 +38,13 @@ test('Not existent', () => {
   expect(readJsonFiles(['nowt'])).toEqual(`ENOENT: no such file or directory, open 'nowt'`);
 });
 
-test('L.92', () => {
+test('L.91-2', () => {
   expect(readJsonFiles(['./examples/ex0.js'], { outputDest: 'var' })).toEqual(json0);
+  expect(readJsonFiles(['./examples/ex0.js'], { outputDest: './test/ex0.json' })).toBeUndefined();
 });
 
 /* readJson */
-test(`No STDIN`, () => {
+test('No STDIN', () => {
   expect.assertions(1);
   let h = readJson({ outputDest: 'var' })
   stdin.reset();
@@ -51,10 +52,8 @@ test(`No STDIN`, () => {
   stdin.end();
   h.then(res => { //Shouldn't happen
       expect(res).toEqual({STDIN: 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='});
-    })
-    .catch(err => {
-      expect(err.message).toEqual(`scanInput didn't received any input`);
-    });
+    }, err => expect(err.message).toEqual(`scanInput didn't received any input`))
+    .catch(err => console.error('No STDIN::Error=', err.message));
 });
 
 test(`readJson({outputDest: 'in.json'})`, () => {
@@ -67,13 +66,11 @@ test(`readJson({outputDest: 'in.json'})`, () => {
   h.then(res => { //Shouldn't happen
     console.log(res);
       expect(res).toEqual(strHash);
-    })
-    .catch(err => {
-      expect(err.message).toEqual(`scanInput didn't received any input`);
-    });
+    }, err => expect(err.message).toEqual(`scanInput didn't received any input`))
+    .catch(err => console.error('readJson::Error=', err.message));
 });
 
-test(`L.26`, () => {
+test('L.26', () => {
   expect.assertions(1);
   let h = readJson()
   stdin.reset();
@@ -82,23 +79,6 @@ test(`L.26`, () => {
   stdin.end();
   h.then(res => {
       expect(res).toEqual(strHash);
-    })
-    .catch(err => {
-      expect(err.message).toEqual(`scanInput didn't received any input`);
-    });
-});
-
-test(`readIn({outputDest: 'in.json'})`, () => {
-  expect.assertions(1);
-  let h = readJson({ outputDest: './test/in.json' })
-  stdin.reset();
-  stdin.send(code);
-  stdin.send('\n\\$');
-  stdin.end();
-  h.then(res => {
-      expect(res).toEqual(strHash);
-    })
-    .catch(err => {
-      expect(err.message).toEqual(`scanInput didn't received any input`);
-    });
+    }, err => expect(err.message).toEqual(`scanInput didn't received any input`))
+    .catch(err => console.error('L.26::Error=', err.message));
 });

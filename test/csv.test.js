@@ -32,7 +32,7 @@ test('Not existent', () => {
 });
 
 /* readCsv */
-test(`No STDIN`, () => {
+test('No STDIN', () => {
   expect.assertions(1);
   let h = readCsv({ outputDest: 'var' })
   stdin.reset();
@@ -40,10 +40,8 @@ test(`No STDIN`, () => {
   stdin.end();
   h.then(res => { //Shouldn't happen
       expect(res).toEqual(`STDIN,sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=`);
-    })
-    .catch(err => {
-      expect(err.message).toEqual(`scanInput didn't received any input`);
-    });
+    }, err => expect(err.message).toEqual(`scanInput didn't received any input`))
+    .catch(err => console.error('No STDIN:Error=', err.message));
 });
 
 test(`readCsv({outputDest: 'in.csv'})`, () => {
@@ -55,13 +53,11 @@ test(`readCsv({outputDest: 'in.csv'})`, () => {
   stdin.end();
   h.then(res => { //Shouldn't happen
       expect(res).toEqual(`STDIN,${hashCode}`);
-    })
-    .catch(err => {
-      expect(err.message).toEqual(`scanInput didn't received any input`);
-    });
+    }, err => expect(err.message).toEqual(`scanInput didn't received any input`))
+    .catch(err => console.error('readCsv::Error=', err.message));
 });
 
-test(`L.26`, () => {
+test('L.26', () => {
   expect.assertions(1);
   let h = readCsv()
   stdin.reset();
@@ -70,23 +66,6 @@ test(`L.26`, () => {
   stdin.end();
   h.then(res => {
       expect(res).toEqual(`STDIN,${hashCode}`);
-    })
-    .catch(err => {
-      expect(err.message).toEqual(`scanInput didn't received any input`);
-    });
-});
-
-test(`readIn({outputDest: 'in.csv'})`, () => {
-  expect.assertions(1);
-  let h = readCsv({ outputDest: './test/in.csv' })
-  stdin.reset();
-  stdin.send(code);
-  stdin.send('\n\\$');
-  stdin.end();
-  h.then(res => {
-      expect(res).toEqual(`STDIN,${hashCode}`);
-    })
-    .catch(err => {
-      expect(err.message).toEqual(`scanInput didn't received any input`);
-    });
+    }, err => expect(err.message).toEqual(`scanInput didn't received any input`))
+    .catch(err => console.error('L.26::Error=', err.message));
 });
