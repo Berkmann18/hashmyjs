@@ -34,8 +34,7 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
 
   const TO_STDOUT = outputDest === 'stdout',
     TO_VAR = outputDest === 'var',
-    AS_CSV = outputFormat === 'csv',
-    AS_JSON = outputFormat === 'json';
+    AS_CSV = outputFormat === 'csv';
 
   for (let i = 0, len = files.length; i < len; ++i) {
     try {
@@ -59,17 +58,34 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
     }
   }
 
+  if (outputFormat === 'json') return asJson(res, outputDest, prettify);
+
   if (TO_VAR) {
     let result = [];
-    if (AS_JSON) return jsonHandler(res, prettify);
-    else if (AS_CSV) {
+    if (AS_CSV) {
       for (let file in res) result.push(csvHandler(file, res[file], prettify));
       return result;
     }
     for (let file in res) result.push(res[file]);
     return result;
-  } else if (TO_STDOUT) AS_JSON && out(JSON.stringify(res, null, prettify * 2));
-  else writeToFile(outputDest, AS_JSON ? [JSON.stringify(res, null, prettify * 2)] : fileLines);
+  } else writeToFile(outputDest, fileLines);
+};
+
+/**
+ * Process data from read files that would come out in JSON.
+ * @param {Object} res Result from {@link readFilesSync} to process
+ * @param {string} [outputDest='stdout'] Destination of the output
+ * @returns {Object|string|Array|undefined} JSON data or nothing
+ */
+const asJson = (res, outputDest = 'stdout', prettify = false) => {
+  switch (outputDest) {
+    case 'stdout':
+      return out(JSON.stringify(res, null, prettify * 2));
+    case 'var':
+      return jsonHandler(res, prettify);
+    default: //file
+      return writeToFile(outputDest, [JSON.stringify(res, null, prettify * 2)])
+  }
 };
 
 module.exports = readFilesSync;
