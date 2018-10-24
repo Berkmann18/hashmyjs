@@ -48,36 +48,42 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
 };
 
 /**
+ * @description JSON specialised {@link processFileData}.
+ * @param {{string: string}} data Data to process
+ * @param {string} [outputDest=OUTPUT_DEST] Destination of the output
+ * @param {boolean} [prettify=false] Prettify the output
+ * @returns {undefined|string|Object|Array} Processed JSON result
+ */
+const processJsonData = (data, outputDest = OUTPUT_DEST, prettify = false) => {
+  switch (outputDest) {
+  case 'stdout':
+    return out(JSON.stringify(data, null, prettify * 2));
+  case 'var':
+    return jsonHandler(data, prettify);
+  default:
+    return writeToFile(outputDest, [JSON.stringify(data, null, prettify * 2)]);
+  }
+};
+
+/**
  * @description Process read files and do something with it (based on the configuration).
- * @param {{string: string}} res Data read from the files
+ * @param {{string: string}} data Data read from the files
  * @param {Config} obj Configuration
  * @see Config
- * @returns {undefined|string|Object|Array}
+ * @returns {undefined|string|Object|Array} Processed result
  */
-const processFileData = (res, { prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
-  const AS_CSV = outputFormat === 'csv',
-    AS_JSON = outputFormat === 'json';
-
-  if (AS_JSON) {
-    switch (outputDest) {
-    case 'stdout':
-      return out(JSON.stringify(res, null, prettify * 2));
-    case 'var':
-      return jsonHandler(res, prettify);
-    default:
-      return writeToFile(outputDest, [JSON.stringify(res, null, prettify * 2)]);
-    }
-  }
+const processFileData = (data, { prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
+  if (outputFormat === 'json') return processJsonData(data, outputDest, prettify);
 
   let result = [];
-  if (AS_CSV) {
-    for (let file in res) {
-      let csv = csvHandler(file, res[file], prettify);
+  if (outputFormat === 'csv') {
+    for (let file in data) {
+      let csv = csvHandler(file, data[file], prettify);
       (outputDest === 'stdout') ? out(csv) : result.push(csv);
     }
   } else {
-    for (let file in res) {
-      (outputDest === 'stdout') ? out(`- ${file}: ${res[file]}`) : result.push(res[file]);
+    for (let file in data) {
+      (outputDest === 'stdout') ? out(`- ${file}: ${data[file]}`) : result.push(data[file]);
     }
   }
   return (outputDest === 'var') ? result : writeToFile(outputDest, result);
