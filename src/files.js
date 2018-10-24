@@ -58,38 +58,29 @@ const processFileData = (res, { prettify = false, outputDest = OUTPUT_DEST, outp
   const AS_CSV = outputFormat === 'csv',
     AS_JSON = outputFormat === 'json';
 
-  let result = [];
-  switch (outputDest) {
-  case 'stdout':
-    if (AS_JSON) return out(JSON.stringify(res, null, prettify * 2));
-
-    if (AS_CSV) {
-      for (let file in res) out(csvHandler(file, res[file], prettify));
-    } else {
-      for (let file in res) out(`- ${file}: ${res[file]}`);
+  if (AS_JSON) {
+    switch (outputDest) {
+    case 'stdout':
+      return out(JSON.stringify(res, null, prettify * 2));
+    case 'var':
+      return jsonHandler(res, prettify);
+    default:
+      return writeToFile(outputDest, [JSON.stringify(res, null, prettify * 2)]);
     }
-    break;
-  case 'var':
-    if (AS_JSON) return jsonHandler(res, prettify);
-
-    if (AS_CSV) {
-      for (let file in res) result.push(csvHandler(file, res[file], prettify));
-      return result;
-    }
-    for (let file in res) result.push(res[file]);
-    return result;
-  default: //file
-    if (AS_JSON) return writeToFile(outputDest, [JSON.stringify(res, null, prettify * 2)]);
-
-    if (AS_CSV) {
-      for (let file in res) {
-        result.push(csvHandler(file, res[file], prettify));
-      }
-    } else {
-      for (let file in res) result.push(`- ${file}: ${res[file]}`);
-    }
-    writeToFile(outputDest, result);
   }
+
+  let result = [];
+  if (AS_CSV) {
+    for (let file in res) {
+      let csv = csvHandler(file, res[file], prettify);
+      (outputDest === 'stdout') ? out(csv) : result.push(csv);
+    }
+  } else {
+    for (let file in res) {
+      (outputDest === 'stdout') ? out(`- ${file}: ${res[file]}`) : result.push(res[file]);
+    }
+  }
+  return (outputDest === 'var') ? result : writeToFile(outputDest, result);
 };
 
 module.exports = readFilesSync;
