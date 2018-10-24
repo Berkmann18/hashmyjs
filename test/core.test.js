@@ -1,5 +1,3 @@
-// const clr = require('colors/safe');
-// clr.setTheme(require('../src/clr'));
 const { scanInput, prettifyOutput, writeToFile, hash } = require('../src/core'),
   { IoError } = require('../src/utils');
 

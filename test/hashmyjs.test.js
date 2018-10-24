@@ -205,10 +205,10 @@ test(`run(files=[], {format=json, input=stdin, output=stdout})`, () => {
   stdin.end();
   h.then(res => {
     inspect.restore();
-    const msg = 'Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)\n\n',
-      expected = `${OUT_START}${JSON.stringify({STDIN: hashCode0})}${OUT_END}`;
+    const expected = `${OUT_START}${JSON.stringify({STDIN: hashCode0})}${OUT_END}`;
     expect(inspect.output[1]).toEqual(expected);
-    // expect(inspect.output[0]).toContain(msg); //Since there's colour coding mind-boggles
+    // Since there's colour coding mind-boggles, the first entry is assumed to be
+    // 'Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)\n\n'
   })
   .catch(err => {
     throw new Error(err);

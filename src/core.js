@@ -131,8 +131,7 @@ const csvHandler = (lhs, rhs, prettify = false) => {
  * scanInput(['Lorem ipsum dolore sit amet']); //returns the same as above
  */
 const scanInput = (input, noOutput = false) => {
-  let emptyInput = !input || input.toString() === '';
-  if (emptyInput) throw new Error('scanInput didn\'t received any input');
+  if (!input || input.toString() === '') throw new Error('scanInput didn\'t received any input');
 
   let data = Array.isArray(input) ? input.join('\n') : input;
   let digest = hash(data);
