@@ -15,7 +15,7 @@ clr.setTheme(require('./clr'));
 /**
  * @description Synchronously read files and scan them.
  * @param {string[]} [files] Array of file paths
- * @param {Config} obj Configuration.
+ * @param {Config} obj Configuration
  * @see Config
  * @return {(undefined|string[]|{...string})} Data or nothing
  * @public
@@ -29,12 +29,7 @@ clr.setTheme(require('./clr'));
  */
 const readFilesSync = (files = process.argv.slice(2, process.argv.length), { prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
   let inputs = [],
-    res = {},
-    fileLines = [];
-
-  const TO_STDOUT = outputDest === 'stdout',
-    TO_VAR = outputDest === 'var',
-    AS_CSV = outputFormat === 'csv';
+    res = {};
 
   for (let i = 0, len = files.length; i < len; ++i) {
     try {
@@ -46,45 +41,54 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
       } else throw err;
     }
 
-    let data = scanInput(inputs[i], true);
-
-    res[files[i]] = data;
-    if (TO_STDOUT) {
-      if (outputFormat === 'text') out(`${i > 0 ? '\n' : ''}- ${files[i]}: ${data}`);
-      else if (AS_CSV) out(csvHandler(files[i], data, prettify));
-    } else if (!TO_VAR) {
-      if (AS_CSV) fileLines.push(csvHandler(files[i], data, prettify));
-      else fileLines.push(`- ${files[i]}: ${data}`);
-    }
+    res[files[i]] = scanInput(inputs[i], true);
   }
 
-  if (outputFormat === 'json') return asJson(res, outputDest, prettify);
+  return processFileData(res, {prettify, outputDest, outputFormat});
+};
 
-  if (TO_VAR) {
-    let result = [];
+/**
+ * @description Process read files and do something with it (based on the configuration).
+ * @param {{string: string}} res Data read from the files
+ * @param {Config} obj Configuration
+ * @see Config
+ * @returns {undefined|string|Object|Array}
+ */
+const processFileData = (res, { prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
+  const AS_CSV = outputFormat === 'csv',
+    AS_JSON = outputFormat === 'json';
+
+  let result = [];
+  switch (outputDest) {
+  case 'stdout':
+    if (AS_JSON) return out(JSON.stringify(res, null, prettify * 2));
+
+    if (AS_CSV) {
+      for (let file in res) out(csvHandler(file, res[file], prettify));
+    } else {
+      for (let file in res) out(`- ${file}: ${res[file]}`);
+    }
+    break;
+  case 'var':
+    if (AS_JSON) return jsonHandler(res, prettify);
+
     if (AS_CSV) {
       for (let file in res) result.push(csvHandler(file, res[file], prettify));
       return result;
     }
     for (let file in res) result.push(res[file]);
     return result;
-  } else writeToFile(outputDest, fileLines);
-};
+  default: //file
+    if (AS_JSON) return writeToFile(outputDest, [JSON.stringify(res, null, prettify * 2)]);
 
-/**
- * Process data from read files that would come out in JSON.
- * @param {Object} res Result from {@link readFilesSync} to process
- * @param {string} [outputDest='stdout'] Destination of the output
- * @returns {Object|string|Array|undefined} JSON data or nothing
- */
-const asJson = (res, outputDest = 'stdout', prettify = false) => {
-  switch (outputDest) {
-    case 'stdout':
-      return out(JSON.stringify(res, null, prettify * 2));
-    case 'var':
-      return jsonHandler(res, prettify);
-    default: //file
-      return writeToFile(outputDest, [JSON.stringify(res, null, prettify * 2)])
+    if (AS_CSV) {
+      for (let file in res) {
+        result.push(csvHandler(file, res[file], prettify));
+      }
+    } else {
+      for (let file in res) result.push(`- ${file}: ${res[file]}`);
+    }
+    writeToFile(outputDest, result);
   }
 };
 
