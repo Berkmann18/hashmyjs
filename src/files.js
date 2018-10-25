@@ -76,16 +76,19 @@ const processFileData = (data, { prettify = false, outputDest = OUTPUT_DEST, out
   if (outputFormat === 'json') return processJsonData(data, outputDest, prettify);
 
   let result = [];
+  const TO_STDOUT = outputDest === 'stdout';
+
   if (outputFormat === 'csv') {
     for (let file in data) {
       let csv = csvHandler(file, data[file], prettify);
-      (outputDest === 'stdout') ? out(csv) : result.push(csv);
+      TO_STDOUT ? out(csv) : result.push(csv);
     }
   } else {
     for (let file in data) {
-      (outputDest === 'stdout') ? out(`- ${file}: ${data[file]}`) : result.push(data[file]);
+      TO_STDOUT ? out(`- ${file}: ${data[file]}`) : result.push(data[file]);
     }
   }
+  if (TO_STDOUT) return;
   return (outputDest === 'var') ? result : writeToFile(outputDest, result);
 };
 

@@ -11,10 +11,8 @@ clr.setTheme(require('../src/clr'));
   Optimal: 3 * 2 (any | stdin) * 2 * 2 = 24 min
  */
 
-const code = 'const hello = (name) => console.log(`Hi ${name}!`);',
-  code0 = 'const greeter = (name) => console.log(`Hello ${name}!`);',
-  hashCode = 'sha256-X75HP8ksYMVgXXuzmi9Acp/bAF2dOdYarpROmgVvVEU=',
-  hashCode0 = 'sha256-631s7BgZWUQPh3L/kg22uOBHmyaQoJ6DQtB0uVSJxh4=';
+const code = 'const greeter = (name) => console.log(`Hello ${name}!`);',
+  hashCode = 'sha256-631s7BgZWUQPh3L/kg22uOBHmyaQoJ6DQtB0uVSJxh4=';
 
 /* run */
 let ex0 = './examples/ex0.js',
@@ -106,11 +104,11 @@ test(`run(files=[], {input=stdin, output=var})`, () => {
   expect.assertions(1);
   let h = hmj.run([], { input: 'stdin', output: 'var' });
   stdin.reset();
-  stdin.send(code0);
+  stdin.send(code);
   stdin.send('\n\\$\n');
   stdin.end();
   h.then(res => {
-      expect(res).toBe(`- STDIN: ${hashCode0}`);
+      expect(res).toBe(`- STDIN: ${hashCode}`);
     })
     .catch(err => {
       throw new Error(err);
@@ -121,11 +119,11 @@ test(`run(files=[], {input=stdin, output=var, prettify=true})`, () => {
   expect.assertions(1);
   let h = hmj.run([], { input: 'stdin', output: 'var', prettify: true });
   stdin.reset();
-  stdin.send(code0);
+  stdin.send(code);
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
-      expect(res).toBe(`- STDIN: ${hashCode0}`);
+      expect(res).toBe(`- STDIN: ${hashCode}`);
     })
     .catch(err => {
       throw new Error(err);
@@ -136,11 +134,11 @@ test(`run(files=[], {format=csv, input=stdin, output=var})`, () => {
   expect.assertions(1);
   let h = hmj.run([], { input: 'stdin', output: 'var', format: 'csv' });
   stdin.reset();
-  stdin.send(code0);
+  stdin.send(code);
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
-      expect(res).toBe(`STDIN,${hashCode0}`);
+      expect(res).toBe(`STDIN,${hashCode}`);
     })
     .catch(err => {
       throw new Error(err);
@@ -151,11 +149,11 @@ test(`run(files=[], {format=csv, input=stdin, output=var, prettify=true})`, () =
   expect.assertions(1);
   let h = hmj.run([], { input: 'stdin', output: 'var', format: 'csv', prettify: true });
   stdin.reset();
-  stdin.send(code0);
+  stdin.send(code);
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
-      expect(res).toBe(`STDIN, ${hashCode0}`);
+      expect(res).toBe(`STDIN, ${hashCode}`);
     })
     .catch(err => {
       throw new Error(err);
@@ -166,11 +164,11 @@ test(`run(files=[], {format=json, input=stdin, output=var})`, () => {
   expect.assertions(1);
   let h = hmj.run([], { input: 'stdin', output: 'var', format: 'json', prettify: false });
   stdin.reset();
-  stdin.send(code0);
+  stdin.send(code);
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
-      expect(res).toEqual({ STDIN: hashCode0 });
+      expect(res).toEqual({ STDIN: hashCode });
     })
     .catch(err => {
       throw new Error(err);
@@ -181,11 +179,11 @@ test(`run(files=[], {format=json, input=stdin, output=var, prettify=true})`, () 
   expect.assertions(1);
   let h = hmj.run([], { input: 'stdin', output: 'var', format: 'json', prettify: true });
   stdin.reset();
-  stdin.send(code0);
+  stdin.send(code);
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
-      expect(res).toStrictEqual(JSON.stringify({ STDIN: hashCode0 }, null, 2));
+      expect(res).toStrictEqual(JSON.stringify({ STDIN: hashCode }, null, 2));
     })
     .catch(err => {
       throw new Error(err);
@@ -200,12 +198,12 @@ test(`run(files=[], {format=json, input=stdin, output=stdout})`, () => {
   const inspect = stdout.inspect();
   const h = hmj.run([], { format: 'json', input: 'stdin', output: 'stdout' });
   stdin.reset();
-  stdin.send(code0);
+  stdin.send(code);
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
     inspect.restore();
-    const expected = `${OUT_START}${JSON.stringify({STDIN: hashCode0})}${OUT_END}`;
+    const expected = `${OUT_START}${JSON.stringify({STDIN: hashCode})}${OUT_END}`;
     expect(inspect.output[1]).toEqual(expected);
     // Since there's colour coding mind-boggles, the first entry is assumed to be
     // 'Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)\n\n'
@@ -239,11 +237,11 @@ test(`run(files=[], {input=any, output=var})`, () => {
   expect.assertions(1);
   let h = hmj.run([], { input: 'any', output: 'var' });
   stdin.reset();
-  stdin.send(code0);
+  stdin.send(code);
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
-      expect(res).toEqual(`- STDIN: ${hashCode0}`);
+      expect(res).toEqual(`- STDIN: ${hashCode}`);
     })
     .catch(err => {
       throw new Error(err);
@@ -254,11 +252,11 @@ test(`run()`, () => {
   expect.assertions(1);
   let h = hmj.run();
   stdin.reset();
-  stdin.send(code0);
+  stdin.send(code);
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
-      expect(res).toEqual(`- STDIN: ${hashCode0}`);
+      expect(res).toEqual(`- STDIN: ${hashCode}`);
     })
     .catch(err => {
       throw new Error(err);

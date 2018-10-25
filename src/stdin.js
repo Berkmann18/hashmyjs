@@ -14,7 +14,7 @@ clr.setTheme(require('./clr'));
 
 /**
  * @description Read user's input from STDIN.
- * @param {Config} obj Configuration.
+ * @param {Config} obj Configuration
  * @return {(undefined|string)} Data or nothing
  * @see Config
  * @public
@@ -41,20 +41,31 @@ const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUT
         } catch (err) {
           reject(err);
         }
-        let output = `- STDIN: ${res}`; //outputFormat = 'text'
-        if (outputFormat === 'json') {
-          const op = {STDIN: res};
-          output = (outputDest === 'var') ? jsonHandler(op, prettify) : JSON.stringify(op, null, prettify * 2);
-        } else if (outputFormat === 'csv') output = csvHandler('STDIN', res, prettify);
-
-        if (outputDest === 'stdout') out(output);
-        else if (outputDest !== 'var') {
-          writeToFile(outputDest, (outputFormat === 'text') ?
-            output.split('\n') : [output]);
-        } resolve(output);
+        resolve(processData(res, {outputFormat, outputDest, prettify}));
       } else lines.push(line);
     });
   })
+};
+
+/**
+ * @description Process the data from {@link readIn}.
+ * @param {string} res Result to process
+ * @param {Config} obj Configuration
+ * @returns {string|Object|Array} Processed data with hashes
+ */
+const processData = (res, {outputFormat = OUTPUT_FORMAT, outputDest = OUTPUT_DEST, prettify = false} = {}) => {
+  let output = `- STDIN: ${res}`;
+  if (outputFormat === 'json') {
+    const op = {STDIN: res};
+    output = (outputDest === 'var') ? jsonHandler(op, prettify) : JSON.stringify(op, null, prettify * 2);
+  } else if (outputFormat === 'csv') output = csvHandler('STDIN', res, prettify);
+
+  if (outputDest === 'stdout') out(output);
+  else if (outputDest !== 'var') {
+    writeToFile(outputDest, (outputFormat === 'text') ? output.split('\n') : [output]);
+  }
+
+  return output;
 };
 
 module.exports = readIn;
