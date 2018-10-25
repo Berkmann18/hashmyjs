@@ -6,11 +6,8 @@
 /* eslint-env es6, node */
 
 const fs = require('fs'),
-  clr = require('colors/safe');
-const {OUTPUT_DEST, OUTPUT_FORMAT, scanInput, csvHandler, jsonHandler, writeToFile } = require('./core'),
-  {IoError, out, error } = require('./utils');
-
-clr.setTheme(require('./clr'));
+  {out, error } = require('nclr');
+const {OUTPUT_DEST, OUTPUT_FORMAT, scanInput, csvHandler, jsonHandler, writeToFile } = require('./core');
 
 /**
  * @description Synchronously read files and scan them.

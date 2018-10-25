@@ -6,7 +6,7 @@
 /* eslint-env es6, node */
 
 const sjcl = require('sjcl'), fs = require('fs');
-const { out, info } = require('./utils');
+const { out, info } = require('nclr');
 
 /**
  * @description Default output destination.

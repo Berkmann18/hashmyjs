@@ -6,8 +6,6 @@
  */
 /* eslint-env es6, node */
 
-const clr = require('colors/safe');
-clr.setTheme(require('./clr'));
 const readIn = require('./stdin'),
   readFilesSync = require('./files');
 

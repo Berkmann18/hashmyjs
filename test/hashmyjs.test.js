@@ -1,9 +1,7 @@
 const stdin = require('mock-stdin').stdin(),
-  stdout = require('test-console').stdout,
-  clr = require('colors/safe');
+  stdout = require('test-console').stdout;
 const hmj = require('../src/hashmyjs');
 
-clr.setTheme(require('../src/clr'));
 /*
  run(format=(text | json | csv), input=(any | stdin | args), output=(stdout | ...fileNames | var), files=[...files]
  paths:

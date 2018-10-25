@@ -6,11 +6,10 @@
 /* eslint-env es6, node */
 
 const readline = require('readline'),
-  clr = require('colors/safe');
-const {OUTPUT_DEST, OUTPUT_FORMAT, scanInput, csvHandler, jsonHandler, writeToFile } = require('./core'),
-  {info, out, EOF } = require('./utils');
+  { info, out } = require('nclr');
+const { OUTPUT_DEST, OUTPUT_FORMAT, scanInput, csvHandler, jsonHandler, writeToFile } = require('./core'),
+  { EOF } = require('./utils');
 
-clr.setTheme(require('./clr'));
 
 /**
  * @description Read user's input from STDIN.
