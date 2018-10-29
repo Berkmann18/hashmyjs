@@ -26,26 +26,6 @@
               
                 
                 <li><a
-                  href='#clr'
-                  class="">
-                  clr
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#clr'
-                  class="">
-                  clr
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
                   href='#core'
                   class="">
                   core
@@ -166,6 +146,26 @@
               
                 
                 <li><a
+                  href='#processjsondata'
+                  class="">
+                  processJsonData
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#processfiledata'
+                  class="">
+                  processFileData
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#hashmyjs'
                   class="">
                   hashmyjs
@@ -206,89 +206,19 @@
               
                 
                 <li><a
+                  href='#processdata'
+                  class="">
+                  processData
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#utils'
                   class="">
                   utils
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#log'
-                  class="">
-                  log
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#error'
-                  class="">
-                  error
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#info'
-                  class="">
-                  info
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#dbg'
-                  class="">
-                  dbg
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#out'
-                  class="">
-                  out
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#inp'
-                  class="">
-                  inp
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#warn'
-                  class="">
-                  warn
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#quest'
-                  class="">
-                  quest
                   
                 </a>
                 
@@ -322,107 +252,6 @@
         </div>
       </div>
       <div id='split-right' class='relative overflow-auto height-viewport-100'>
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='clr'>
-      clr
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>CLI colours.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>clr</div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='clr'>
-      clr
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Colour/style scheme for the CLI.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>clr</div>
-   
-  
-    <p>
-      Type:
-      {in: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, out: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>, inf: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, err: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, warn: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, debug: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, quest: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>}
-    </p>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
         
           
           <section class='p2 mb2 clearfix bg-white minishadow'>
@@ -1298,7 +1127,7 @@ scanInput([<span class="hljs-string">'Lorem ipsum dolore sit amet'</span>]); <sp
           <div>
             <span class='code bold'>obj</span> <code class='quiet'>(<a href="#config">Config</a>
             = <code>{}</code>)</code>
-	    Configuration.
+	    Configuration
 
           </div>
           
@@ -1375,6 +1204,249 @@ scanInput([<span class="hljs-string">'Lorem ipsum dolore sit amet'</span>]); <sp
       <pre class='p1 overflow-auto round fill-light'>readFilesSync([<span class="hljs-string">'input.json'</span>], {<span class="hljs-attr">prettify</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">outputFormat</span>: <span class="hljs-string">'json'</span>}); <span class="hljs-comment">//logs {&lt;br&gt;  "output.json": "sha256-iTyF6rE+vAUIIWrWaC6bWt9NwI/74kpOuk4JZl9zCMM="&lt;br&gt;}</span>
 readFilesSync([<span class="hljs-string">'input.csv'</span>], {<span class="hljs-attr">outputDest</span>: <span class="hljs-string">'output.json'</span>, <span class="hljs-attr">outputFormat</span>: <span class="hljs-string">'json'</span>}); <span class="hljs-comment">//Writes the above to output.json</span></pre>
     
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='processjsondata'>
+      processJsonData
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>JSON specialised <a href="#processfiledata">processFileData</a>.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>processJsonData</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>data</span> <code class='quiet'>({string: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>})</code>
+	    Data to process
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>config</span> <code class='quiet'>({string, boolean}
+            = <code>{outputDest=OUTPUT_DEST,prettify=false}</code>)</code>
+	    Configuration with output destination
+and whether or not it prettifies the output
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>config.outputDest</span> <code class='quiet'>any</code>
+  
+    (default <code>OUTPUT_DEST</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>config.prettify</span> <code class='quiet'>any</code>
+  
+    (default <code>false</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>)</code>:
+        Processed JSON result
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='processfiledata'>
+      processFileData
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Process read files and do something with it (based on the configuration).</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>processFileData</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>data</span> <code class='quiet'>({string: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>})</code>
+	    Data read from the files
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>obj</span> <code class='quiet'>(<a href="#config">Config</a>
+            = <code>{}</code>)</code>
+	    Configuration
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.prettify</span> <code class='quiet'>any</code>
+  
+    (default <code>false</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.outputDest</span> <code class='quiet'>any</code>
+  
+    (default <code>OUTPUT_DEST</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.outputFormat</span> <code class='quiet'>any</code>
+  
+    (default <code>OUTPUT_FORMAT</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>)</code>:
+        Processed result
+
+      
+    
+  
+
+  
+
   
 
   
@@ -1689,7 +1761,7 @@ run([], {<span class="hljs-attr">input</span>: <span class="hljs-string">'stdin'
           <div>
             <span class='code bold'>obj</span> <code class='quiet'>(<a href="#config">Config</a>
             = <code>{}</code>)</code>
-	    Configuration.
+	    Configuration
 
           </div>
           
@@ -1785,6 +1857,132 @@ readIn({<span class="hljs-attr">prettify</span>: <span class="hljs-literal">true
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='processdata'>
+      processData
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Process the data from <a href="#readin">readIn</a>.</p>
+
+ 
+  
+    <div class='pre p1 fill-light mt0'>processData</div>
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>res</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    Result to process
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>obj</span> <code class='quiet'>(<a href="#config">Config</a>
+            = <code>{}</code>)</code>
+	    Configuration
+
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.outputFormat</span> <code class='quiet'>any</code>
+  
+    (default <code>OUTPUT_FORMAT</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.outputDest</span> <code class='quiet'>any</code>
+  
+    (default <code>OUTPUT_DEST</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>obj.prettify</span> <code class='quiet'>any</code>
+  
+    (default <code>false</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> | <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>)</code>:
+        Processed data with hashes
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='utils'>
       utils
     </h3>
@@ -1801,53 +1999,12 @@ readIn({<span class="hljs-attr">prettify</span>: <span class="hljs-literal">true
    
   
   
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='log'>
-      log
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>STDOUT log.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>log</div>
-   
-  
+    <p>
+      Extends
+      
+        <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a>
+      
+    </p>
   
 
   
@@ -1863,77 +2020,17 @@ readIn({<span class="hljs-attr">prettify</span>: <span class="hljs-literal">true
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>data</span> <code class='quiet'>(any)</code>
-	    Data to print
-
+            <span class='code bold'>message</span> <code class='quiet'>(any
+            = <code>&#39;IO error:&#39;</code>)</code>
+	    
           </div>
           
         </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>log(<span class="hljs-string">'Lorem ipsum dolore sit amet'</span>);</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='error'>
-      error
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Print an error.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>error</div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>data</span> <code class='quiet'>(...any)</code>
-	    Data to print
-
+            <span class='code bold'>context</span> <code class='quiet'>(any)</code>
+	    
           </div>
           
         </div>
@@ -1947,420 +2044,6 @@ readIn({<span class="hljs-attr">prettify</span>: <span class="hljs-literal">true
 
   
 
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>error(<span class="hljs-string">'Something wrong happened with'</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-keyword">this</span>));</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='info'>
-      info
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Print an information.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>info</div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>data</span> <code class='quiet'>(...any)</code>
-	    Data to print
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>info(<span class="hljs-string">'Welcome John'</span>);</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='dbg'>
-      dbg
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Print a debug message.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>dbg</div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>data</span> <code class='quiet'>(...any)</code>
-	    Data to print
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>dbg(<span class="hljs-string">'i='</span>, i);</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='out'>
-      out
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Print an output.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>out</div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>data</span> <code class='quiet'>(...any)</code>
-	    Data to print
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>out(<span class="hljs-string">'1 + 1 = ${rpc('</span><span class="hljs-number">1</span> <span class="hljs-number">1</span> +<span class="hljs-string">')}`);</span></pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='inp'>
-      inp
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Print an input.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>inp</div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>data</span> <code class='quiet'>(...any)</code>
-	    Data to print
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>inp(name);</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='warn'>
-      warn
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Print a warning.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>warn</div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>data</span> <code class='quiet'>(...any)</code>
-	    Data to print
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>warn(<span class="hljs-string">'The following function is deprecated'</span>);</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='quest'>
-      quest
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Print a question.</p>
-
- 
-  
-    <div class='pre p1 fill-light mt0'>quest</div>
-   
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>data</span> <code class='quiet'>(...any)</code>
-	    Data to print
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>quest(<span class="hljs-string">'What is your username?'</span>);</pre>
-    
   
 
   

@@ -6,8 +6,8 @@
 /* eslint-env es6, node */
 
 const fs = require('fs'),
-  {out, error } = require('nclr');
-const {OUTPUT_DEST, OUTPUT_FORMAT, scanInput, csvHandler, jsonHandler, writeToFile } = require('./core');
+  { out, error } = require('nclr');
+const { OUTPUT_DEST, OUTPUT_FORMAT, scanInput, csvHandler, jsonHandler, writeToFile } = require('./core');
 
 /**
  * @description Synchronously read files and scan them.
@@ -41,17 +41,17 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
     res[files[i]] = scanInput(inputs[i], true);
   }
 
-  return processFileData(res, {prettify, outputDest, outputFormat});
+  return processFileData(res, { prettify, outputDest, outputFormat });
 };
 
 /**
  * @description JSON specialised {@link processFileData}.
  * @param {{string: string}} data Data to process
- * @param {string} [outputDest=OUTPUT_DEST] Destination of the output
- * @param {boolean} [prettify=false] Prettify the output
+ * @param {{string, boolean}} [config={outputDest=OUTPUT_DEST, prettify=false}] Configuration with output destination
+ * and whether or not it prettifies the output
  * @returns {undefined|string|Object|Array} Processed JSON result
  */
-const processJsonData = (data, outputDest = OUTPUT_DEST, prettify = false) => {
+const processJsonData = (data, { outputDest = OUTPUT_DEST, prettify = false } = {}) => {
   switch (outputDest) {
   case 'stdout':
     return out(JSON.stringify(data, null, prettify * 2));
@@ -70,7 +70,7 @@ const processJsonData = (data, outputDest = OUTPUT_DEST, prettify = false) => {
  * @returns {undefined|string|Object|Array} Processed result
  */
 const processFileData = (data, { prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
-  if (outputFormat === 'json') return processJsonData(data, outputDest, prettify);
+  if (outputFormat === 'json') return processJsonData(data, { outputDest, prettify });
 
   let result = [];
   const TO_STDOUT = outputDest === 'stdout';

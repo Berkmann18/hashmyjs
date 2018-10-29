@@ -2,82 +2,53 @@
 
 ### Table of Contents
 
--   [clr][1]
--   [clr][2]
--   [core][3]
--   [OUTPUT_DEST][4]
--   [OUTPUT_FORMAT][5]
+-   [core][1]
+-   [OUTPUT_DEST][2]
+-   [OUTPUT_FORMAT][3]
+-   [Config][4]
+    -   [Properties][5]
 -   [hash][6]
     -   [Parameters][7]
     -   [Examples][8]
--   [Config][9]
-    -   [Properties][10]
--   [writeToFile][11]
-    -   [Parameters][12]
-    -   [Examples][13]
--   [prettifyOutput][14]
-    -   [Parameters][15]
-    -   [Examples][16]
--   [jsonHandler][17]
+-   [writeToFile][9]
+    -   [Parameters][10]
+    -   [Examples][11]
+-   [prettifyOutput][12]
+    -   [Parameters][13]
+    -   [Examples][14]
+-   [jsonHandler][15]
+    -   [Parameters][16]
+-   [csvHandler][17]
     -   [Parameters][18]
--   [csvHandler][19]
+-   [scanInput][19]
     -   [Parameters][20]
--   [scanInput][21]
-    -   [Parameters][22]
-    -   [Examples][23]
--   [files][24]
--   [readFilesSync][25]
-    -   [Parameters][26]
-    -   [Examples][27]
--   [hashmyjs][28]
--   [run][29]
-    -   [Parameters][30]
-    -   [Examples][31]
--   [stdin][32]
--   [readIn][33]
-    -   [Parameters][34]
-    -   [Examples][35]
--   [utils][36]
--   [log][37]
-    -   [Parameters][38]
-    -   [Examples][39]
--   [error][40]
+    -   [Examples][21]
+-   [files][22]
+-   [readFilesSync][23]
+    -   [Parameters][24]
+    -   [Examples][25]
+-   [processJsonData][26]
+    -   [Parameters][27]
+-   [processFileData][28]
+    -   [Parameters][29]
+-   [hashmyjs][30]
+-   [run][31]
+    -   [Parameters][32]
+    -   [Examples][33]
+-   [stdin][34]
+-   [readIn][35]
+    -   [Parameters][36]
+    -   [Examples][37]
+-   [processData][38]
+    -   [Parameters][39]
+-   [utils][40]
     -   [Parameters][41]
-    -   [Examples][42]
--   [info][43]
-    -   [Parameters][44]
-    -   [Examples][45]
--   [dbg][46]
-    -   [Parameters][47]
-    -   [Examples][48]
--   [out][49]
-    -   [Parameters][50]
-    -   [Examples][51]
--   [inp][52]
-    -   [Parameters][53]
-    -   [Examples][54]
--   [warn][55]
-    -   [Parameters][56]
-    -   [Examples][57]
--   [quest][58]
-    -   [Parameters][59]
-    -   [Examples][60]
--   [IoError][61]
-    -   [Parameters][62]
-    -   [Examples][63]
--   [EOF][64]
-    -   [Parameters][65]
-    -   [Examples][66]
-
-## clr
-
-CLI colours.
-
-## clr
-
-Colour/style scheme for the CLI.
-
-Type: {in: [string][67], out: [Array][68]&lt;[string][67]>, inf: [string][67], err: [string][67], warn: [string][67], debug: [string][67], quest: [string][67]}
+-   [IoError][42]
+    -   [Parameters][43]
+    -   [Examples][44]
+-   [EOF][45]
+    -   [Parameters][46]
+    -   [Examples][47]
 
 ## core
 
@@ -87,13 +58,25 @@ Core module for HMJ.
 
 Default output destination.
 
-Type: [string][67]
+Type: [string][48]
 
 ## OUTPUT_FORMAT
 
 Default output format.
 
-Type: [string][67]
+Type: [string][48]
+
+## Config
+
+Configuration
+
+Type: [Object][49]
+
+### Properties
+
+-   `prettify` **[boolean][50]?** Prettify the output
+-   `outputDest` **[string][48]?** Output destination (stdout, var, <i>filename</i>)
+-   `outputFormat` **[string][48]?** Output format (text, json, csv)
 
 ## hash
 
@@ -103,7 +86,7 @@ of its content</em>.
 
 ### Parameters
 
--   `data` **([string][67] \| [number][69] \| [Array][68] \| [Date][70])** Data to encode
+-   `data` **([string][48] \| [number][51] \| [Array][52] \| [Date][53])** Data to encode
 
 ### Examples
 
@@ -111,19 +94,7 @@ of its content</em>.
 hash('Lorem Ipsum dolore sit amet'); //returns 'sha256-7almix3trlcKWVAN+fhV/Bzbx4BixTwzjYpZDWUxctM='
 ```
 
-Returns **[string][67]** Base64 encoded SHA-256 hash
-
-## Config
-
-Configuration
-
-Type: [Object][71]
-
-### Properties
-
--   `prettify` **[boolean][72]?** Prettify the output
--   `outputDest` **[string][67]?** Output destination (stdout, var, <i>filename</i>)
--   `outputFormat` **[string][67]?** Output format (text, json, csv)
+Returns **[string][48]** Base64 encoded SHA-256 hash
 
 ## writeToFile
 
@@ -131,9 +102,9 @@ Write to a file (while prettifying the content).
 
 ### Parameters
 
--   `filename` **[string][67]** File name
--   `data` **[Array][68]&lt;[string][67]>** Lines to write to the file
--   `outputFormat` **[string][67]** Format of the output (optional, default `OUTPUT_FORMAT`)
+-   `filename` **[string][48]** File name
+-   `data` **[Array][52]&lt;[string][48]>** Lines to write to the file
+-   `outputFormat` **[string][48]** Format of the output (optional, default `OUTPUT_FORMAT`)
 
 ### Examples
 
@@ -149,8 +120,8 @@ writeToFile('output.json', [{key: 'val'}], 'json');
 writeToFile('output.csv', ['0,john,doe', '1,lorem,ipsum'], 'csv');
 ```
 
--   Throws **[Error][73]** No filename specified
--   Throws **[IoError][74]** Writing error
+-   Throws **[Error][54]** No filename specified
+-   Throws **[IoError][55]** Writing error
 
 ## prettifyOutput
 
@@ -158,8 +129,8 @@ Prettify the ouptut according to the format used or keep it as it is.
 
 ### Parameters
 
--   `output` **([string][67] \| [Object][71] \| [Array][68]&lt;[string][67]>)** Output
--   `format` **[string][67]** Format of the output (json, csv, ...) (optional, default `OUTPUT_FORMAT`)
+-   `output` **([string][48] \| [Object][49] \| [Array][52]&lt;[string][48]>)** Output
+-   `format` **[string][48]** Format of the output (json, csv, ...) (optional, default `OUTPUT_FORMAT`)
 
 ### Examples
 
@@ -175,7 +146,7 @@ prettifyOutput({key: 'val'}, 'json'); //returns {<br>  "key": "val"<br>}
 prettifyOutput('0,john,doe', 'csv'); //returns '0, joh, doe'
 ```
 
-Returns **[string][67]** Prettified output
+Returns **[string][48]** Prettified output
 
 ## jsonHandler
 
@@ -183,10 +154,10 @@ Handle JSON data.
 
 ### Parameters
 
--   `json` **([Object][71] \| [string][67] \| [Array][68])** JSON data
--   `prettify` **[boolean][72]** Make it pretty (optional, default `false`)
+-   `json` **([Object][49] \| [string][48] \| [Array][52])** JSON data
+-   `prettify` **[boolean][50]** Make it pretty (optional, default `false`)
 
-Returns **([Object][71] \| [string][67] \| [Array][68])** (Stringified) JSON data
+Returns **([Object][49] \| [string][48] \| [Array][52])** (Stringified) JSON data
 
 ## csvHandler
 
@@ -194,11 +165,11 @@ Handle CSV data.
 
 ### Parameters
 
--   `lhs` **[string][67]** CSV data on the left hand side
--   `rhs` **[string][67]** CSV data on the right hand side
--   `prettify` **[boolean][72]** Make it pretty (optional, default `false`)
+-   `lhs` **[string][48]** CSV data on the left hand side
+-   `rhs` **[string][48]** CSV data on the right hand side
+-   `prettify` **[boolean][50]** Make it pretty (optional, default `false`)
 
-Returns **[string][67]** CSV data
+Returns **[string][48]** CSV data
 
 ## scanInput
 
@@ -206,8 +177,8 @@ Scan an input and output it's integrity hash.
 
 ### Parameters
 
--   `input` **([string][67] \| [Array][68]&lt;[string][67]>)** Input to hash (e.g. JS code)
--   `noOutput` **[boolean][72]** Don't output the result to the terminal but return the hash (optional, default `false`)
+-   `input` **([string][48] \| [Array][52]&lt;[string][48]>)** Input to hash (e.g. JS code)
+-   `noOutput` **[boolean][50]** Don't output the result to the terminal but return the hash (optional, default `false`)
 
 ### Examples
 
@@ -224,9 +195,9 @@ scanInput('Lorem ipsum dolore sit amet', true); //returns 'sha256-HBQ/am1i8gw1bl
 scanInput(['Lorem ipsum dolore sit amet']); //returns the same as above
 ```
 
--   Throws **[Error][73]** Hashing or input error
+-   Throws **[Error][54]** Hashing or input error
 
-Returns **(void | [string][67])** Hashed data or nothing
+Returns **(void | [string][48])** Hashed data or nothing
 
 ## files
 
@@ -240,8 +211,8 @@ Synchronously read files and scan them.
 
 ### Parameters
 
--   `files` **[Array][68]&lt;[string][67]>?** Array of file paths (optional, default `process.argv.slice(2,process.argv.length)`)
--   `obj` **[Config][75]** Configuration. (optional, default `{}`)
+-   `files` **[Array][52]&lt;[string][48]>?** Array of file paths (optional, default `process.argv.slice(2,process.argv.length)`)
+-   `obj` **[Config][56]** Configuration (optional, default `{}`)
     -   `obj.prettify`   (optional, default `false`)
     -   `obj.outputDest`   (optional, default `OUTPUT_DEST`)
     -   `obj.outputFormat`   (optional, default `OUTPUT_FORMAT`)
@@ -270,9 +241,39 @@ readFilesSync(['input.json'], {prettify: true, outputFormat: 'json'}); //logs {<
 readFilesSync(['input.csv'], {outputDest: 'output.json', outputFormat: 'json'}); //Writes the above to output.json
 ```
 
+## processJsonData
+
+JSON specialised [processFileData][28].
+
+### Parameters
+
+-   `data` **{string: [string][48]}** Data to process
+-   `config` **{string, boolean}** Configuration with output destination
+    and whether or not it prettifies the output (optional, default `{outputDest=OUTPUT_DEST,prettify=false}`)
+    -   `config.outputDest`   (optional, default `OUTPUT_DEST`)
+    -   `config.prettify`   (optional, default `false`)
+
+Returns **([undefined][57] \| [string][48] \| [Object][49] \| [Array][52])** Processed JSON result
+
+## processFileData
+
+-   **See: Config**
+
+Process read files and do something with it (based on the configuration).
+
+### Parameters
+
+-   `data` **{string: [string][48]}** Data read from the files
+-   `obj` **[Config][56]** Configuration (optional, default `{}`)
+    -   `obj.prettify`   (optional, default `false`)
+    -   `obj.outputDest`   (optional, default `OUTPUT_DEST`)
+    -   `obj.outputFormat`   (optional, default `OUTPUT_FORMAT`)
+
+Returns **([undefined][57] \| [string][48] \| [Object][49] \| [Array][52])** Processed result
+
 ## hashmyjs
 
-base64(SHA-256) text encoder inspired by [https://stackoverflow.com/a/38554505/5893085][76].
+base64(SHA-256) text encoder inspired by [https://stackoverflow.com/a/38554505/5893085][58].
 
 **Meta**
 
@@ -284,12 +285,12 @@ Start the hasher.
 
 ### Parameters
 
--   `files` **[Array][68]&lt;[string][67]>** List of files to go through (optional, default `[]`)
--   `obj` **[Object][71]** Configuration (optional, default `{}`)
-    -   `obj.format` **[string][67]** Format of the output (text, json, csv) (optional, default `'text'`)
-    -   `obj.input` **[string][67]** Location of the input (any, stdin, args) (optional, default `'any'`)
-    -   `obj.output` **[string][67]** Destination for the output (stdout, var, <i>filenames</i>) (optional, default `'stdout'`)
-    -   `obj.prettify` **[boolean][72]** Prettify the output (optional, default `false`)
+-   `files` **[Array][52]&lt;[string][48]>** List of files to go through (optional, default `[]`)
+-   `obj` **[Object][49]** Configuration (optional, default `{}`)
+    -   `obj.format` **[string][48]** Format of the output (text, json, csv) (optional, default `'text'`)
+    -   `obj.input` **[string][48]** Location of the input (any, stdin, args) (optional, default `'any'`)
+    -   `obj.output` **[string][48]** Destination for the output (stdout, var, <i>filenames</i>) (optional, default `'stdout'`)
+    -   `obj.prettify` **[boolean][50]** Prettify the output (optional, default `false`)
 
 ### Examples
 
@@ -330,7 +331,7 @@ Reading from STDIN with configurations
 run([], {format: 'csv', input: 'stdin', prettify: true});
 ```
 
-Returns **([undefined][77] \| [Array][68]&lt;[string][67]> | [string][67])** Data or nothing
+Returns **([undefined][57] \| [Array][52]&lt;[string][48]> | [string][48])** Data or nothing
 
 ## stdin
 
@@ -344,7 +345,7 @@ Read user's input from STDIN.
 
 ### Parameters
 
--   `obj` **[Config][75]** Configuration. (optional, default `{}`)
+-   `obj` **[Config][56]** Configuration (optional, default `{}`)
     -   `obj.prettify`   (optional, default `false`)
     -   `obj.outputDest`   (optional, default `OUTPUT_DEST`)
     -   `obj.outputFormat`   (optional, default `OUTPUT_FORMAT`)
@@ -363,137 +364,32 @@ readIn({outputFormat: 'json'});
 readIn({prettify: true, outputDest: 'outputFromSTDIN.txt'});
 ```
 
-Returns **([undefined][77] \| [string][67])** Data or nothing
+Returns **([undefined][57] \| [string][48])** Data or nothing
+
+## processData
+
+Process the data from [readIn][35].
+
+### Parameters
+
+-   `res` **[string][48]** Result to process
+-   `obj` **[Config][56]** Configuration (optional, default `{}`)
+    -   `obj.outputFormat`   (optional, default `OUTPUT_FORMAT`)
+    -   `obj.outputDest`   (optional, default `OUTPUT_DEST`)
+    -   `obj.prettify`   (optional, default `false`)
+
+Returns **([string][48] \| [Object][49] \| [Array][52])** Processed data with hashes
 
 ## utils
 
+**Extends Error**
+
 Utility module for HMJ.
 
-## log
-
-STDOUT log.
-
 ### Parameters
 
--   `data` **any** Data to print
-
-### Examples
-
-```javascript
-log('Lorem ipsum dolore sit amet');
-```
-
-## error
-
--   **See: log**
-
-Print an error.
-
-### Parameters
-
--   `data` **...any** Data to print
-
-### Examples
-
-```javascript
-error('Something wrong happened with', new Error(this));
-```
-
-## info
-
--   **See: log**
-
-Print an information.
-
-### Parameters
-
--   `data` **...any** Data to print
-
-### Examples
-
-```javascript
-info('Welcome John');
-```
-
-## dbg
-
--   **See: log**
-
-Print a debug message.
-
-### Parameters
-
--   `data` **...any** Data to print
-
-### Examples
-
-```javascript
-dbg('i=', i);
-```
-
-## out
-
--   **See: log**
-
-Print an output.
-
-### Parameters
-
--   `data` **...any** Data to print
-
-### Examples
-
-```javascript
-out('1 + 1 = ${rpc('1 1 +')}`);
-```
-
-## inp
-
--   **See: log**
-
-Print an input.
-
-### Parameters
-
--   `data` **...any** Data to print
-
-### Examples
-
-```javascript
-inp(name);
-```
-
-## warn
-
--   **See: log**
-
-Print a warning.
-
-### Parameters
-
--   `data` **...any** Data to print
-
-### Examples
-
-```javascript
-warn('The following function is deprecated');
-```
-
-## quest
-
--   **See: log**
-
-Print a question.
-
-### Parameters
-
--   `data` **...any** Data to print
-
-### Examples
-
-```javascript
-quest('What is your username?');
-```
+-   `message`   (optional, default `'IO error:'`)
+-   `context`  
 
 ## IoError
 
@@ -503,7 +399,7 @@ I/O error.
 
 ### Parameters
 
--   `message` **[string][67]** Error message (optional, default `'IO error:'`)
+-   `message` **[string][48]** Error message (optional, default `'IO error:'`)
 -   `context` **any** I/O context
 
 ### Examples
@@ -518,7 +414,7 @@ Check if a string is deemed to be an EOF symbol (<code>\\$<code> or <code>\\EOF<
 
 ### Parameters
 
--   `str` **[string][67]** Text
+-   `str` **[string][48]** Text
 
 ### Examples
 
@@ -531,17 +427,17 @@ EOF('\$'); //returns false
 EOF('\EOF'); //returns false
 ```
 
-Returns **[boolean][72]** Is it an EOF character?
+Returns **[boolean][50]** Is it an EOF character?
 
-[1]: #clr
+[1]: #core
 
-[2]: #clr-1
+[2]: #output_dest
 
-[3]: #core
+[3]: #output_format
 
-[4]: #output_dest
+[4]: #config
 
-[5]: #output_format
+[5]: #properties
 
 [6]: #hash
 
@@ -549,140 +445,102 @@ Returns **[boolean][72]** Is it an EOF character?
 
 [8]: #examples
 
-[9]: #config
+[9]: #writetofile
 
-[10]: #properties
+[10]: #parameters-1
 
-[11]: #writetofile
+[11]: #examples-1
 
-[12]: #parameters-1
+[12]: #prettifyoutput
 
-[13]: #examples-1
+[13]: #parameters-2
 
-[14]: #prettifyoutput
+[14]: #examples-2
 
-[15]: #parameters-2
+[15]: #jsonhandler
 
-[16]: #examples-2
+[16]: #parameters-3
 
-[17]: #jsonhandler
+[17]: #csvhandler
 
-[18]: #parameters-3
+[18]: #parameters-4
 
-[19]: #csvhandler
+[19]: #scaninput
 
-[20]: #parameters-4
+[20]: #parameters-5
 
-[21]: #scaninput
+[21]: #examples-3
 
-[22]: #parameters-5
+[22]: #files
 
-[23]: #examples-3
+[23]: #readfilessync
 
-[24]: #files
+[24]: #parameters-6
 
-[25]: #readfilessync
+[25]: #examples-4
 
-[26]: #parameters-6
+[26]: #processjsondata
 
-[27]: #examples-4
+[27]: #parameters-7
 
-[28]: #hashmyjs
+[28]: #processfiledata
 
-[29]: #run
+[29]: #parameters-8
 
-[30]: #parameters-7
+[30]: #hashmyjs
 
-[31]: #examples-5
+[31]: #run
 
-[32]: #stdin
+[32]: #parameters-9
 
-[33]: #readin
+[33]: #examples-5
 
-[34]: #parameters-8
+[34]: #stdin
 
-[35]: #examples-6
+[35]: #readin
 
-[36]: #utils
+[36]: #parameters-10
 
-[37]: #log
+[37]: #examples-6
 
-[38]: #parameters-9
+[38]: #processdata
 
-[39]: #examples-7
+[39]: #parameters-11
 
-[40]: #error
+[40]: #utils
 
-[41]: #parameters-10
+[41]: #parameters-12
 
-[42]: #examples-8
+[42]: #ioerror
 
-[43]: #info
+[43]: #parameters-13
 
-[44]: #parameters-11
+[44]: #examples-7
 
-[45]: #examples-9
+[45]: #eof
 
-[46]: #dbg
+[46]: #parameters-14
 
-[47]: #parameters-12
+[47]: #examples-8
 
-[48]: #examples-10
+[48]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[49]: #out
+[49]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[50]: #parameters-13
+[50]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
-[51]: #examples-11
+[51]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[52]: #inp
+[52]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[53]: #parameters-14
+[53]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date
 
-[54]: #examples-12
+[54]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
 
-[55]: #warn
+[55]: #ioerror
 
-[56]: #parameters-15
+[56]: #config
 
-[57]: #examples-13
+[57]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined
 
-[58]: #quest
-
-[59]: #parameters-16
-
-[60]: #examples-14
-
-[61]: #ioerror
-
-[62]: #parameters-17
-
-[63]: #examples-15
-
-[64]: #eof
-
-[65]: #parameters-18
-
-[66]: #examples-16
-
-[67]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
-
-[68]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
-
-[69]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
-
-[70]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date
-
-[71]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
-
-[72]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
-
-[73]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
-
-[74]: #ioerror
-
-[75]: #config
-
-[76]: https://stackoverflow.com/a/38554505/5893085
-
-[77]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined
+[58]: https://stackoverflow.com/a/38554505/5893085
