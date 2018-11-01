@@ -1,16 +1,16 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                width="306" height="508">
+                width="462" height="460">
                 
                 <g>
                    <rect x="50" y="65"
-            width="170.4" height="30"
+            width="186" height="30"
             rx="3" ry="3"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>const scheme = {*}</title>
+                   <title>module.exports = {*}</title>
             <text x="65" y="85"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="65" y="85">const scheme = {*}</tspan>
+                <tspan x="65" y="85">module.exports = {*}</tspan>
             </text>
                    
                    
@@ -30,91 +30,90 @@
                 </g>
                 <g>
                    <rect x="87" y="162"
-            width="193.79999999999998" height="30"
+            width="248.4" height="30"
             rx="2" ry="2"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>out: [&apos;cyan&apos;, &apos;bold&apos;]</title>
+                   <title>//input
+out: [&apos;cyan&apos;, &apos;bold&apos;]</title>
             <text x="102" y="182"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="102" y="182">out: [&apos;cyan&apos;, &apos;bold&apos;]</tspan>
+                <tspan x="102" y="182">//input
+out: [&apos;cyan&apos;, &apos;bold&apos;]</tspan>
             </text>
                    
                    
                 </g>
                 <g>
                    <rect x="87" y="210.5"
-            width="123.6" height="30"
+            width="186" height="30"
             rx="2" ry="2"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>inf: &apos;green&apos;</title>
+                   <title>//Output
+inf: &apos;green&apos;</title>
             <text x="102" y="230.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="102" y="230.5">inf: &apos;green&apos;</tspan>
+                <tspan x="102" y="230.5">//Output
+inf: &apos;green&apos;</tspan>
             </text>
                    
                    
                 </g>
                 <g>
                    <rect x="87" y="259"
-            width="108" height="30"
+            width="209.4" height="30"
             rx="2" ry="2"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>err: &apos;red&apos;</title>
+                   <title>//Information
+err: &apos;red&apos;</title>
             <text x="102" y="279"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="102" y="279">err: &apos;red&apos;</tspan>
+                <tspan x="102" y="279">//Information
+err: &apos;red&apos;</tspan>
             </text>
                    
                    
                 </g>
                 <g>
                    <rect x="87" y="307.5"
-            width="139.2" height="30"
+            width="193.79999999999998" height="30"
             rx="2" ry="2"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>warn: &apos;yellow&apos;</title>
+                   <title>//Error
+warn: &apos;yellow&apos;</title>
             <text x="102" y="327.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="102" y="327.5">warn: &apos;yellow&apos;</tspan>
+                <tspan x="102" y="327.5">//Error
+warn: &apos;yellow&apos;</tspan>
             </text>
                    
                    
                 </g>
                 <g>
                    <rect x="87" y="356"
-            width="131.39999999999998" height="30"
+            width="201.6" height="30"
             rx="2" ry="2"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>debug: &apos;grey&apos;</title>
+                   <title>//Warning
+debug: &apos;grey&apos;</title>
             <text x="102" y="376"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="102" y="376">debug: &apos;grey&apos;</tspan>
+                <tspan x="102" y="376">//Warning
+debug: &apos;grey&apos;</tspan>
             </text>
                    
                    
                 </g>
                 <g>
                    <rect x="87" y="404.5"
-            width="131.39999999999998" height="30"
+            width="349.8" height="30"
             rx="2" ry="2"
             style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>quest: &apos;blue&apos;</title>
+                   <title>//Debug statement
+quest: &apos;blue&apos; //Question</title>
             <text x="102" y="424.5"
                 font-family="monospace" font-size="13" fill="#222">
-                <tspan x="102" y="424.5">quest: &apos;blue&apos;</tspan>
-            </text>
-                   
-                   
-                </g>
-                <g>
-                   <rect x="50" y="453"
-            width="209.4" height="30"
-            rx="3" ry="3"
-            style="fill:#90caf9; stroke:#444; stroke-width:1" />
-                   <title>module.exports = scheme</title>
-            <text x="65" y="473"
-                font-family="monospace" font-size="13" fill="#222">
-                <tspan x="65" y="473">module.exports = scheme</tspan>
+                <tspan x="102" y="424.5">//Debug statement
+quest: &apos;blue&apos; //Question</tspan>
             </text>
                    
                    
@@ -187,13 +186,5 @@
                 L87 419.5 "
         style="fill:none; stroke:#444; stroke-width:1" />
                false
-            </g>
-            <g>
-               <path d="M25, 40 L25 464 Q25 468
-                29 468
-                L42 468 "
-        style="fill:none; stroke:#444; stroke-width:1" />
-               <path d="M42, 465 L50, 468 L42, 471 Z" 
-        fill="#333" />
             </g>
             </svg>

@@ -1,56 +1,19 @@
-const clr = require('colors/safe');
-
-clr.setTheme(require('./clr'));
-
 /**
- * @description Print an error.
- * @param {...*} data Data to print
+ * @fileoverview Utility module for HMJ.
+ * @module
  */
-const error = (...data) => {
-  console.error(clr.err(data.join(' ')));
-  // process.exit(1);
-};
 
 /**
- * @description Print an information.
- * @param {...*} data Data to print
- */
-const info = (...data) => console.log(clr.inf(data.join(' ')));
-
-/**
- * @description Print a debug message.
- * @param {...*} data Data to print
- */
-const dbg = (...data) => console.log(clr.debug(data.join(' ')));
-
-/**
- * @description Print an output.
- * @param {...*} data Data to print
- */
-const out = (...data) => console.log(clr.out(data.join(' ')));
-
-/**
- * @description Print an input.
- * @param {...*} data Data to print
- */
-const inp = (...data) => console.log(clr.in(data.join(' ')));
-
-/**
- * @description Print a warning.
- * @param {...*} data Data to print
- */
-const warn = (...data) => console.warn(clr.warn(data.join(' ')));
-
-/**
- * @description Print a question.
- * @param {...*} data Data to print
- */
-const quest = (...data) => console.log(clr.quest(data.join(' ')));
-
-/**
- * I/O error.
+ * @description I/O error.
+ * @example new IoError('File not found');
  */
 class IoError extends Error {
+  /**
+   * Creates and I/O error.
+   * @param {string} message Error message
+   * @param {*} context I/O context
+   * @memberof IoError
+   */
   constructor(message = 'IO error:', context) {
     super();
     this.message = message;
@@ -61,9 +24,17 @@ class IoError extends Error {
 }
 
 /**
- * @description STDOUT log.
- * @param {*} data Data to print
+ * Check if a string is deemed to be an EOF symbol (<code>\$<code> or <code>\EOF</code>).
+ * @param {string} str Text
+ * @returns {boolean} Is it an EOF character?
+ * @example
+ * EOF('\n'); //returns false
+ * EOF('END\$'); //returns false
+ * EOF('\\$'); //returns true
+ * EOF('\\EOF'); //returns true
+ * EOF('\$'); //returns false
+ * EOF('\EOF'); //returns false
  */
-const log = (...data) => process.stdout.write(...data);
+const EOF = (str) => str === '\\$' || str === '\\EOF'
 
-module.exports = { error, info, dbg, out, inp, warn, quest, IoError, log }
+module.exports = { IoError, EOF }

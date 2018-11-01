@@ -1,10 +1,9 @@
 # HashMyJS
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/dcb7d393f7f24c0c9717e1254f6967c9)](https://app.codacy.com/app/maxieberkmann/hashmyjs?utm_source=github.com&utm_medium=referral&utm_content=Berkmann18/hashmyjs&utm_campaign=Badge_Grade_Dashboard)
 [![NPM](https://nodei.co/npm/hashmyjs.png)](https://nodei.co/npm/hashmyjs/)
-[![npm version](https://badge.fury.io/js/hashmyjs.svg)](http://badge.fury.io/js/hashmyjs)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 [![Inline docs](http://inch-ci.org/github/Berkmann18/hashmyjs.svg?branch=master)](http://inch-ci.org/github/Berkmann18/hashmyjs)
-[![NSP Status](https://nodesecurity.io/orgs/berkmann18/projects/ea369eec-8c46-4ad6-903c-739aa66d006a/badge)](https://nodesecurity.io/orgs/berkmann18/projects/ea369eec-8c46-4ad6-903c-739aa66d006a)
+<!-- [![NSP Status](https://nodesecurity.io/orgs/berkmann18/projects/ea369eec-8c46-4ad6-903c-739aa66d006a/badge)](https://nodesecurity.io/orgs/berkmann18/projects/ea369eec-8c46-4ad6-903c-739aa66d006a) -->
 [![codecov.io Code Coverage](https://img.shields.io/codecov/c/github/Berkmann18/hashmyjs.svg?maxAge=2592000)](https://codecov.io/github/Berkmann18/hashmyjs?branch=master)
 [![dependencies Status](https://david-dm.org/Berkmann18/hashmyjs/status.svg)](https://david-dm.org/Berkmann18/hashmyjs)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Berkmann18/hashmyjs/issues)
@@ -57,6 +56,9 @@ Usage: hashmyjs [options] [files...]
 
 ## Nota bene
 If you use wildcard `*` in the CLI to get files, NodeJS will have a hard time getting the file from the right URL so it will lead in errors.
+
+## Documentation
+See [this](./DOCUMENTATION.md) for more info or go to `./doc`.
 
 ## Contribution
 If you discover bugs, errors or/and have suggestions/feedback please create an [issue](http://github.com/Berkmann18/hashmyjs/issues) or/and submit a [PR](http://github.com/Berkmann18/hashmyjs/pulls).
