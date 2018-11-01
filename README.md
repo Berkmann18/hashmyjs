@@ -1,14 +1,24 @@
 # HashMyJS
 [![NPM](https://nodei.co/npm/hashmyjs.png)](https://nodei.co/npm/hashmyjs/)
-[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
-[![Inline docs](http://inch-ci.org/github/Berkmann18/hashmyjs.svg?branch=master)](http://inch-ci.org/github/Berkmann18/hashmyjs)
 <!-- [![NSP Status](https://nodesecurity.io/orgs/berkmann18/projects/ea369eec-8c46-4ad6-903c-739aa66d006a/badge)](https://nodesecurity.io/orgs/berkmann18/projects/ea369eec-8c46-4ad6-903c-739aa66d006a) -->
+
+[![Build Status](https://travis-ci.org/Berkmann18/hashmyjs.svg?branch=master)](https://travis-ci.org/Berkmann18/hashmyjs)
 [![codecov.io Code Coverage](https://img.shields.io/codecov/c/github/Berkmann18/hashmyjs.svg?maxAge=2592000)](https://codecov.io/github/Berkmann18/hashmyjs?branch=master)
-[![dependencies Status](https://david-dm.org/Berkmann18/hashmyjs/status.svg)](https://david-dm.org/Berkmann18/hashmyjs)
+[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
+
+[![GitHub](https://img.shields.io/github/license/Berkmann18/hashmyjs.svg)](https://github.com/Berkmann18/hashmyjs/blob/master/LICENSE)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Berkmann18/hashmyjs/issues)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&identifier=115825259)](https://dependabot.com)
-[![BCH compliance](https://bettercodehub.com/edge/badge/Berkmann18/hashmyjs?branch=master)](https://bettercodehub.com/)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&identifier=115825259)](https://dependabot.com)
+
+[![GitHub top language](https://img.shields.io/github/languages/top/Berkmann18/hashmyjs.svg)](https://github.com/Berkmann18/hashmyjs)
+[![GitHub language count](https://img.shields.io/github/languages/count/Berkmann18/hashmyjs.svg)](https://github.com/Berkmann18/hashmyjs)
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Berkmann18/hashmyjs.svg)](https://github.com/Berkmann18/hashmyjs)
+
+[![Inline docs](http://inch-ci.org/github/Berkmann18/hashmyjs.svg?branch=master)](http://inch-ci.org/github/Berkmann18/hashmyjs)
+[![BCH compliance](https://bettercodehub.com/edge/badge/Berkmann18/hashmyjs?branch=master)](https://bettercodehub.com/results/Berkmann18/hashmyjs)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a772e53fef984a558ef4741392bd926d)](https://www.codacy.com/app/maxieberkmann/hashmyjs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Berkmann18/hashmyjs&amp;utm_campaign=Badge_Grade)
+
 
 It's a relatively simple NodeJS program that allows you to get the base64 encoded SHA-256 hash for a JS file or the code itself that you could later on use as the integrity of a script that you would integrate to a page so it won't be flagged by CSP or else.
 
@@ -72,5 +82,3 @@ To fix formatting errors and such, run:
 ```cli
 ./fixjs.sh [your js files seperated by spaces]
 ```
-## License
-MIT
