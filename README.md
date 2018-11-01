@@ -1,5 +1,4 @@
 # HashMyJS
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dcb7d393f7f24c0c9717e1254f6967c9)](https://app.codacy.com/app/maxieberkmann/hashmyjs?utm_source=github.com&utm_medium=referral&utm_content=Berkmann18/hashmyjs&utm_campaign=Badge_Grade_Dashboard)
 [![NPM](https://nodei.co/npm/hashmyjs.png)](https://nodei.co/npm/hashmyjs/)
 <!-- [![NSP Status](https://nodesecurity.io/orgs/berkmann18/projects/ea369eec-8c46-4ad6-903c-739aa66d006a/badge)](https://nodesecurity.io/orgs/berkmann18/projects/ea369eec-8c46-4ad6-903c-739aa66d006a) -->
 
@@ -18,7 +17,7 @@
 
 [![Inline docs](http://inch-ci.org/github/Berkmann18/hashmyjs.svg?branch=master)](http://inch-ci.org/github/Berkmann18/hashmyjs)
 [![BCH compliance](https://bettercodehub.com/edge/badge/Berkmann18/hashmyjs?branch=master)](https://bettercodehub.com/results/Berkmann18/hashmyjs)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a772e53fef984a558ef4741392bd926d)](https://www.codacy.com/app/maxieberkmann/hashmyjs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Berkmann18/hashmyjs&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dcb7d393f7f24c0c9717e1254f6967c9)](https://app.codacy.com/app/maxieberkmann/hashmyjs?utm_source=github.com&utm_medium=referral&utm_content=Berkmann18/hashmyjs&utm_campaign=Badge_Grade_Dashboard)
 
 
 It's a relatively simple NodeJS program that allows you to get the base64 encoded SHA-256 hash for a JS file or the code itself that you could later on use as the integrity of a script that you would integrate to a page so it won't be flagged by CSP or else.
