@@ -1,4 +1,5 @@
 # HashMyJS
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dcb7d393f7f24c0c9717e1254f6967c9)](https://app.codacy.com/app/maxieberkmann/hashmyjs?utm_source=github.com&utm_medium=referral&utm_content=Berkmann18/hashmyjs&utm_campaign=Badge_Grade_Dashboard)
 [![NPM](https://nodei.co/npm/hashmyjs.png)](https://nodei.co/npm/hashmyjs/)
 [![npm version](https://badge.fury.io/js/hashmyjs.svg)](http://badge.fury.io/js/hashmyjs)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
