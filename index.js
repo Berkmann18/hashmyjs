@@ -9,10 +9,7 @@
 
 const hmj = require('./src/hashmyjs.js'),
   prgm = require('commander'),
-  clr = require('colors'),
   pkg = require('./package.json');
-
-clr.setTheme(require('./src/clr'));
 
 const str = (val) => val;
 
