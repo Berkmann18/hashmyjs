@@ -11,7 +11,7 @@
     "debug": "DEBUG=true node index.js",
     "test": "jest",
     "test-debug": "node --inspect-brk ./node_modules/.bin/jest -i --env jest-environment-node-debug",
-    "lint": "eslint -c ./config/.eslintrc.js *.js src/*.js",
+    "lint:js": "eslint -c ./config/.eslintrc.js *.js src/*.js",
     "doc:lint": "documentation lint src/**",
     "doc:html": "documentation build src/** -f html -o doc/",
     "doc:md": "documentation build src/** -f md -o DOCUMENTATION.md",
@@ -23,7 +23,9 @@
     "changelog": "conventional-changelog -p eslint -i CHANGELOG.md -s -r 0",
     "version": "npm run changelog && git add CHANGELOG.md",
     "commit": "git-cz",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "lint:md": "remark . .github -i ./config/.remarkignore",
+    "lint": "npm run lint:js && npm run lint:md"
   },
   "repository": {
     "type": "git",
