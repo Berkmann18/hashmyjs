@@ -52,7 +52,7 @@ const readIn = ({ prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUT
  * @param {Config} obj Configuration
  * @returns {string|Object|Array} Processed data with hashes
  */
-const processData = (res, {outputFormat = OUTPUT_FORMAT, outputDest = OUTPUT_DEST, prettify = false} = {}) => {
+const processData = (res, { outputFormat = OUTPUT_FORMAT, outputDest = OUTPUT_DEST, prettify = false } = {}) => {
   let output = `- STDIN: ${res}`;
   if (outputFormat === 'json') {
     const op = {STDIN: res};
