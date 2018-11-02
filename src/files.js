@@ -32,10 +32,10 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
     try {
       inputs.push(fs.readFileSync(files[i]));
     } catch (err) {
-      if (err.code === 'ENOENT') {
-        error(`File "${files[i]}" Not Found!`);
-        return err.message;
-      } else throw err;
+      // if (err.code === 'ENOENT') {
+      error(`File "${files[i]}" Not Found!`);
+      return err.message;
+      // } else throw err;
     }
 
     res[files[i]] = scanInput(inputs[i], true);

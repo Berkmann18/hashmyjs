@@ -61,15 +61,15 @@ const hash = (data) => {
  */
 const writeToFile = (filename, data, outputFormat = OUTPUT_FORMAT) => {
   if (!filename) throw new Error(`No filename specified to be written to with data=${data}`);
-  filename = ('' + filename).trim();
-  fs.writeFile(filename, '', (err) => {
-    if (err) throw new Error(`Couldn't write in ${filename}`);
-    let writer = fs.createWriteStream(filename, {
+  let fname = ('' + filename).trim();
+  fs.writeFile(fname, '', (err) => {
+    if (err) throw new Error(`Couldn't write in ${fname}`);
+    let writer = fs.createWriteStream(fname, {
       flags: 'a'
     });
 
     data.forEach((line) => writer.write(`${prettifyOutput(line, outputFormat)}\n`));
-    info(`Successfully written the result to ${filename}`);
+    info(`Successfully written the result to ${fname}`);
   });
 };
 
