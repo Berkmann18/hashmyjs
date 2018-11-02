@@ -11,8 +11,8 @@ node_js:
   - '8'
   - '6'
 install:
-  npm i
-  npm i -g jest codecov
+  - npm i
+  - npm i -g jest codecov eslint
 script:
   - npm run lint
   - npm test
