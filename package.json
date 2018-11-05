@@ -109,6 +109,11 @@
       "remark-preset-lint-consistent"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.js": [
       "eslint -c ./config/.eslintrc.js --fix",
