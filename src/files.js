@@ -24,7 +24,14 @@ const { OUTPUT_DEST, OUTPUT_FORMAT, scanInput, csvHandler, jsonHandler, writeToF
  * readFilesSync(['input.json'], {prettify: true, outputFormat: 'json'}); //logs {<br>  "output.json": "sha256-iTyF6rE+vAUIIWrWaC6bWt9NwI/74kpOuk4JZl9zCMM="<br>}
  * readFilesSync(['input.csv'], {outputDest: 'output.json', outputFormat: 'json'}); //Writes the above to output.json
  */
-const readFilesSync = (files = process.argv.slice(2, process.argv.length), { prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
+const readFilesSync = (
+  files = process.argv.slice(2, process.argv.length),
+  {
+    prettify = false,
+    outputDest = OUTPUT_DEST,
+    outputFormat = OUTPUT_FORMAT
+  } = {}
+) => {
   let inputs = [],
     res = {};
 
@@ -32,10 +39,8 @@ const readFilesSync = (files = process.argv.slice(2, process.argv.length), { pre
     try {
       inputs.push(fs.readFileSync(files[i]));
     } catch (err) {
-      // if (err.code === 'ENOENT') {
       error(`File "${files[i]}" Not Found!`);
       return err.message;
-      // } else throw err;
     }
 
     res[files[i]] = scanInput(inputs[i], true);
