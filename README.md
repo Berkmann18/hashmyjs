@@ -5,6 +5,7 @@
 [![Build Status](https://travis-ci.org/Berkmann18/hashmyjs.svg?branch=master)](https://travis-ci.org/Berkmann18/hashmyjs)
 [![codecov.io Code Coverage](https://img.shields.io/codecov/c/github/Berkmann18/hashmyjs.svg?maxAge=2592000)](https://codecov.io/github/Berkmann18/hashmyjs?branch=master)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
+[![Known Vulnerabilities](https://snyk.io/test/github/Berkmann18/hashmyjs/badge.svg?targetFile=package.json)](https://snyk.io/test/github/Berkmann18/hashmyjs?targetFile=package.json)
 
 [![GitHub](https://img.shields.io/github/license/Berkmann18/hashmyjs.svg)](https://github.com/Berkmann18/hashmyjs/blob/master/LICENSE)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Berkmann18/hashmyjs/issues)
