@@ -69,14 +69,14 @@ test('writeToFile(\'empty.txt\', \'\', text)', () => {
   expect(writeToFile('./test/empty.txt', [''])).toBeUndefined();
 });
 
-test(`writeToFile('some&InvalidFile name.txt', 'test', text)`, () => {
+test('writeToFile(\'some&InvalidFile name.txt\', \'test\', text)', () => {
   //Target core#66
   let oops = () => writeToFile('some&I/nvalidFile name.txt', ['test']);
   /* @todo Remove the `.not` once the jest issue is gone */
   expect(oops).not.toThrowError(IoError);
 });
 
-test(`writeToFile('someDir/file.txt, 'hello')`, () => {
+test('writeToFile(\'someDir/file.txt, \'hello\')', () => {
   /* @todo Remove the `.not` once the jest issue is gone */
   expect(() => writeToFile('someDir/file.txt', ['hello'])).not.toThrowError('Couldn\'t write in someDir/file.txt');
 });

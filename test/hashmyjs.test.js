@@ -94,11 +94,11 @@ test(`run(files=["${ex0}"], {input=args, output='./test/ex0.hash'})`, () => {
   hmj.run([ex0], { input: 'args', output: './test/ex0.hash' });
 });
 
-test(`run(files=[], {input=args, output='./test/test.txt'})`, () => {
+test('run(files=[], {input=args, output=\'./test/test.txt\'})', () => {
   hmj.run([], { input: 'args', output: './test/test.txt' })
 });
 
-test(`run(files=[], {input=stdin, output=var})`, () => {
+test('run(files=[], {input=stdin, output=var})', () => {
   expect.assertions(1);
   let h = hmj.run([], { input: 'stdin', output: 'var' });
   stdin.reset();
@@ -106,14 +106,14 @@ test(`run(files=[], {input=stdin, output=var})`, () => {
   stdin.send('\n\\$\n');
   stdin.end();
   h.then(res => {
-      expect(res).toBe(`- STDIN: ${hashCode}`);
-    })
+    expect(res).toBe(`- STDIN: ${hashCode}`);
+  })
     .catch(err => {
       throw new Error(err);
     });
 });
 
-test(`run(files=[], {input=stdin, output=var, prettify=true})`, () => {
+test('run(files=[], {input=stdin, output=var, prettify=true})', () => {
   expect.assertions(1);
   let h = hmj.run([], { input: 'stdin', output: 'var', prettify: true });
   stdin.reset();
@@ -121,14 +121,14 @@ test(`run(files=[], {input=stdin, output=var, prettify=true})`, () => {
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
-      expect(res).toBe(`- STDIN: ${hashCode}`);
-    })
+    expect(res).toBe(`- STDIN: ${hashCode}`);
+  })
     .catch(err => {
       throw new Error(err);
     });
 });
 
-test(`run(files=[], {format=csv, input=stdin, output=var})`, () => {
+test('run(files=[], {format=csv, input=stdin, output=var})', () => {
   expect.assertions(1);
   let h = hmj.run([], { input: 'stdin', output: 'var', format: 'csv' });
   stdin.reset();
@@ -136,14 +136,14 @@ test(`run(files=[], {format=csv, input=stdin, output=var})`, () => {
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
-      expect(res).toBe(`STDIN,${hashCode}`);
-    })
+    expect(res).toBe(`STDIN,${hashCode}`);
+  })
     .catch(err => {
       throw new Error(err);
     });
 });
 
-test(`run(files=[], {format=csv, input=stdin, output=var, prettify=true})`, () => {
+test('run(files=[], {format=csv, input=stdin, output=var, prettify=true})', () => {
   expect.assertions(1);
   let h = hmj.run([], { input: 'stdin', output: 'var', format: 'csv', prettify: true });
   stdin.reset();
@@ -151,14 +151,14 @@ test(`run(files=[], {format=csv, input=stdin, output=var, prettify=true})`, () =
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
-      expect(res).toBe(`STDIN, ${hashCode}`);
-    })
+    expect(res).toBe(`STDIN, ${hashCode}`);
+  })
     .catch(err => {
       throw new Error(err);
     });
 });
 
-test(`run(files=[], {format=json, input=stdin, output=var})`, () => {
+test('run(files=[], {format=json, input=stdin, output=var})', () => {
   expect.assertions(1);
   let h = hmj.run([], { input: 'stdin', output: 'var', format: 'json', prettify: false });
   stdin.reset();
@@ -166,14 +166,14 @@ test(`run(files=[], {format=json, input=stdin, output=var})`, () => {
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
-      expect(res).toEqual({ STDIN: hashCode });
-    })
+    expect(res).toEqual({ STDIN: hashCode });
+  })
     .catch(err => {
       throw new Error(err);
     });
 });
 
-test(`run(files=[], {format=json, input=stdin, output=var, prettify=true})`, () => {
+test('run(files=[], {format=json, input=stdin, output=var, prettify=true})', () => {
   expect.assertions(1);
   let h = hmj.run([], { input: 'stdin', output: 'var', format: 'json', prettify: true });
   stdin.reset();
@@ -181,8 +181,8 @@ test(`run(files=[], {format=json, input=stdin, output=var, prettify=true})`, () 
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
-      expect(res).toStrictEqual(JSON.stringify({ STDIN: hashCode }, null, 2));
-    })
+    expect(res).toStrictEqual(JSON.stringify({ STDIN: hashCode }, null, 2));
+  })
     .catch(err => {
       throw new Error(err);
     });
@@ -191,7 +191,7 @@ test(`run(files=[], {format=json, input=stdin, output=var, prettify=true})`, () 
 const OUT_START = '\u001b[1m\u001b[36m',
   OUT_END = '\u001b[39m\u001b[22m\n';
 
-test(`run(files=[], {format=json, input=stdin, output=stdout})`, () => {
+test('run(files=[], {format=json, input=stdin, output=stdout})', () => {
   expect.assertions(1);
   const inspect = stdout.inspect();
   const h = hmj.run([], { format: 'json', input: 'stdin', output: 'stdout' });
@@ -206,9 +206,9 @@ test(`run(files=[], {format=json, input=stdin, output=stdout})`, () => {
     // Since there's colour coding mind-boggles, the first entry is assumed to be
     // 'Press CTRL+D (or CMD+D or using `C` instead of `D`) to stop the STDIN reader\nType either \\$ or \\EOF in an empty line to signal an End-Of-File (this line won\'t be counted)\n\n'
   })
-  .catch(err => {
-    throw new Error(err);
-  });
+    .catch(err => {
+      throw new Error(err);
+    });
 });
 
 test(`run(files=["${ex0}"], {format=text, input=any, output=stdout})`, () => {
@@ -231,7 +231,7 @@ test(`run(files=["${ex0}"], {format=csv, input=any, output=stdout})`, () => {
   expect(output).toEqual([`${OUT_START}${csv0}${OUT_END}`])
 });
 
-test(`run(files=[], {input=any, output=var})`, () => {
+test('run(files=[], {input=any, output=var})', () => {
   expect.assertions(1);
   let h = hmj.run([], { input: 'any', output: 'var' });
   stdin.reset();
@@ -239,14 +239,14 @@ test(`run(files=[], {input=any, output=var})`, () => {
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
-      expect(res).toEqual(`- STDIN: ${hashCode}`);
-    })
+    expect(res).toEqual(`- STDIN: ${hashCode}`);
+  })
     .catch(err => {
       throw new Error(err);
     });
 });
 
-test(`run()`, () => {
+test('run()', () => {
   expect.assertions(1);
   let h = hmj.run();
   stdin.reset();
@@ -254,8 +254,8 @@ test(`run()`, () => {
   stdin.send('\n\\$');
   stdin.end();
   h.then(res => {
-      expect(res).toEqual(`- STDIN: ${hashCode}`);
-    })
+    expect(res).toEqual(`- STDIN: ${hashCode}`);
+  })
     .catch(err => {
       throw new Error(err);
     });
