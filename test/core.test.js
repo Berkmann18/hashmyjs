@@ -1,5 +1,4 @@
-const { scanInput, prettifyOutput, writeToFile, hash } = require('../src/core'),
-  { IoError } = require('../src/utils');
+const { scanInput, prettifyOutput, writeToFile, hash } = require('../src/core');
 
 const code = 'const hello = (name) => console.log(`Hi ${name}!`);',
   hashCode = 'sha256-X75HP8ksYMVgXXuzmi9Acp/bAF2dOdYarpROmgVvVEU=';
@@ -76,10 +75,10 @@ test('writeToFile(\'empty.txt\', \'\', text)', () => {
 //   expect(oops).not.toThrowError(IoError);
 // });
 
-test('writeToFile(\'someDir/file.txt, \'hello\')', () => {
-  /* @todo Remove the `.not` once the jest issue is gone */
-  expect(() => writeToFile('someDir/file.txt', ['hello'])).not.toThrowError('Couldn\'t write in someDir/file.txt');
-});
+// test('writeToFile(\'someDir/file.txt, \'hello\')', () => {
+//   /* @todo Remove the `.not` once the jest issue is gone */
+//   expect(() => writeToFile('someDir/file.txt', ['hello'])).toThrowError('Couldn\'t write in someDir/file.txt');
+// });
 
 /* hash */
 test('hash(null)', () => {

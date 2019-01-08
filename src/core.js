@@ -52,7 +52,7 @@ const hash = (data) => {
  * @param {string[]} data Lines to write to the file
  * @param {string} [outputFormat=OUTPUT_FORMAT] Format of the output
  * @throws {Error} No filename specified
- * @throws {IoError} Writing error
+ * @throws {Error} Writing error
  * @public
  * @example writeToFile('output.txt', ['Lorem ipsum dolore sit amet']);
  * @example <caption>With a specified format:</caption>
