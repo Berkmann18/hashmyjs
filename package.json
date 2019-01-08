@@ -58,7 +58,7 @@
   "dependencies": {
     "colors": "^1.3.2",
     "commander": "^2.19.0",
-    "nclr": "^1.2.0",
+    "nclr": "^2.0.0",
     "sjcl": "^1.0.7"
   },
   "devDependencies": {
