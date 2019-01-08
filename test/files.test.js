@@ -5,7 +5,7 @@ test('Not existent', () => {
   expect(readFilesSync(['nowt'])).toEqual('ENOENT: no such file or directory, open \'nowt\'');
 });
 
-let ex0 = './examples/ex0.js', csv = './test/out.csv', jso = './test/out.json',
+let ex0 = './examples/ex0.js', csv = './test/gen/out.csv', jso = './test/gen/out.json',
   hashEx0 = 'sha256-oRWayKCc59n86sjrY/5xXsXO/t8OfjL4f2GkX0eUEII=',
   json0 = {
     [ex0]: hashEx0
@@ -40,6 +40,6 @@ test(`readFilesSync(files=["${ex0}"], {outputFormat=json, outputDest=stdout})`, 
   expect(output).toEqual([`${OUT_START}${strJson0}${OUT_END}`])
 });
 
-test(`readFilesSync([], {outputFormat=csv, outputDest="${csv}"})`, () => {
-  expect(readFilesSync([], { outputFormat: 'json', outputDest: 'nothing' })).toBeUndefined();
+test('readFilesSync([], {outputFormat=csv, outputDest="nothing"})', () => {
+  expect(readFilesSync([], { outputFormat: 'json', outputDest: './test/gen/nothing' })).toBeUndefined();
 });

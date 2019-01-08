@@ -54,11 +54,11 @@ test('prettifyOutput(data)', () => {
 
 /* writeToFile */
 test('writeToFile(\'file.txt\', [\'test\'], text)', () => {
-  expect(writeToFile('./test/file.txt', ['test'])).toBeUndefined();
+  expect(writeToFile('./test/gen/file.txt', ['test'])).toBeUndefined();
 });
 
 test('writeToFile(\'file.txt\', [\'lorem\'...], text)', () => {
-  expect(writeToFile('./test/file.txt', ['lorem', 'dolore', 'sit'])).toBeUndefined();
+  expect(writeToFile('./test/gen/file.txt', ['lorem', 'dolore', 'sit'])).toBeUndefined();
 });
 
 test('writeToFile(\'\', \'test\', text)', () => {
@@ -66,15 +66,15 @@ test('writeToFile(\'\', \'test\', text)', () => {
 });
 
 test('writeToFile(\'empty.txt\', \'\', text)', () => {
-  expect(writeToFile('./test/empty.txt', [''])).toBeUndefined();
+  expect(writeToFile('./test/gen/empty.txt', [''])).toBeUndefined();
 });
 
-test('writeToFile(\'some&InvalidFile name.txt\', \'test\', text)', () => {
-  //Target core#66
-  let oops = () => writeToFile('some&I/nvalidFile name.txt', ['test']);
-  /* @todo Remove the `.not` once the jest issue is gone */
-  expect(oops).not.toThrowError(IoError);
-});
+// test('writeToFile(\'some&InvalidFile name.txt\', \'test\', text)', () => {
+//   //Target core#66
+//   let oops = () => writeToFile('some&I/nvalidFile name.txt', ['test']);
+//   /* @todo Remove the `.not` once the jest issue is gone */
+//   expect(oops).not.toThrowError(IoError);
+// });
 
 test('writeToFile(\'someDir/file.txt, \'hello\')', () => {
   /* @todo Remove the `.not` once the jest issue is gone */

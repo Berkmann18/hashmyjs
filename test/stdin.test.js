@@ -20,7 +20,7 @@ test('No STDIN', () => {
 
 test('readIn({outputDest: \'in.txt\'})', () => {
   expect.assertions(1);
-  let h = readIn({ outputDest: './test/in.txt' })
+  let h = readIn({ outputDest: './test/gen/in.txt' })
   stdin.reset();
   stdin.send(code);
   stdin.send('\n\\$');
@@ -35,7 +35,7 @@ test('readIn({outputDest: \'in.txt\'})', () => {
 
 test('readIn({outputDest: \'in.csv\'})', () => {
   expect.assertions(1);
-  let h = readIn({ outputDest: './test/in.csv', outputFormat: 'csv' })
+  let h = readIn({ outputDest: './test/gen/in.csv', outputFormat: 'csv' })
   stdin.reset();
   stdin.send(code);
   stdin.send('\n\\$');

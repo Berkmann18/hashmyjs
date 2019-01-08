@@ -90,12 +90,12 @@ test(`run(files=["${ex0}"], {input=args, output=''})`, () => {
   expect(() => hmj.run([ex0], { input: 'args', output: '' })).toThrowError('No filename specified to be written to with data=');
 });
 
-test(`run(files=["${ex0}"], {input=args, output='./test/ex0.hash'})`, () => {
-  hmj.run([ex0], { input: 'args', output: './test/ex0.hash' });
+test(`run(files=["${ex0}"], {input=args, output='./test/gen/ex0.hash'})`, () => {
+  hmj.run([ex0], { input: 'args', output: './test/gen/ex0.hash' });
 });
 
-test('run(files=[], {input=args, output=\'./test/test.txt\'})', () => {
-  hmj.run([], { input: 'args', output: './test/test.txt' })
+test('run(files=[], {input=args, output=\'./test/gen/test.txt\'})', () => {
+  hmj.run([], { input: 'args', output: './test/gen/test.txt' })
 });
 
 test('run(files=[], {input=stdin, output=var})', () => {
