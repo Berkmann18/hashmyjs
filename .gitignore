@@ -133,4 +133,8 @@ $RECYCLE.BIN/
 
 .vscode
 
-test/gen
+test/gen/*.json
+test/gen/*.csv
+test/gen/*.txt
+test/gen/*.hash
+test/gen/nothing
