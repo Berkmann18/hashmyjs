@@ -38,7 +38,6 @@ const OUTPUT_FORMAT = 'text';
  * of its content</em>.
  * @param {(string|number|Array|Date)} data Data to encode
  * @return {string} Base64 encoded SHA-256 hash
- * @public
  * @example hash('Lorem Ipsum dolore sit amet'); //returns 'sha256-7almix3trlcKWVAN+fhV/Bzbx4BixTwzjYpZDWUxctM='
  */
 const hash = (data) => {
@@ -53,7 +52,6 @@ const hash = (data) => {
  * @param {string} [outputFormat=OUTPUT_FORMAT] Format of the output
  * @throws {Error} No filename specified
  * @throws {Error} Writing error
- * @public
  * @example writeToFile('output.txt', ['Lorem ipsum dolore sit amet']);
  * @example <caption>With a specified format:</caption>
  * writeToFile('output.json', [{key: 'val'}], 'json');
@@ -78,7 +76,6 @@ const writeToFile = (filename, data, outputFormat = OUTPUT_FORMAT) => {
  * @param {(string|Object|string[])} output Output
  * @param {string} [format=OUTPUT_FORMAT] Format of the output (json, csv, ...)
  * @return {string} Prettified output
- * @public
  * @example prettifyOutput('some unchanged text'); //returns 'some unchanged text'
  * @example <caption>With a specified format:</caption>
  * prettifyOutput({key: 'val'}, 'json'); //returns {<br>  "key": "val"<br>}
@@ -123,7 +120,6 @@ const csvHandler = (lhs, rhs, prettify = false) => {
  * @param {boolean} [noOutput=false] Don't output the result to the terminal but return the hash
  * @return {(void|string)} Hashed data or nothing
  * @throws {Error} Hashing or input error
- * @public
  * @example scanInput('Lorem ipsum dolore sit amet'); //logs 'sha256-HBQ/am1i8gw1bl8qJDhm0naAsChqeYsBEiCWTRLEaE8='
  * scanInput(['Lorem ipsum dolore sit amet']); //logs the same as above
  * @example <caption>Without output disabled</caption>

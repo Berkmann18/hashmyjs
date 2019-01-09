@@ -1,6 +1,6 @@
 const stdin = require('mock-stdin').stdin(),
   stdout = require('test-console').stdout;
-const hmj = require('../src/hashmyjs');
+const hmj = require('../');
 
 /*
  run(format=(text | json | csv), input=(any | stdin | args), output=(stdout | ...fileNames | var), files=[...files]
