@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index.js",
     "debug": "DEBUG=true node index.js",
-    "test": "snyk test && jest",
+    "test": "snyk test && jest --maxWorkers=4",
     "test-debug": "node --inspect-brk ./node_modules/.bin/jest -i --env jest-environment-node-debug",
     "lint:js": "eslint -c ./config/.eslintrc.js *.js {src,test}/*.js",
     "doc:lint": "documentation lint src/**",
