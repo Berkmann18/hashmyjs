@@ -53,32 +53,33 @@ test('prettifyOutput(data)', () => {
 
 /* writeToFile */
 test('writeToFile(\'file.txt\', [\'test\'], text)', () => {
-  expect(writeToFile('./test/gen/file.txt', ['test'])).toBeUndefined();
+  expect(writeToFile('./test/gen/file.txt', ['test'])).resolves.toStrictEqual({});
 });
 
 test('writeToFile(\'file.txt\', [\'lorem\'...], text)', () => {
-  expect(writeToFile('./test/gen/file.txt', ['lorem', 'dolore', 'sit'])).toBeUndefined();
+  expect(writeToFile('./test/gen/file.txt', ['lorem', 'dolore', 'sit'])).resolves.toStrictEqual({});
 });
 
 test('writeToFile(\'\', \'test\', text)', () => {
-  expect(() => writeToFile('', ['test'])).toThrowError('No filename specified to be written to with data=test');
+  expect(writeToFile('', ['test'])).rejects.toThrow();
 });
 
 test('writeToFile(\'empty.txt\', \'\', text)', () => {
-  expect(writeToFile('./test/gen/empty.txt', [''])).toBeUndefined();
+  expect(writeToFile('./test/gen/empty.txt', [''])).resolves.toStrictEqual({});
 });
 
-// test('writeToFile(\'some&InvalidFile name.txt\', \'test\', text)', () => {
-//   //Target core#66
-//   let oops = () => writeToFile('some&I/nvalidFile name.txt', ['test']);
-//   /* @todo Remove the `.not` once the jest issue is gone */
-//   expect(oops).not.toThrowError(IoError);
-// });
+test('writeToFile(\'some&InvalidFile name.txt\', \'test\', text)', () => {
+  //Target core#66
+  // let oops = () => writeToFile('some&I/nvalidFile name.txt', ['test']);
+  /* @todo Remove the `.not` once the jest issue is gone */
+  // expect(oops).toThrowError(IoError);
+  expect(writeToFile('some&I/nvalidFile name.txt', ['test'])).rejects.toThrow(Error);
+});
 
-// test('writeToFile(\'someDir/file.txt, \'hello\')', () => {
-//   /* @todo Remove the `.not` once the jest issue is gone */
-//   expect(() => writeToFile('someDir/file.txt', ['hello'])).toThrowError('Couldn\'t write in someDir/file.txt');
-// });
+test('writeToFile(\'someDir/file.txt, \'hello\')', () => {
+  /* @todo Remove the `.not` once the jest issue is gone */
+  expect(writeToFile('someDir/file.txt', ['hello'])).rejects.toThrowError('Couldn\'t write in someDir/file.txt');
+});
 
 /* hash */
 test('hash(null)', () => {

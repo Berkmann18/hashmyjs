@@ -50,6 +50,7 @@ const hash = (data) => {
  * @param {string} filename File name
  * @param {string[]} data Lines to write to the file
  * @param {string} [outputFormat=OUTPUT_FORMAT] Format of the output
+ * @returns {Promise<(Error|Object)} Writing promise
  * @throws {Error} No filename specified
  * @throws {Error} Writing error
  * @example writeToFile('output.txt', ['Lorem ipsum dolore sit amet']);
@@ -58,16 +59,19 @@ const hash = (data) => {
  * writeToFile('output.csv', ['0,john,doe', '1,lorem,ipsum'], 'csv');
  */
 const writeToFile = (filename, data, outputFormat = OUTPUT_FORMAT) => {
-  if (!filename) throw new Error(`No filename specified to be written to with data=${data}`);
-  let fname = ('' + filename).trim();
-  fs.writeFile(fname, '', (err) => {
-    if (err) throw new Error(`Couldn't write in ${fname}`);
-    let writer = fs.createWriteStream(fname, {
-      flags: 'a'
-    });
+  return new Promise((resolve, reject) => {
+    if (!filename) reject(new Error(`No filename specified to be written to with data=${data}`));
+    let fname = ('' + filename).trim();
+    fs.writeFile(fname, '', (err) => {
+      if (err) reject(new Error(`Couldn't write in ${fname}`));
+      let writer = fs.createWriteStream(fname, {
+        flags: 'a'
+      });
 
-    data.forEach((line) => writer.write(`${prettifyOutput(line, outputFormat)}\n`));
-    info(`Successfully written the result to ${fname}`);
+      data.forEach((line) => writer.write(`${prettifyOutput(line, outputFormat)}\n`));
+      info(`Successfully written the result to ${fname}`);
+      resolve();
+    });
   });
 };
 

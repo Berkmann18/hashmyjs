@@ -120,7 +120,7 @@
   "lint-staged": {
     "*.js": [
       "eslint -c ./config/.eslintrc.js --fix",
-      "jest --bail --findRelatedTests",
+      "jest --bail --findRelatedTests --maxWorkers=4",
       "git add"
     ],
     "*.md": [
