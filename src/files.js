@@ -10,22 +10,21 @@ const fs = require('fs'),
 const { OUTPUT_DEST, OUTPUT_FORMAT, scanInput, csvHandler, jsonHandler, writeToFile } = require('./core');
 
 /**
- * @todo REMOVE "Sync" (Breaking change?)
- * @description Synchronously read files and scan them.
+ * @description Read files and scan them.
  * @param {string[]} [files] Array of file paths
  * @param {Config} obj Configuration
  * @see Config
  * @return {Promise<(undefined|string[]|{...string})>} Data or nothing
  * @public
  * @example <caption>Reading from the CLI</caption>
- * readFilesSync();
+ * readFiles();
  * @example <caption>Reading from specific files</caption>
- * readFilesSync(['output.txt']);
+ * readFiles(['output.txt']);
  * @example <caption>... With specific configurations</caption>
- * readFilesSync(['input.json'], {prettify: true, outputFormat: 'json'}); //logs {<br>  "output.json": "sha256-iTyF6rE+vAUIIWrWaC6bWt9NwI/74kpOuk4JZl9zCMM="<br>}
- * readFilesSync(['input.csv'], {outputDest: 'output.json', outputFormat: 'json'}); //Writes the above to output.json
+ * readFiles(['input.json'], {prettify: true, outputFormat: 'json'}); //logs {<br>  "output.json": "sha256-iTyF6rE+vAUIIWrWaC6bWt9NwI/74kpOuk4JZl9zCMM="<br>}
+ * readFiles(['input.csv'], {outputDest: 'output.json', outputFormat: 'json'}); //Writes the above to output.json
  */
-const readFilesSync = (
+const readFiles = (
   files = process.argv.slice(2, process.argv.length),
   {
     prettify = false,
@@ -42,7 +41,7 @@ const readFilesSync = (
         inputs.push(fs.readFileSync(files[i]));
       } catch (err) {
         error(`File "${files[i]}" Not Found!`);
-        reject(err); //err.message
+        reject(err);
       }
 
       res[files[i]] = scanInput(inputs[i], true);
@@ -102,4 +101,4 @@ const processFileData = (data, { prettify = false, outputDest = OUTPUT_DEST, out
   });
 };
 
-module.exports = readFilesSync;
+module.exports = readFiles;
