@@ -10,21 +10,21 @@ const fs = require('fs'),
 const { OUTPUT_DEST, OUTPUT_FORMAT, scanInput, csvHandler, jsonHandler, writeToFile } = require('./core');
 
 /**
- * @description Synchronously read files and scan them.
+ * @description Read files and scan them.
  * @param {string[]} [files] Array of file paths
  * @param {Config} obj Configuration
  * @see Config
- * @return {(undefined|string[]|{...string})} Data or nothing
+ * @return {Promise<(undefined|string[]|{...string})>} Data or nothing
  * @public
  * @example <caption>Reading from the CLI</caption>
- * readFilesSync();
+ * readFiles();
  * @example <caption>Reading from specific files</caption>
- * readFilesSync(['output.txt']);
+ * readFiles(['output.txt']);
  * @example <caption>... With specific configurations</caption>
- * readFilesSync(['input.json'], {prettify: true, outputFormat: 'json'}); //logs {<br>  "output.json": "sha256-iTyF6rE+vAUIIWrWaC6bWt9NwI/74kpOuk4JZl9zCMM="<br>}
- * readFilesSync(['input.csv'], {outputDest: 'output.json', outputFormat: 'json'}); //Writes the above to output.json
+ * readFiles(['input.json'], {prettify: true, outputFormat: 'json'}); //logs {<br>  "output.json": "sha256-iTyF6rE+vAUIIWrWaC6bWt9NwI/74kpOuk4JZl9zCMM="<br>}
+ * readFiles(['input.csv'], {outputDest: 'output.json', outputFormat: 'json'}); //Writes the above to output.json
  */
-const readFilesSync = (
+const readFiles = (
   files = process.argv.slice(2, process.argv.length),
   {
     prettify = false,
@@ -35,18 +35,21 @@ const readFilesSync = (
   let inputs = [],
     res = {};
 
-  for (let i = 0, len = files.length; i < len; ++i) {
-    try {
-      inputs.push(fs.readFileSync(files[i]));
-    } catch (err) {
-      error(`File "${files[i]}" Not Found!`);
-      return err.message;
+  return new Promise((resolve, reject) => {
+    for (let i = 0, len = files.length; i < len; ++i) {
+      try {
+        inputs.push(fs.readFileSync(files[i]));
+      } catch (err) {
+        error(`File "${files[i]}" Not Found!`);
+        reject(err);
+      }
+
+      res[files[i]] = scanInput(inputs[i], true);
     }
 
-    res[files[i]] = scanInput(inputs[i], true);
-  }
+    resolve(processFileData(res, { prettify, outputDest, outputFormat }));
+  });
 
-  return processFileData(res, { prettify, outputDest, outputFormat });
 };
 
 /**
@@ -54,7 +57,7 @@ const readFilesSync = (
  * @param {{string: string}} data Data to process
  * @param {{string, boolean}} [config={outputDest=OUTPUT_DEST, prettify=false}] Configuration with output destination
  * and whether or not it prettifies the output
- * @returns {undefined|string|Object|Array} Processed JSON result
+ * @returns {boolean|(string|Object|Array)|Promise} Processed JSON result
  */
 const processJsonData = (data, { outputDest = OUTPUT_DEST, prettify = false } = {}) => {
   switch (outputDest) {
@@ -72,26 +75,30 @@ const processJsonData = (data, { outputDest = OUTPUT_DEST, prettify = false } = 
  * @param {{string: string}} data Data read from the files
  * @param {Config} obj Configuration
  * @see Config
- * @returns {undefined|string|Object|Array} Processed result
+ * @returns {Promise<undefined|string|Object|Array>} Processed result
  */
 const processFileData = (data, { prettify = false, outputDest = OUTPUT_DEST, outputFormat = OUTPUT_FORMAT } = {}) => {
-  if (outputFormat === 'json') return processJsonData(data, { outputDest, prettify });
-
-  let result = [];
-  const TO_STDOUT = outputDest === 'stdout';
-
-  if (outputFormat === 'csv') {
-    for (let file in data) {
-      let csv = csvHandler(file, data[file], prettify);
-      TO_STDOUT ? out(csv) : result.push(csv);
+  return new Promise((resolve) => {
+    if (outputFormat === 'json') {
+      resolve(processJsonData(data, { outputDest, prettify }));
+      return; //Only here because it doesn't stop here
     }
-  } else {
-    for (let file in data) {
-      TO_STDOUT ? out(`- ${file}: ${data[file]}`) : result.push(data[file]);
+    let result = [];
+    const TO_STDOUT = outputDest === 'stdout';
+
+    if (outputFormat === 'csv') {
+      for (let file in data) {
+        let csv = csvHandler(file, data[file], prettify);
+        TO_STDOUT ? out(csv) : result.push(csv);
+      }
+    } else {
+      for (let file in data) {
+        TO_STDOUT ? out(`- ${file}: ${data[file]}`) : result.push(data[file]);
+      }
     }
-  }
-  if (TO_STDOUT) return;
-  return (outputDest === 'var') ? result : writeToFile(outputDest, result);
+    if (TO_STDOUT) resolve();
+    resolve((outputDest === 'var') ? result : writeToFile(outputDest, result));
+  });
 };
 
-module.exports = readFilesSync;
+module.exports = readFiles;

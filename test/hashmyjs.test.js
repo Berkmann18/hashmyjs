@@ -38,56 +38,56 @@ let json01 = {
   prettyCsv01 = [prettyCsv0, prettyCsv1];
 
 test(`run(files=["${ex0}"], {format=text, input=any, output=var})`, () => {
-  expect(hmj.run([ex0], { format: 'text', input: 'any', output: 'var' })).toEqual([hashEx0])
+  expect(hmj.run([ex0], { format: 'text', input: 'any', output: 'var' })).resolves.toEqual([hashEx0])
 });
 
 test(`run(files=["${ex0}, "${ex1}"], {format=text, input=any, output=var})`, () => {
   expect(hmj.run([ex0, './examples/ex1.js'], { format: 'text', input: 'any', output: 'var' }))
-    .toEqual([hashEx0, hashEx1])
+    .resolves.toEqual([hashEx0, hashEx1])
 });
 
 test(`run(files=["${ex0}"], {format=text, input=args, output=var})`, () => {
-  expect(hmj.run([ex0], { format: 'text', input: 'args', output: 'var' })).toEqual([hashEx0])
+  expect(hmj.run([ex0], { format: 'text', input: 'args', output: 'var' })).resolves.toEqual([hashEx0])
 });
 
 test(`run(files=["${ex0}"], {format=text, input=args, output=var, prettify=true})`, () => {
-  expect(hmj.run([ex0], { format: 'text', input: 'args', output: 'var', prettify: true })).toEqual([hashEx0])
+  expect(hmj.run([ex0], { format: 'text', input: 'args', output: 'var', prettify: true })).resolves.toEqual([hashEx0])
 });
 
 test(`run(files=["${ex0}"], {format=json, input=args, output=var, prettify=false})`, () => {
-  expect(hmj.run([ex0], { format: 'json', input: 'args', output: 'var' })).toEqual(json0)
+  expect(hmj.run([ex0], { format: 'json', input: 'args', output: 'var' })).resolves.toEqual(json0)
 });
 
 test(`run(files=["${ex0}"], {format=json, input=args, output=var, prettify=true})`, () => {
-  expect(hmj.run([ex0], { format: 'json', input: 'args', output: 'var', prettify: true })).toEqual(prettyJson0)
+  expect(hmj.run([ex0], { format: 'json', input: 'args', output: 'var', prettify: true })).resolves.toEqual(prettyJson0)
 });
 
 test(`run(files=["${ex0}", "${ex1}"], {format=json, input=args, output=var, prettify=false})`, () => {
-  expect(hmj.run([ex0, ex1], { format: 'json', input: 'args', output: 'var' })).toEqual(json01)
+  expect(hmj.run([ex0, ex1], { format: 'json', input: 'args', output: 'var' })).resolves.toEqual(json01)
 });
 
 test(`run(files=["${ex0}", "${ex1}"], {format=json, input=args, output=var, prettify=true})`, () => {
-  expect(hmj.run([ex0, ex1], { format: 'json', input: 'args', output: 'var', prettify: true })).toEqual(prettyJson01)
+  expect(hmj.run([ex0, ex1], { format: 'json', input: 'args', output: 'var', prettify: true })).resolves.toEqual(prettyJson01)
 });
 
 test(`run(files=["${ex0}"], {format=csv, input=args, output=var, prettify=false})`, () => {
-  expect(hmj.run([ex0], { format: 'csv', input: 'args', output: 'var' })).toEqual([csv0])
+  expect(hmj.run([ex0], { format: 'csv', input: 'args', output: 'var' })).resolves.toEqual([csv0])
 });
 
 test(`run(files=["${ex0}"], {format=csv, input=args, output=var, prettify=true})`, () => {
-  expect(hmj.run([ex0], { format: 'csv', input: 'args', output: 'var', prettify: true })).toEqual([prettyCsv0])
+  expect(hmj.run([ex0], { format: 'csv', input: 'args', output: 'var', prettify: true })).resolves.toEqual([prettyCsv0])
 });
 
 test(`run(files=["${ex0}", "${ex1}"], {format=csv, input=args, output=var, prettify=false})`, () => {
-  expect(hmj.run([ex0, ex1], { format: 'csv', input: 'args', output: 'var' })).toEqual(csv01)
+  expect(hmj.run([ex0, ex1], { format: 'csv', input: 'args', output: 'var' })).resolves.toEqual(csv01)
 });
 
 test(`run(files=["${ex0}", "${ex1}"], {format=csv, input=args, output=var, prettify=true})`, () => {
-  expect(hmj.run([ex0, ex1], { format: 'csv', input: 'args', output: 'var', prettify: true })).toEqual(prettyCsv01)
+  expect(hmj.run([ex0, ex1], { format: 'csv', input: 'args', output: 'var', prettify: true })).resolves.toEqual(prettyCsv01)
 });
 
 test(`run(files=["${ex0}"], {input=args, output=''})`, () => {
-  expect(() => hmj.run([ex0], { input: 'args', output: '' })).toThrowError('No filename specified to be written to with data=');
+  expect(hmj.run([ex0], { input: 'args', output: '' })).rejects.toThrowError('No filename specified to be written to with data=');
 });
 
 test(`run(files=["${ex0}"], {input=args, output='./test/gen/ex0.hash'})`, () => {

@@ -7,7 +7,7 @@
 /* eslint-env es6, node */
 
 const readIn = require('./src/stdin'),
-  readFilesSync = require('./src/files');
+  readFiles = require('./src/files');
 
 /**
  * @description Start the hasher.
@@ -43,14 +43,14 @@ const run = (files = [], { format = 'text', input = 'any', output = 'stdout', pr
   case 'stdin':
     return readIn(opts);
   case 'args':
-    return readFilesSync(files, opts);
+    return readFiles(files, opts);
   default: //any
-    return files.length ? readFilesSync(files, opts) : readIn(opts);
+    return files.length ? readFiles(files, opts) : readIn(opts);
   }
 };
 
 module.exports = {
   run,
   readIn,
-  readFilesSync
+  readFiles
 }

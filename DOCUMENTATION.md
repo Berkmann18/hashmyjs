@@ -8,7 +8,7 @@
 -   [readIn][4]
     -   [Parameters][5]
     -   [Examples][6]
--   [readFilesSync][7]
+-   [readFiles][7]
     -   [Parameters][8]
     -   [Examples][9]
 
@@ -95,11 +95,11 @@ readIn({prettify: true, outputDest: 'outputFromSTDIN.txt'});
 
 Returns **([undefined][14] \| [string][11])** Data or nothing
 
-## readFilesSync
+## readFiles
 
 -   **See: Config**
 
-Synchronously read files and scan them.
+Read files and scan them.
 
 ### Parameters
 
@@ -115,22 +115,22 @@ Reading from the CLI
 
 
 ```javascript
-readFilesSync();
+readFiles();
 ```
 
 Reading from specific files
 
 
 ```javascript
-readFilesSync(['output.txt']);
+readFiles(['output.txt']);
 ```
 
 ... With specific configurations
 
 
 ```javascript
-readFilesSync(['input.json'], {prettify: true, outputFormat: 'json'}); //logs {<br>  "output.json": "sha256-iTyF6rE+vAUIIWrWaC6bWt9NwI/74kpOuk4JZl9zCMM="<br>}
-readFilesSync(['input.csv'], {outputDest: 'output.json', outputFormat: 'json'}); //Writes the above to output.json
+readFiles(['input.json'], {prettify: true, outputFormat: 'json'}); //logs {<br>  "output.json": "sha256-iTyF6rE+vAUIIWrWaC6bWt9NwI/74kpOuk4JZl9zCMM="<br>}
+readFiles(['input.csv'], {outputDest: 'output.json', outputFormat: 'json'}); //Writes the above to output.json
 ```
 
 [1]: #run
@@ -145,7 +145,7 @@ readFilesSync(['input.csv'], {outputDest: 'output.json', outputFormat: 'json'});
 
 [6]: #examples-1
 
-[7]: #readfilessync
+[7]: #readfiles
 
 [8]: #parameters-2
 
