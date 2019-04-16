@@ -1,3 +1,101 @@
+# [2.0.0](https://github.com/Berkmann18/hashmyjs/compare/v1.0.0...v2.0.0) (2019-04-16)
+
+
+### Breaking
+
+* `readFilesSync` is now `readFiles` ([90e7916954e925f8adf4f480321c98f66e2aaf7a](https://github.com/Berkmann18/hashmyjs/commit/90e7916954e925f8adf4f480321c98f66e2aaf7a))
+
+### Build
+
+* Added SR's npm plugin ([c9c5fdfad824b2d2d1df9888bf435c0cfb03a70d](https://github.com/Berkmann18/hashmyjs/commit/c9c5fdfad824b2d2d1df9888bf435c0cfb03a70d))
+* Improved build process ([ee3b32caaea4b72034e78b2df1c1e6e445a44c73](https://github.com/Berkmann18/hashmyjs/commit/ee3b32caaea4b72034e78b2df1c1e6e445a44c73))
+* Tester tweak ([cac52138dfd17ac99b59dfc4cabcd1172bc487c2](https://github.com/Berkmann18/hashmyjs/commit/cac52138dfd17ac99b59dfc4cabcd1172bc487c2))
+* Use `npm ci` ([5eee411f80cbd0423f6162ee38a49176f6790985](https://github.com/Berkmann18/hashmyjs/commit/5eee411f80cbd0423f6162ee38a49176f6790985))
+
+### Chore
+
+* Added labels to (new) issue templates ([22924ecea36b2003f6481cb5e59801f3e04e1dab](https://github.com/Berkmann18/hashmyjs/commit/22924ecea36b2003f6481cb5e59801f3e04e1dab))
+* Updated tests ([9b0622f4453c983f24fd3fa718faf2e96bb2489a](https://github.com/Berkmann18/hashmyjs/commit/9b0622f4453c983f24fd3fa718faf2e96bb2489a))
+
+### Docs
+
+* Update ([7c3688de66133d7850ba57174211aabe4b0ce5f9](https://github.com/Berkmann18/hashmyjs/commit/7c3688de66133d7850ba57174211aabe4b0ce5f9))
+
+### Fix
+
+* Security fix + added SR's npm plugin ([1a412a0d36a50ecb90c1f962caf8cae081dc6a45](https://github.com/Berkmann18/hashmyjs/commit/1a412a0d36a50ecb90c1f962caf8cae081dc6a45))
+
+### Update
+
+* readFiles is now promise-based ([ac28b3099fd448a1cb8a221c0dff9b7ccb1157f6](https://github.com/Berkmann18/hashmyjs/commit/ac28b3099fd448a1cb8a221c0dff9b7ccb1157f6))
+* writeToFile is now promise-based ([cf4a8d39f33b5930266583c25c885ef21da7ae4e](https://github.com/Berkmann18/hashmyjs/commit/cf4a8d39f33b5930266583c25c885ef21da7ae4e))
+
+### Upgrade
+
+* [Security] Bump handlebars from 4.0.12 to 4.1.0 ([670310b36887e423aea9fc582c76e697035296e9](https://github.com/Berkmann18/hashmyjs/commit/670310b36887e423aea9fc582c76e697035296e9))
+* [Security] Bump lodash from 4.17.10 to 4.17.11 ([06fbb50b532d01b321707f2863cfce5fb697acbf](https://github.com/Berkmann18/hashmyjs/commit/06fbb50b532d01b321707f2863cfce5fb697acbf))
+* Bump all-contributors-cli from 5.11.0 to 6.1.1 ([3d7e87e64eb2919bf1f258887d2473a09ea34630](https://github.com/Berkmann18/hashmyjs/commit/3d7e87e64eb2919bf1f258887d2473a09ea34630))
+* Bump all-contributors-cli from 6.1.1 to 6.1.2 ([d1b11e0336dab7425f5175c7ed7831528e4e2108](https://github.com/Berkmann18/hashmyjs/commit/d1b11e0336dab7425f5175c7ed7831528e4e2108))
+* Bump all-contributors-cli from 6.1.2 to 6.1.3 ([b7fbb89ca72ff654ea131e468fca35df3bc8580c](https://github.com/Berkmann18/hashmyjs/commit/b7fbb89ca72ff654ea131e468fca35df3bc8580c))
+* Bump all-contributors-cli from 6.1.3 to 6.2.0 ([24c6d9a19f6cc2308a17c6cd87f34e2b8601162d](https://github.com/Berkmann18/hashmyjs/commit/24c6d9a19f6cc2308a17c6cd87f34e2b8601162d))
+* Bump all-contributors-cli from 6.2.0 to 6.3.0 ([4b105246c33a407bbb82c666f99d8a659c69e454](https://github.com/Berkmann18/hashmyjs/commit/4b105246c33a407bbb82c666f99d8a659c69e454))
+* Bump commander from 2.19.0 to 2.20.0 ([22819008b2d38966385a35ebc2c0fc3cbf18cf33](https://github.com/Berkmann18/hashmyjs/commit/22819008b2d38966385a35ebc2c0fc3cbf18cf33))
+* Bump documentation from 9.1.1 to 9.2.0 ([d86e88ae0fcf38f0c82ff4bef863bfd13d93aa48](https://github.com/Berkmann18/hashmyjs/commit/d86e88ae0fcf38f0c82ff4bef863bfd13d93aa48))
+* Bump documentation from 9.2.0 to 9.2.1 ([f84fc060a989821cc70a8970314365224c7c5412](https://github.com/Berkmann18/hashmyjs/commit/f84fc060a989821cc70a8970314365224c7c5412))
+* Bump documentation from 9.2.1 to 9.3.0 ([3c7676cabee1e6dd58ba859cdf79e25235a7ce27](https://github.com/Berkmann18/hashmyjs/commit/3c7676cabee1e6dd58ba859cdf79e25235a7ce27))
+* Bump documentation from 9.3.0 to 9.3.1 ([ce33791680f7702d4996971a9fb00710f51198f8](https://github.com/Berkmann18/hashmyjs/commit/ce33791680f7702d4996971a9fb00710f51198f8))
+* Bump eslint from 5.12.1 to 5.13.0 ([bd72282cb47dde4e2c69eeb65f754d056a1bf29d](https://github.com/Berkmann18/hashmyjs/commit/bd72282cb47dde4e2c69eeb65f754d056a1bf29d))
+* Bump eslint from 5.13.0 to 5.14.0 ([69c7cbef54080b51c3d3215e0cc68e32228ac3cb](https://github.com/Berkmann18/hashmyjs/commit/69c7cbef54080b51c3d3215e0cc68e32228ac3cb))
+* Bump eslint from 5.14.0 to 5.14.1 ([6991b4d54a046c37cb951e918ed0d721128bebf5](https://github.com/Berkmann18/hashmyjs/commit/6991b4d54a046c37cb951e918ed0d721128bebf5))
+* Bump eslint from 5.14.1 to 5.15.0 ([50ae771fbfcd0b94a0fa8671c67f21c62a1001e4](https://github.com/Berkmann18/hashmyjs/commit/50ae771fbfcd0b94a0fa8671c67f21c62a1001e4))
+* Bump eslint from 5.15.0 to 5.15.1 ([06b41c46594e705cf8e7c01825711d0d0faba93e](https://github.com/Berkmann18/hashmyjs/commit/06b41c46594e705cf8e7c01825711d0d0faba93e))
+* Bump eslint from 5.15.1 to 5.15.2 ([98e08e513228aada7dbf49b0f8f6518ad02c736f](https://github.com/Berkmann18/hashmyjs/commit/98e08e513228aada7dbf49b0f8f6518ad02c736f))
+* Bump eslint from 5.15.2 to 5.15.3 ([bb848e10a544769c1fb57a1dd4f1f6e364ce84ea](https://github.com/Berkmann18/hashmyjs/commit/bb848e10a544769c1fb57a1dd4f1f6e364ce84ea))
+* Bump eslint from 5.15.3 to 5.16.0 ([cf51976f7abe60b0e4144938611fc39526cbd43e](https://github.com/Berkmann18/hashmyjs/commit/cf51976f7abe60b0e4144938611fc39526cbd43e))
+* Bump jest from 24.0.0 to 24.1.0 ([39252eb7b36118efd6f60efd955cb93c469d1952](https://github.com/Berkmann18/hashmyjs/commit/39252eb7b36118efd6f60efd955cb93c469d1952))
+* Bump jest from 24.1.0 to 24.3.1 ([49d848cbac14b1a54ace97816ce970e28d30be8c](https://github.com/Berkmann18/hashmyjs/commit/49d848cbac14b1a54ace97816ce970e28d30be8c))
+* Bump jest from 24.3.1 to 24.4.0 ([e5741617abe04be2d9f65796390fe151220ff131](https://github.com/Berkmann18/hashmyjs/commit/e5741617abe04be2d9f65796390fe151220ff131))
+* Bump jest from 24.4.0 to 24.5.0 ([e18a2061d58879cca345ed00749e1a60e13b5181](https://github.com/Berkmann18/hashmyjs/commit/e18a2061d58879cca345ed00749e1a60e13b5181))
+* Bump jest from 24.5.0 to 24.6.0 ([ebb3b1d38b21f208f74d3629e56e9eda173e31b7](https://github.com/Berkmann18/hashmyjs/commit/ebb3b1d38b21f208f74d3629e56e9eda173e31b7))
+* Bump jest from 24.6.0 to 24.7.0 ([9449c9387c1bddd08fa8b8b5e8700a2eed9ea845](https://github.com/Berkmann18/hashmyjs/commit/9449c9387c1bddd08fa8b8b5e8700a2eed9ea845))
+* Bump jest from 24.7.0 to 24.7.1 ([909160d68ab99af0098755d1070c7b51858707e4](https://github.com/Berkmann18/hashmyjs/commit/909160d68ab99af0098755d1070c7b51858707e4))
+* Bump jest-cli from 24.0.0 to 24.1.0 ([e5312facd2b175ce1426c4a9501abb05cf9ca68d](https://github.com/Berkmann18/hashmyjs/commit/e5312facd2b175ce1426c4a9501abb05cf9ca68d))
+* Bump jest-cli from 24.1.0 to 24.3.1 ([c4eba419aad611d26eaf637c4809e3b456e3e32c](https://github.com/Berkmann18/hashmyjs/commit/c4eba419aad611d26eaf637c4809e3b456e3e32c))
+* Bump jest-cli from 24.3.1 to 24.4.0 ([2571ae69e2cefced0e40b4ca7d6c864c8ae58a91](https://github.com/Berkmann18/hashmyjs/commit/2571ae69e2cefced0e40b4ca7d6c864c8ae58a91))
+* Bump jest-cli from 24.4.0 to 24.5.0 ([83c01747199ca1da4a535e359ed713266ba39b16](https://github.com/Berkmann18/hashmyjs/commit/83c01747199ca1da4a535e359ed713266ba39b16))
+* Bump jest-cli from 24.5.0 to 24.6.0 ([d9e74593dce82edc481facf755ae5ed7b5b46ea1](https://github.com/Berkmann18/hashmyjs/commit/d9e74593dce82edc481facf755ae5ed7b5b46ea1))
+* Bump jest-cli from 24.6.0 to 24.7.0 ([d0ad09cc7b460831b2afb2675d6911ad1965b59c](https://github.com/Berkmann18/hashmyjs/commit/d0ad09cc7b460831b2afb2675d6911ad1965b59c))
+* Bump jest-cli from 24.7.0 to 24.7.1 ([a37feb1ccc795b6449525da71a9c405a3de02224](https://github.com/Berkmann18/hashmyjs/commit/a37feb1ccc795b6449525da71a9c405a3de02224))
+* Bump lint-staged from 8.1.1 to 8.1.3 ([a4ad870585e5a1fc3b2642e0c27a6798fb8a7900](https://github.com/Berkmann18/hashmyjs/commit/a4ad870585e5a1fc3b2642e0c27a6798fb8a7900))
+* Bump lint-staged from 8.1.3 to 8.1.4 ([ced74496924bd6dded39797211fd3aa174e880f1](https://github.com/Berkmann18/hashmyjs/commit/ced74496924bd6dded39797211fd3aa174e880f1))
+* Bump lint-staged from 8.1.4 to 8.1.5 ([729c894909eca06a693c652c05418196e732a66e](https://github.com/Berkmann18/hashmyjs/commit/729c894909eca06a693c652c05418196e732a66e))
+* Bump snyk from 1.123.0 to 1.124.0 ([65205305badea65aa0f6809c52da0edf55ffcd6c](https://github.com/Berkmann18/hashmyjs/commit/65205305badea65aa0f6809c52da0edf55ffcd6c))
+* Bump snyk from 1.124.0 to 1.124.1 ([20f774253bdf5659559f97a78a3d3df335518990](https://github.com/Berkmann18/hashmyjs/commit/20f774253bdf5659559f97a78a3d3df335518990))
+* Bump snyk from 1.124.1 to 1.125.0 ([82a19e4e4108b3d4a6dfe450fbb8e0783e6c47ac](https://github.com/Berkmann18/hashmyjs/commit/82a19e4e4108b3d4a6dfe450fbb8e0783e6c47ac))
+* Bump snyk from 1.125.0 to 1.126.0 ([1b475439698bbb7d5cb4812013e232668f226c1c](https://github.com/Berkmann18/hashmyjs/commit/1b475439698bbb7d5cb4812013e232668f226c1c))
+* Bump snyk from 1.126.0 to 1.130.0 ([c3fa730bda6e03021f24fb4c62b8c677ce56a204](https://github.com/Berkmann18/hashmyjs/commit/c3fa730bda6e03021f24fb4c62b8c677ce56a204))
+* Bump snyk from 1.130.0 to 1.132.2 ([f18bff183b0e19a7e0e23f446f2271ac254ebba6](https://github.com/Berkmann18/hashmyjs/commit/f18bff183b0e19a7e0e23f446f2271ac254ebba6))
+* Bump snyk from 1.132.2 to 1.134.1 ([0c2038ad2e1f0bbc43b95de17837cf7fa79063dd](https://github.com/Berkmann18/hashmyjs/commit/0c2038ad2e1f0bbc43b95de17837cf7fa79063dd))
+* Bump snyk from 1.134.1 to 1.134.2 ([1649ddc9160640408e7c1cd908e6672371048d24](https://github.com/Berkmann18/hashmyjs/commit/1649ddc9160640408e7c1cd908e6672371048d24))
+* Bump snyk from 1.134.2 to 1.135.1 ([890cb1310fb01f4cebe0e9a941eb42c39ad155f4](https://github.com/Berkmann18/hashmyjs/commit/890cb1310fb01f4cebe0e9a941eb42c39ad155f4))
+* Bump snyk from 1.135.1 to 1.136.0 ([ead68812edd18ae870baf082cb70967573a15ace](https://github.com/Berkmann18/hashmyjs/commit/ead68812edd18ae870baf082cb70967573a15ace))
+* Bump snyk from 1.136.0 to 1.136.2 ([d949301a8f8f93a52d9247c20efd75b3cac9373c](https://github.com/Berkmann18/hashmyjs/commit/d949301a8f8f93a52d9247c20efd75b3cac9373c))
+* Bump snyk from 1.136.2 to 1.136.3 ([c668ff6ae3eeb2c637e8c45ec6c4e2a31fa8cd35](https://github.com/Berkmann18/hashmyjs/commit/c668ff6ae3eeb2c637e8c45ec6c4e2a31fa8cd35))
+* Bump snyk from 1.136.3 to 1.137.0 ([de968c884e3b1fc22632cb640daf06d067b07b68](https://github.com/Berkmann18/hashmyjs/commit/de968c884e3b1fc22632cb640daf06d067b07b68))
+* Bump snyk from 1.137.0 to 1.140.0 ([c11856dfbeccbd0d58e0751f301f09ac3ff8a0cf](https://github.com/Berkmann18/hashmyjs/commit/c11856dfbeccbd0d58e0751f301f09ac3ff8a0cf))
+* Bump snyk from 1.140.0 to 1.143.0 ([a6a0d62cdcb6a3f5213618050a36b1bc47bf4694](https://github.com/Berkmann18/hashmyjs/commit/a6a0d62cdcb6a3f5213618050a36b1bc47bf4694))
+* Bump snyk from 1.143.0 to 1.143.1 ([4613a0cef302ae154a6d2f03f4b278313abc9c93](https://github.com/Berkmann18/hashmyjs/commit/4613a0cef302ae154a6d2f03f4b278313abc9c93))
+* Bump snyk from 1.143.1 to 1.145.0 ([4108bd61eb7fd0de362734191e8b12e607898d55](https://github.com/Berkmann18/hashmyjs/commit/4108bd61eb7fd0de362734191e8b12e607898d55))
+* Bump snyk from 1.145.0 to 1.147.0 ([de98161a613c56587bbc06ab6ecbb4c9d7811352](https://github.com/Berkmann18/hashmyjs/commit/de98161a613c56587bbc06ab6ecbb4c9d7811352))
+* Bump snyk from 1.147.0 to 1.147.2 ([feed3b3c4c449328eafff87eac9e60f8c29b8426](https://github.com/Berkmann18/hashmyjs/commit/feed3b3c4c449328eafff87eac9e60f8c29b8426))
+* Bump snyk from 1.147.2 to 1.147.3 ([c37875e2d2399d1ae3968b973a59d42c3db23cc4](https://github.com/Berkmann18/hashmyjs/commit/c37875e2d2399d1ae3968b973a59d42c3db23cc4))
+* Bump snyk from 1.147.3 to 1.147.4 ([bf44913e91b5f78d75883afb842bd0953bc68133](https://github.com/Berkmann18/hashmyjs/commit/bf44913e91b5f78d75883afb842bd0953bc68133))
+* Bump snyk from 1.147.4 to 1.148.0 ([6a0a3537ad30f46b886e3f9f7334e5c08e116e16](https://github.com/Berkmann18/hashmyjs/commit/6a0a3537ad30f46b886e3f9f7334e5c08e116e16))
+* Bump snyk from 1.148.0 to 1.149.0 ([64a26d46ac28f018c7be0b6195b0ba21adccd212](https://github.com/Berkmann18/hashmyjs/commit/64a26d46ac28f018c7be0b6195b0ba21adccd212))
+* Bump snyk from 1.149.0 to 1.150.0 ([b01619c00eba97aefbf41cd4ca6899eea4681f6b](https://github.com/Berkmann18/hashmyjs/commit/b01619c00eba97aefbf41cd4ca6899eea4681f6b))
+* Bump snyk from 1.150.0 to 1.151.0 ([8b382846901a9088a884e02593996aa6067ab073](https://github.com/Berkmann18/hashmyjs/commit/8b382846901a9088a884e02593996aa6067ab073))
+* Security upgrade ([7e177359c13a29bbd78b931ca6c277cab4ff5afe](https://github.com/Berkmann18/hashmyjs/commit/7e177359c13a29bbd78b931ca6c277cab4ff5afe))
+
 # 1.0.0 (2019-01-31)
 
 
