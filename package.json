@@ -21,7 +21,7 @@
     "cc:all": "npm run cc *.js src/*.js",
     "commit": "git-cz",
     "lint-staged": "lint-staged",
-    "lint:md": "remark . .github -i ./config/.remarkignore",
+    "lint:md": "remark . .github",
     "lint": "npm run fmt && npm run lint:md",
     "semantic-release": "semantic-release",
     "prepare": "snyk protect",
