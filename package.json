@@ -15,7 +15,7 @@
     "doc:lint": "documentation lint src/**",
     "doc:md": "documentation build *.js -f md -a public -o DOCUMENTATION.md",
     "doc": "npm run doc:lint && npm run doc:md",
-    "fmt": "eslint -c ./config/.eslintrc.js *.js {src,test}/*.js --fix",
+    "fmt": "prettier --write",
     "flowchart": "js2flowchart",
     "cc": "cr -c ./config/.complexrc",
     "cc:all": "npm run cc *.js src/*.js",
@@ -79,6 +79,7 @@
     "js2flowchart": "^1.1.7",
     "lint-staged": "^9.1.0",
     "mock-stdin": "^0.3.1",
+    "prettier": "^1.18.2",
     "remark-cli": "^7.0.0",
     "remark-preset-lint-consistent": "^2.0.3",
     "remark-preset-lint-recommended": "^3.0.3",
@@ -120,6 +121,7 @@
   },
   "lint-staged": {
     "*.js": [
+      "npm run fmt",
       "eslint -c ./config/.eslintrc.js --fix",
       "jest --bail --findRelatedTests --maxWorkers=4",
       "git add"
