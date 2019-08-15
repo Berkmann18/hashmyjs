@@ -15,7 +15,7 @@
     "doc:lint": "documentation lint src/**",
     "doc:md": "documentation build *.js -f md -a public -o DOCUMENTATION.md",
     "doc": "npm run doc:lint && npm run doc:md",
-    "fmt": "prettier --write",
+    "fmt": "prettier --write *.js {src,test}/*.js",
     "flowchart": "js2flowchart",
     "cc": "cr -c ./config/.complexrc",
     "cc:all": "npm run cc *.js src/*.js",
@@ -121,7 +121,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "npm run fmt",
+      "prettier --write",
       "eslint -c ./config/.eslintrc.js --fix",
       "jest --bail --findRelatedTests --maxWorkers=4",
       "git add"
