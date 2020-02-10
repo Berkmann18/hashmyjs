@@ -83,7 +83,7 @@
     "remark-cli": "^7.0.0",
     "remark-preset-lint-consistent": "^2.0.3",
     "remark-preset-lint-recommended": "^3.0.3",
-    "semantic-release": "^16.0.0",
+    "semantic-release": "^17.0.2",
     "snyk": "^1.192.4",
     "test-console": "^1.1.0"
   },
