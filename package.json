@@ -56,7 +56,7 @@
   "homepage": "https://github.com/Berkmann18/hashmyjs#readme",
   "dependencies": {
     "colors": "^1.3.3",
-    "commander": "^6.0.0",
+    "commander": "^7.0.0",
     "nclr": "^2.0.0",
     "sjcl": "^1.0.8"
   },
